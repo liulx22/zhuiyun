@@ -15,6 +15,33 @@
 		<!-- 引入bootstarp的js -->
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="//at.alicdn.com/t/font_1518930_j0igjux6v5k.js"></script>
+		<script>
+			$(function(){
+				var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
+				   $.ajax({
+						//请求方式为get
+						type:"GET",
+						//json文件位置
+						url:"./file/allresourceformaintenance.json",
+				        //返回数据格式为json
+				        dataType: "json",
+				        //请求成功完成后要执行的方法
+				        success: function(data){
+						    //使用$.each方法遍历返回的数据date,插入到id为#result中
+							var str="";
+							$.each(data,function(i,n){
+							 str+="<div class=\"pin\"><div class=\"box\"><img src=\""+globaPicUrl+"resource/vido/"+n[0]+"\" /></div>";
+							 str+="<div class=\"text-under-img\">";
+							 str+="<span class=\"col-xs-4\">浏览量 "+n[1]+"  </span>";
+							 str+="<span class=\"col-xs-4\">点赞量 "+n[2]+"</span>";
+							 str+="<span class=\"col-xs-4\">留言</span>";
+							 str+="</div></div>";
+							})
+							$("#main").append(str);
+					   }
+				  });
+			 });
+		</script>
 		<style type="text/css">
 			* {
 				padding: 0;
@@ -152,7 +179,7 @@
 						<!-- 货源列表 --> 
 						<div class="col-xs-12 column">
 							<div id="main">
-								<div class="pin">
+								<!-- <div class="pin">
 									<div class="box"> 
 										<img src="Picture/GlobalPicture/0.jpg" />
 									</div>
@@ -161,67 +188,8 @@
 										<span class="col-xs-4">点赞量 10</span>
 										<span class="col-xs-4">留言</span>
 									</div>
-								</div>
-								<div class="pin">
-									<div class="box">
-										<img src=" ./Picture/GlobalPicture/3.jpg" />
-									</div>
-									<div class="text-under-img">
-										<span class="col-xs-4">浏览量 20  </span>
-										<span class="col-xs-4">点赞量 10</span>
-										<span class="col-xs-4">留言</span>
-									</div>
-								</div>
-								<div class="pin">
-									<div class="box">
-										<img src=" ./Picture/GlobalPicture/4.jpg" />
-									</div>
-									<div class="text-under-img">
-										<span class="col-xs-4">浏览量 20  </span>
-										<span class="col-xs-4">点赞量 10</span>
-										<span class="col-xs-4">留言</span>
-									</div>
-								</div>
-								<div class="pin">
-									<div class="box">
-										<img src=" ./Picture/GlobalPicture/5.jpg" />
-									</div>
-									<div class="text-under-img">
-										<span class="col-xs-4">浏览量 20  </span>
-										<span class="col-xs-4">点赞量 10</span>
-										<span class="col-xs-4">留言</span>
-									</div>
-								</div>
-								<div class="pin">
-									<div class="box">
-										<img src=" ./Picture/GlobalPicture/6.jpg" />
-									</div>
-									<div class="text-under-img">
-										<span class="col-xs-4">浏览量 20  </span>
-										<span class="col-xs-4">点赞量 10</span>
-										<span class="col-xs-4">留言</span>
-									</div>
-								</div>
-								<div class="pin">
-									<div class="box">
-										<img src=" ./Picture/GlobalPicture/7.jpg" />
-									</div>
-									<div class="text-under-img">
-										<span class="col-xs-4">浏览量 20  </span>
-										<span class="col-xs-4">点赞量 10</span>
-										<span class="col-xs-4">留言</span>
-									</div>
-								</div>
-								<div class="pin">
-									<div class="box">
-										<img src=" ./Picture/GlobalPicture/8.jpg" />
-									</div>
-									<div class="text-under-img">
-										<span class="col-xs-4">浏览量 20  </span>
-										<span class="col-xs-4">点赞量 10</span>
-										<span class="col-xs-4">留言</span>
-									</div>
-								</div>
+								</div> -->
+								
 							
 						</div>
 					</div>
