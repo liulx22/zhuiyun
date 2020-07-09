@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/zz_index.css" rel="stylesheet" style=""/>
+		<script src="resource/jquery-3.2.1.js"></script>
+	</head>
+	<body>
+		<div id="main">
+			<!--position:relactive-->
+			<div class="box">
+				<!--position:absolute-->
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="Picture/GlobalPicture/1.jpg" />
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		onload = function() {
+			waterFall(); //瀑布流功能
+			//设置滚动条事件
+			window.onscroll = function() {
+				//获取最后一个盒子的高度值
+				lastBoxHeight = boxs[boxs.length - 1].offsetTop + boxs[boxs.length - 1].offsetHeight / 2
+				//获取窗口的文档显示区的高度。 
+				wHeight = window.innerHeight;
+				//获取滚动条的高度
+				sTop = document.body.scrollTop || document.documentElement.scrollTop;
+				if (lastBoxHeight < wHeight + sTop) { //设置触发条件
+					//定义一个json对象，里面存放瀑布流加载的图片
+					var _json = {
+						"data": [{
+							"scr": "Picture/GlobalPicture/1.jpg"
+						}, {
+							"scr": "Picture/GlobalPicture/1.jpg"
+						}, {
+							"scr": "Picture/GlobalPicture/1.jpg"
+						}, {
+							"scr": "Picture/GlobalPicture/1.jpg"
+						}, {
+							"scr": "Picture/GlobalPicture/1.jpg"
+						}, {
+							"scr": "Picture/GlobalPicture/1.jpg"
+						}, {
+							"scr": "Picture/GlobalPicture/1.jpg"
+						}]
+					}
+					for (var i = 0; i < _json.data.length; i++) { //动态创建div、pic img（将图片放入）
+						//创建一个div，类名为box，存放在main中
+						var odiv = create("div");
+						odiv.className = "box";
+						$("main").appendChild(odiv)
+						//创建一个div、类名pic、存放到odiv中
+						var opic = create("div");
+						opic.className = "pic";
+						odiv.appendChild(opic)
+						//创建一个img标签，将图片依次存放到img里面
+						var oimg = create("img");
+						oing.src = _json.data[i].src
+						opic.appendChild(oimg);
+					}
+					waterFall()
+				}
+			}
+		}
+
+		function $(id) {
+			return document.getElementById(id);
+		}
+
+		function creat(ele) {
+			return document.createElement(ele);
+		}
+		//瀑布流功能
+		function waterFall() {
+			boxs = document.getElementsByClassName("box");
+			//获取一个盒子的宽度
+			boxW = boxs[0].offsetWidth;
+			//定义一个数组 存放每一列图片的高度值
+			hArr = [];
+			for (var i = 0; i < boxs.length; i++) {
+				//定义每行存放6张图片，将六张图片的高度存放到数组中
+				if (i < 2) {
+					hArr.push(boxs[i].offsetHeight);
+				} else {
+					//第七张及其后的图片位置 根据数组中的最小高度确定
+					var minIndex = getMinHeightIndex()
+					//定位 第七张及其后面的图片位置
+					boxs[i].style.position = "absolute";
+					boxs[i].style.left = minIndex * boxW + "px";
+					boxs[i].style.top = hArr[minIndex] + "px";
+					//改变minIndex在数组中的高度值
+					hArr[minIndex] += boxs[i].offsetHeight;
+				}
+			}
+		}
+		//功能函数：获取数组最小值下标
+		function getMinHeightIndex() {
+			var minHeight = hArr[0]; //假设最小值
+			var minHeightIndex = 0;
+			for (var i = 0; i < hArr.length; i++) {
+				if (hArr[i] < minHeight) {
+					minHeigt = hArr[i];
+					minHeightIndex = i;
+				}
+			}
+			return minHeightIndex;
+		}
+	</script>
+</html>
