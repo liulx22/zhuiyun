@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="./css/mui.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		 <header class="mui-bar mui-bar-nav">
+		 	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		 	<h1 class="mui-title">农事历史记录</h1>
+		 </header>
+		 <div class="mui-content">
+			<div id="AgriculturalHistory">
+			</div>
+		 </div>
+		<script src="./js/mui.js"></script>
+		<script src="./js/jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			$(function(){
+				getAgriculturalHistory();
+			})
+			
+			// 获取农事记录
+			function getAgriculturalHistory(){
+				$.ajax({
+					url:"./file/AgriculturalHistoryList.json",
+					type:"get",
+					dataType:"json",
+					success:function(data){
+						var mm="";
+						$(data.list).each(function(a,b){
+							var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/userHead/"+b.userHead+"";
+							mm+="<div class=\"mui-card\" >\n" +
+							    "\t\t\t\t\t<div class=\"mui-card-header mui-card-media\">\n" +
+							    "\t\t\t\t \t\t<img src=\""+globaPicUrl+"\" />\n" +
+							    "\t\t\t\t \t\t<div class=\"mui-media-body\">\n" +
+							    "\t\t\t\t \t\t\t"+b.userName+"\n" +
+							    "\t\t\t\t \t\t\t<p>发表于 "+b.time+"</p>\n" +
+							    "\t\t\t\t \t\t</div>\n" +
+							    "\t\t\t\t \t</div>\n" +
+							    "\t\t\t\t \t<div class=\"mui-card-content\" >\n" +
+							    "\t\t\t\t \t\t<div class=\"mui-card-content-inner\">\n" +
+							    "\t\t\t\t \t\t\t"+b.title+"\n" +
+							    "\t\t\t\t \t\t</div>\n" +
+							    "\t\t\t\t \t</div>\n" +
+							    "\t\t\t\t \t<div class=\"mui-card-footer\">\n" +
+							    "\t\t\t\t \t\t"+b.remark+"\n" +
+							    "\t\t\t\t \t</div>\n" +
+							    "\t\t\t\t</div>"
+						})
+						$("#AgriculturalHistory").html(mm);
+					},error:function(){
+						alert("没有上传农事记录！");
+					}
+				})
+			}
+		</script>
+		
+	</body>
+
+</html>
