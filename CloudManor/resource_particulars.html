@@ -21,6 +21,7 @@
 			
 			.icon-lishijilu {
 				vertical-align: text-bottom;
+				cursor: pointer;
 			}
 			.icon-lishijilu:active {
 				color: red;
@@ -48,7 +49,7 @@
 					<div style="width: 80px; height: 30px; margin: -26px 140px; color: #888888; font-size: 18px;">
 						资源详情
 					</div>
-					<div style="width: 20px; height: 30px; float: right;">
+					<div style="width: 20px; height: 30px; float: right;" id="showHistory">
 						<span class="iconfont icon-lishijilu"></span>
 					</div>
 					<!-- <hr width="345px"/> -->
@@ -114,6 +115,10 @@
 			huoqunongshi();
 			//获取养护记录照片和视频
 			yanghujilu();
+			//点击查看历史农事记录
+			$("#showHistory").click(function(){
+				window.location.href="./AgriculturalHistory.html";
+			});
 		})
 		//获取农事信息
 		function huoqunongshi(){
