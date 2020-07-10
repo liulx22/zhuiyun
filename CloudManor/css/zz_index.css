@@ -1,37 +1,188 @@
 * {
-	margin: 0;
 	padding: 0;
+	margin: 0;
 }
 
-html,
-body {
-	width: 100%;
-	height: 100%;
-
+.icon {
+	width: 2em;
+	height: 3.2em;
+	vertical-align: -0.15em;
+	fill: currentColor;
+	overflow: hidden;
+	cursor: pointer;
 }
 
 #main {
 	position: relative;
-	/*所有的盒子相对他来定位 的*/
-	width: 970px;
-	margin: 0 auto;
+	color: white;
+}
+
+.pin {
+	padding: 3% 0 0 3%;
+	float: left;
+	width: 48%;
 }
 
 .box {
-	padding: 5px 0 0 5px;
-	/* 要获取每列高度 =  图片和图片之间的距离*/
-	float: left;
-	/*块级元素水平排列*/
+	padding: 2%;
+	border: 2% solid #ccc;
+	box-shadow: 0 0 10px #ccc;
+	border-radius: 5px;
 }
 
-.pic {
-	padding: 13px;
-	border: 1px solid #CCCCCC;
-	box-shadow: 0 0 5px #CCCCCC;
-	/*水平  垂直   阴影模糊程度   颜色*/
-}
-
-.pic img {
-	width: 450px;
+.box img {
+	width: 100%;
 	height: auto;
+	margin-bottom: 20px;
+}
+
+
+
+body {
+	background-color: #F5F5F5;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 1.428571429;
+	background-color: #ffffff;
+}
+
+.bluebtn {
+	background: #1D7CB3;
+	background-image: linear-gradient(bottom, #10689E 40%, #1D7CB3 70%);
+	background-image: -o-linear-gradient(bottom, #10689E 40%, #1D7CB3 70%);
+	background-image: -moz-linear-gradient(bottom, #10689E 40%, #1D7CB3 70%);
+	background-image: -webkit-linear-gradient(bottom, #10689E 40%, #1D7CB3 70%);
+	background-image: -ms-linear-gradient(bottom, #10689E 40%, #1D7CB3 70%);
+	box-shadow: 0px 1px 2px #999;
+	-webkit-box-shadow: 0px 1px 2px #999;
+	-moz-box-shadow: 0px 1px 2px #999;
+	border-bottom: 1px solid #09527D;
+	color: #FFFFFF;
+	float: right;
+}
+
+.title-span {
+	height: 3.2em;
+	line-height: 2.5em;
+	width: 45%;
+	display: inline-block;
+	text-align: end;
+	font-size: 1.3em;
+}
+
+#default-hidden {
+	width: 100%;
+	height: 200px;
+	line-height: 200px;
+	vertical-align: middle;
+	text-align: center;
+	display: none;
+}
+
+.row {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.container {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.text-under-inf1 {
+	font-size: 26px;
+	top: -25rem;
+	left: 22rem;
+	width: 5rem;
+	height: 0rem;
+	position: relative;
+}
+
+.text-under-inf1-inf {
+	margin-bottom: 15px;
+}
+
+.text-under-inf2 {
+	font-size: 26px;
+	top: -9rem;
+	left: 2rem;
+	width: 25rem;
+	height: 0rem;
+	position: relative;
+}
+
+.text-under-inf3 {
+	font-size: 24px;
+	top: -7rem;
+	left: 2rem;
+	width: 25rem;
+	height: 0rem;
+	position: relative;
+}
+
+.text-under-img span {
+	cursor: pointer;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+	outline: none;
+	border-color: transparent;
+	/* box-shadow:none; */
+}
+
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.div-foot {
+	position: absolute;
+	bottom: 0rem;
+}
+
+a {
+	color: #333;
+	text-decoration: none
+}
+
+.nav {
+	list-style: none;
+	width: 100%;
+	height: 50px;
+	margin-top: 20px;
+	position: fixed;
+	bottom: 0;
+}
+
+.nav li {
+	float: left
+}
+
+.nav li a {
+	display: block;
+	height: 50px;
+	font-size: 30px;
+	text-align: center;
+	line-height: 50px;
+	width: 244px;
+	background: #efefef;
+	margin-left: 1px;
+}
+
+.nav li a.on,
+.nav li a:hover {
+	background: #F60;
+	color: #fff;
 }
