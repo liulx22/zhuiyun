@@ -1,0 +1,84 @@
+/*公共*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-size:15px ;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: arial,"Lantinghei SC","Microsoft Yahei";
+}
+.user-info{width:100%; max-width:900px;overflow:hidden;}
+/* 标题  个人资料 */
+.am-padding {padding:0px 10px;}
+.am-fl.am-cf small{width: auto;}
+.am-text-danger {color: #000}
+.am-text-lg{ font-size:18px;}
+
+/* 头像 */
+.user-infoPic{ overflow:hidden; position:relative;margin:0px 10px ;padding:0px 5px 0px 0px;border-bottom:1px solid #E4EAEE;}
+.user-infoPic{position: relative;/* margin:20px 5% 50px */ ;height:130px;border-bottom:1px solid #eee ;}
+.filePic{width:100px; float:left;margin-left:15px;margin-top:15px ;}		
+.inputPic{ cursor:pointer;opacity:0;ilter:alpha(opacity=0);width:100%;height:100%;position: absolute;top: 0;left: 0;z-index: 9;}
+.am-img-thumbnail {padding:0px;margin:2px ;}
+.info-m{ display:block;float:left;overflow: hidden;line-height: 24px;position: absolute;left:6%;top:25px;margin-left: 120px;}
+
+/*表单配置*/
+.info-main{max-width:800px;padding:0px 10px ;}
+.am-form input[type="text"], .am-form input[type="password"], .am-form input[type="datetime"], .am-form input[type="datetime-local"], .am-form input[type="date"], .am-form input[type="month"], .am-form input[type="time"], .am-form input[type="week"], .am-form input[type="tel"], .am-form input[type="email"], .am-form input[type="url"], .am-form input[type="search"], .am-form input[type="tel"], .am-form input[type="color"]{background:none ;border: none;}
+input::-webkit-input-placeholder{text-align:right;}
+input{text-align: right;}
+.am-form-label{font-size:14px ;font-weight: 600;width: auto;}
+.sex,.birth{float: right;padding-right: 5px;margin-left:0 ;}
+
+.am-form-content small{display: none;}
+.am-selected{width: auto;}
+
+@media only screen and (min-width:640px) 
+{
+.am-form-group.address,.am-form-group.safety,.am-form-help{display: none;}
+.sex, .birth {float:none;margin-left: 85px;}
+.am-radio-inline input[type="radio"]{margin-left: 0px;}
+input::-webkit-input-placeholder,input{text-align:left;}	
+.info-main{margin:0% 5%;}
+.user-infoPic,.am-form-group{border:none;}
+.am-form-group {margin: 20px 0px;}
+.am-form input[type="text"], .am-form input[type="password"], .am-form input[type="datetime"], .am-form input[type="datetime-local"], .am-form input[type="date"], .am-form input[type="month"], .am-form input[type="time"], .am-form input[type="week"], .am-form input[type="tel"], .am-form input[type="email"], .am-form input[type="url"], .am-form input[type="search"], .am-form input[type="tel"], .am-form input[type="color"],.birth-select select,.birth-select2 select {
+border:1px solid #E4EAEE;}
+input {text-align: left;}
+.am-form-group{height:50px ;}
+.am-form-horizontal .am-form-label {padding-top:8px;}
+.am-form-content small{display:block;margin: 5px 5px;color: #ccc;}
+
+/*生日*/
+.birth-select select,.birth-select2 select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-border-radius: 0;
+  background: #ffffff url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+') no-repeat 100% center;
+}
+
+/*按钮*/
+.info-btn{text-align: center;}
+
+/*text-size-adjust不管屏幕怎么变文字大小不变*/
+body{margin:0;
+	 padding:0;
+	 width:100%;
+	 font-size:12px;
+	 font-family: arial,"Lantinghei SC","Microsoft Yahei";	
+	 background: #F5F8FA  none repeat scroll 0% 0%;
+}
