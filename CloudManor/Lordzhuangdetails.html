@@ -4,8 +4,6 @@
     <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <title>庄主产品详情页</title>
-		<!-- 点赞css -->
-        <link rel="stylesheet" type="text/css" href="css/common.css" />
 		<!-- 转发分享css -->
 		<link rel="stylesheet" href="dist/css/share.min.css">
 		<!-- bootstrap -->
@@ -16,19 +14,32 @@
 		<script src="src/js/social-share.js"></script>
 		<script src="src/js/qrcode.js"></script>
         <style type="text/css">
-            .clear{clear:both}
-            .list{width:760px; margin:20px auto}
-            .list li{float:left; margin:10px; position:relative}
-            .list li img{width:226px; height:317px;}
-            .list li p{position:absolute; top:560px; left:650px; width:100px; height:24px; line-height:24px;  opacity:.8;filter:alpha(opacity=80);}
-            .list li p a{padding-left:30px; height:24px; background:url(Picture/GlobalPicture/heart.png) no-repeat 4px -1px;color:#fff; font-weight:bold; font-size:14px}
-            .list li p a:hover{background-position:4px -25px;text-decoration:none}
-	     	.round_icon{width: 34px; height: 34px; display: flex;border-radius: 60%;align-items: center;justify-content: center;overflow: hidden;}
-		    .headphoto{ position:absolute;top:500px; left:980px; }
-		    .transmit{ position:absolute; top:800px;left:980px;}
-			.comment{position:absolute;top:1000px;left:980px; }
+			.list{width:760px; margin:20px auto}
+			.list li{float:left; margin:10px; position:relative}
+			.list li img{width:226px; height:317px;}
+			.list li p{position:absolute; top:760px; left:650px; width:100px; height:24px; line-height:24px;  opacity:.8;filter:alpha(opacity=80);}
+            
+           /* 点赞*/
+		    .dian {
+		       display: flex;
+		       flex-direction: row;
+			   position:absolute; 
+			   top:800px;
+			   left:765px;
+		     }
+		   
+		    #zan,
+		    #zan img,
+		    #zan #num1,
+		    /* 头像*/
+	     	.round_icon{width: 50px; height: 50px; display: flex;border-radius: 60%;align-items: center;justify-content: center;overflow: hidden;}
+		    .headphoto{ position:absolute;top:760px; left:790px; }
+		    /* 评论*/
+			.transmit{ position:absolute; top:910px;left:790px;}
+			/* 转发 */
+			.comment{position:absolute;top:980px;left:790px; }
 		    /* section{ position:relative;} */
-	        .fontsuspended{ position:absolute; bottom:35px;left:10px;color:rgba(255,255,255,1);font-family:"微软雅黑";font-size:16px;}
+	        .fontsuspended{ position:absolute; bottom:70px;left:10px;color:rgba(255,255,255,1);font-family:"微软雅黑";font-size:25px;}
 		
 		
 		    /* 转发弹窗 */
@@ -117,35 +128,50 @@
             <div class="demo">
                 <ul class="list clearfix">
                     <li>
-                       <video   muted controls="controls" autoplay="autoplay" >
-                       	  <source src="Picture/resource-vido/linux_01_001.mp4" type="video/mp4" />
+                       <video   muted  controls="controls" autoplay="autoplay" >
+                       	  <source src="Picture/resource-vido/linux_01_001.mp4"  type="video/mp4" />
                        </video>
 					   <!--悬浮字体在视频上 定位 -->
-					   <div class="fontsuspended">
-						  <span>显示定位，浏览量，类目，标题，购买</span>
+					   <div class="fontsuspended" >
+						   <div><img  style="width: 50px;height: 50px;"  src="Picture/GlobalPicture/location.jpg"  alt="定位">湖南省</div>
+						   <div><img  style="width: 50px;height: 50px;"  src="Picture/GlobalPicture/preview .jpg"  alt="预览">500人</div>
+						   <div><img  style="width: 50px;height: 50px;"  src="Picture/GlobalPicture/shoppingcart.jpg"  alt="购物车" onclick="tobuy()">100人购买</div>
+						   <div>&nbsp;&nbsp;生菜种植 #蔬菜</div>
 					   </div>
-                        <p>
-                            <a class="likes"  title="我喜欢" >0</a>
-                        </p>
                     </li>
                 </ul>
 				
+				<!-- 点赞 -->
+				<div class="dian">
+				 <div id="zan" style="width: 100px;height: 100px;" >
+				 <img style="width: 50px;height: 50px;" src="Picture/GlobalPicture/heart2.png" alt="赞一个">
+				 </div>
+				 <div id="num1"  style="position:absolute;top:70px;right: 40px; font-size: 20px;color: #FEFEFE;" >30</div>
+				
+				</div>
+				
+				
 				<!--头像显示  悬浮-->
 				<div class="headphoto">
-					<img  src="Picture/userHead/linux_1.jpg" class="round_icon"  alt="头像">    
+					<img  src="Picture/userHead/linux_1.jpg" class="round_icon"  alt="头像" onclick="toManterPage()">    
 				</div>
 				
 				<!--评论显示  悬浮-->
 				<div>
-					<img  style="width: 50px;height: 50px;" src="Picture/GlobalPicture/transmit.jpg" type="button" data-toggle="modal"   class="transmit"   onclick="transmitbutton()"   alt="评论">    
+					<img  style="width: 50px;height: 50px;" src="Picture/GlobalPicture/transmit2.jpg" type="button" data-toggle="modal"   class="transmit"   onclick="transmitbutton()"   alt="评论">    
 				</div>
 				
 				<!--转发显示  悬浮-->
 				<div >
-					<img style="width: 50px;height: 50px;" src="Picture/GlobalPicture/comment.jpg" class="comment"   id="myBtn" alt="转发">    
+					<img style="width: 50px;height: 50px;" src="Picture/GlobalPicture/comment2.jpg" class="comment"   id="myBtn" alt="转发">    
 				</div>
+				
+				
             </div>  
          </div>
+		 
+		 
+		 
 		 
    	  
 	   <!--转发底部弹窗 -->
@@ -153,12 +179,12 @@
 	     <!-- 弹窗内容 -->
 	   	<div class="modal-content">
 	   	  <div class="modal-header">
-	   	    <span class="close">&times;</span>
+	   	    <span class="close" style=" position: relative;right:100px;">&times;</span>
 	   	    <h4>转发方式</h4>
 	   	  </div>
 	   	  <div class="modal-body">
 	   		  <!--转发 内容 展示-->
-	   	       <div id="share-2"></div>
+	   	       <div id="share-2" style=" position: relative;left:150px;"></div>
 	   	  </div>
 	   	</div>
 	   </div>
@@ -167,7 +193,7 @@
 	
 	<!-- 评论模态框（Modal） -->
 	<div class="modal fade" id="transmitmyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
-		<div class="modal-dialog modal-lg"style=" position: relative;top:600px;">
+		<div class="modal-dialog modal-lg"style=" position: relative;top:900px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -236,20 +262,37 @@
 	   	socialShare('#share-4');
 	   	</script>	
 	   
-	   <!-- 点赞js-->
-        <script >
-            $(function() {
-                $(".likes").click(function() {
-                    var obj = $(this);
-                    obj.fadeOut(300);
-                    //以下通过ajax成功返回
-                    var num = parseInt(obj.text());
-                    obj.text(num + 1).fadeIn(300);
-                });
-            });
-        </script>
+	   <!-- 点赞-->
+	 <script>
+	 	var zan = document.getElementById('zan');
+	 	var num1 = document.getElementById('num1');
+	 	var flag1 = 0;
+	 	var flag2 = 0;
+	 	zan.onclick = function() {
+	 	  if (flag1 == 0) {
+	 	    num1.innerHTML++;
+	 	  }
+	 	  if (flag1 == 1) {
+	 	    num1.innerHTML--;
+	 	  }
+	 	  if (flag1 == 2) {
+	 	    num1.innerHTML++;
+	 	    flag1 = 0;
+	 	  }
+	 	  flag1++;
+	 	}
+	 </script>
 		
-	
+	<script>
+		//跳转到养护人页面
+		function toManterPage(){
+			window.location.href="./Maintenance_people_index.html";
+		}
+		//跳转到购买页面
+		function tobuy(){
+			window.location.href="./buy.html";
+		}
+	</script>
     </body>
 </html>
 

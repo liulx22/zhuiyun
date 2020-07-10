@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+        <meta name="format-detection" content="telephone=no" />
+    <title>购买页面</title>
+    <link rel="stylesheet" type="text/css" href="css/zbw/loaders.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/zbw/loading.css"/>
+    <link rel="stylesheet" type="text/css" href="css/zbw/base.css"/>
+    <link rel="stylesheet" type="text/css" href="css/zbw/style.css"/>
+      <script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+	  <!-- 引入外部json文件 -->
+	  <script type="text/javascript" src="file/zbw/describe.json"></script>
+	   <script type="text/javascript">
+			$(function(){
+				//拿到当前的资源id  去数据库查找所属养护人id，拿到养护人头像和名称，进行显示
+				//图片服务器地址
+				var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
+				//养护人头像（假数据 修改的部分）
+				var conserve_head="shaoyf_4";
+				document.getElementById("conserve_head1").src = globaPicUrl+"userHead/"+conserve_head+".jpg";
+				//养护人名称（假数据 修改的部分） 
+				var conserve="一个默默无闻的养护人";
+				document.getElementById("conserve_name").placeholder =conserve
+				
+				//拿到当前资源的id去数据库，拿到产品的封面图片
+				//产品图（假数据 修改的部分）
+				var product_picture="zbw_2_2";
+				document.getElementById("head_pictrue1").src = globaPicUrl+"resource/pictrue/"+product_picture+".jpg";
+				
+				//拿到当前资源的id 去数据库查看这个资源的类型（树木/地块/畜牧），进行判断，分别展示不同的描述信息
+				/* $.ajax({
+					//请求方式为post
+					type:"post",
+					//json文件位置
+					url:"./file/zbw/describe.json",
+				    //返回数据格式为json
+				    dataType: "json",
+				    //请求成功完成后要执行的方法
+				    success: function(data){
+						describe(data);		    
+									   }
+				}); */
+				describe();
+				
+			})
+			
+			function describe(){
+				/* 后台拿到的当前资源类型 */
+				var type="果树";
+				/* 判断资源类型 分别赋值 */
+				if(type=="果树"){
+						console.log(fruiter);
+						$("#describe_k1").text("树木品种");
+						$("#describe_k2").text("树龄");
+						$("#describe_k3").text("年产量");
+						$("#describe_k4").text("树木直径");
+						$("#describe_k5").text("承包时间");
+						$("#describe_k6").text("位置");
+						
+						$("#describe_v1").text(fruiter.breed_name);
+						$("#describe_v2").text(fruiter.tree_age+" 年");
+						$("#describe_v3").text(fruiter.yearly_output+" 斤");
+						$("#describe_v4").text(fruiter.diameter+" cm");
+						$("#describe_v5").text(fruiter.lease_time+" 年");
+						$("#describe_v6").text(fruiter.geographic_position);
+						
+						$("#title").text(fruiter.title);
+						$("#position").text("位置： "+fruiter.geographic_position);
+						$("#money1").text("￥ "+fruiter.money+".00");
+						$("#money2").text("￥ "+fruiter.money+".00");
+				}
+				if(type=="畜牧"){
+					console.log(livestock);
+					$("#describe_k1").text("牲畜品种");
+					$("#describe_k2").text("重量");
+					$("#describe_k3").text("颜色");
+					$("#describe_k4").text("年龄");
+					$("#describe_k5").text("是否打过疫苗");
+					$("#describe_k6").text("位置");
+					
+					$("#describe_v1").text(livestock.breed_name);
+					$("#describe_v2").text(livestock.weight+" 斤");
+					$("#describe_v3").text(livestock.colour+"");
+					$("#describe_v4").text(livestock.age+" 天");
+					$("#describe_v5").text(livestock.vaccine+"");
+					$("#describe_v6").text(livestock.geographic_position);
+					
+					$("#title").text(livestock.title);
+					$("#position").text("位置： "+livestock.geographic_position);
+					$("#money1").text("￥ "+livestock.money+".00");
+					$("#money2").text("￥ "+livestock.money+".00");
+				}
+				if(type=="地块"){
+					console.log(plot);
+					$("#describe_k1").text("去年种植");
+					$("#describe_k2").text("产量");
+					$("#describe_k3").text("面积");
+					$("#describe_k4").text("土地类型");
+					$("#describe_k5").text("承包时间");
+					$("#describe_k6").text("位置");
+					
+					$("#describe_v1").text(plot.plant_type);
+					$("#describe_v2").text(plot.yield+" 斤");
+					$("#describe_v3").text(plot.proportion+" 平方米");
+					$("#describe_v4").text(plot.land_type+"");
+					$("#describe_v5").text(plot.lease_time+" 年");
+					$("#describe_v6").text(plot.geographic_position);
+					
+					$("#title").text(plot.title);
+					$("#position").text("位置： "+plot.geographic_position);
+					$("#money1").text("￥ "+plot.money+".00");
+					$("#money2").text("￥ "+plot.money+".00");
+				}
+			}
+		</script>
+</head>
+
+<body>
+	<header class="top-header fixed-header">
+			<a class="icona" href="javascript:history.go(-1)">
+					<img src="Picture/GlobalPicture/left.jpg"/>
+			</a>
+			<h3>下订单</h3>
+			<a class="iconb" href="shopcar.html">
+			</a>
+	</header>
+	
+	<div class="contaniner fixed-cont">
+		<section class="to-buy">
+			<header>
+				<div class="namechange">
+					<img src="Picture/GlobalPicture/1.jpg" style="width: 50px;" id="conserve_head1"/>
+					<input id="conserve_name" type="text" placeholder="一个默默无闻的养护者"/>
+				</div>
+				
+			</header>
+			<div class="buy-list">
+				<ul>
+					<a href="detail.html">
+						<figure>
+							<img id="head_pictrue1" src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg"/>
+						</figure>
+						<li>
+							<h3 style="padding-top: 11px;" id="title">一棵苹果树，现在购买只要998</h3>
+							<span id="position">
+								位置：青藏高原
+							</span>
+							<b id="money1">￥998.00</b>
+							<!-- <small>×3</small> -->
+						</li>
+					</a>
+				</ul>
+				<dl>
+					<dd>
+						<span id="describe_k1">运费</span>
+						<small id="describe_v1">包邮</small>
+					</dd>
+					<dd>
+						<span id="describe_k2">商品总额</span>
+						<small id="describe_v2">￥998.00</small>
+					</dd>
+					<dd>
+						<span id="describe_k3">商品总额</span>
+						<small id="describe_v3">￥998.00</small>
+					</dd>
+					<dd>
+						<span id="describe_k4">商品总额</span>
+						<small id="describe_v4">￥998.00</small>
+					</dd>
+					<dd>
+						<span id="describe_k5">商品总额</span>
+						<small id="describe_v5">￥998.00</small>
+					</dd>
+					<dd>
+						<span id="describe_k6">商品总额</span>
+						<small id="describe_v6">￥998.00</small>
+					</dd>
+					<dt>
+						<textarea rows="4" placeholder="给养护人留言（50字以内）"></textarea>
+					</dt>
+				</dl>
+			</div>
+			
+		</section>
+		<!--底部不够-->
+		<div style="margin-bottom: 9%;"></div>
+	</div>
+	
+	<footer class="buy-footer fixed-footer">
+			<p> 
+				<small>金额</small>
+				<b id="money2">￥998.00</b>
+			</p>
+				
+				<input type="button" value="去付款"/>
+	</footer>
+	
+	<script type="text/javascript">
+		$(".to-now .tonow label").on('touchstart',function(){
+			if($(this).hasClass('ton')){
+				$(".to-now .tonow label").removeClass("ton")
+			}else{
+				$(".to-now .tonow label").addClass("ton")
+			}
+		})
+	</script>
+
+</body>
+</html>
