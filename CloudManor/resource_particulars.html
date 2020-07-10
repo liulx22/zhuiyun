@@ -127,7 +127,9 @@
 		//农事编辑
 		$("#nongshi_tijiao").click(function(){
 			var nongshi=$("#nongshi").val();
-			$("#nongshi_zhanshi").html(nongshi);
+			if(!nongshi==""||!nongshi==null){
+				$("#nongshi_zhanshi").html(nongshi);
+			}
 			$("#nongshi_z").attr("class","show");
 			$("#nongshi_b").attr("class","hide");
 		})
