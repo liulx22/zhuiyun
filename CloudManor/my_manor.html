@@ -9,6 +9,7 @@
 		<meta content="telephone=no" name="format-detection" />
 		<link href="css/my_manor_style.css" rel="stylesheet" type="text/css" />
 		<link href="css/swiper.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/mui.min.css" /> 
 	</head>
 	<body>
 		<section class="jq22-flexView">
@@ -26,7 +27,7 @@
 							</span>
 						</div>
 						<div class="jq22-take-button">
-							<button>编辑资料</button>
+							<button onclick="upInfo()">编辑资料</button>
 						</div>
 					</div>
 					<div class="jq22-flex jq22-flex-two">
@@ -34,7 +35,7 @@
 							<h3>悉心照料，成为庄主的专属养护人</h3>
 						</div>
 						<div class="jq22-go-button">
-							<button>成为养护人</button>
+							<button onclick="becomeMaintenancePeople();">成为养护人</button>
 						</div>
 					</div>
 		
@@ -45,7 +46,7 @@
 		
 				<div class="jq22-take-item">		
 					<div class="jq22-palace">
-						<a href="javascript:;" class="jq22-palace-grid">
+						<a href="Follow .html" class="jq22-palace-grid">
 							<div class="jq22-palace-grid-text">
 								关注&nbsp;<span>11</span>
 							</div>
@@ -62,7 +63,7 @@
 								粉丝&nbsp;<span>452</span>
 							</div>
 						</a>
-						<a href="javascript:;" class="jq22-palace-grid">
+						<a href="PingLun.html" class="jq22-palace-grid">
 							
 							<div class="jq22-palace-grid-text">
 								评论&nbsp;<span>282</span>
@@ -106,32 +107,11 @@
 		
 				<div style="height:50px;"></div>
 		
-		
-			
-			<footer class="jq22-footer jq22-footer-fixed">
-				<a href="javascript:;" class="jq22-tabBar-item ">
-		                <span class="jq22-tabBar-item-icon">
-		                    <i class="icon icon-loan"></i>
-		                </span>
-					<span class="jq22-tabBar-item-text">首页</span>
-				</a>
-				<a href="javascript:;" class="jq22-tabBar-item ">
-		                <span class="jq22-tabBar-item-icon">
-		                    <i class="icon icon-ions "></i>
-		                </span>
-					<span class="jq22-tabBar-item-text">分类</span>
-				</a>
-		
-				<a href="javascript:;" class="jq22-tabBar-item jq22-tabBar-item-active">
-		                <span class="jq22-tabBar-item-icon">
-		                    <i class="icon icon-mine"></i>
-		                </span>
-					<span class="jq22-tabBar-item-text">我的</span>
-				</a>
-			</footer>
+
 		</section>
 	</body>
 	<script src="resource/js/swiper.js"></script>
+	<script src="js/mui.min.js"></script>
 	<script>
 		 var swiper = new Swiper('.swiper-container', {
 		      navigation: {
@@ -140,8 +120,14 @@
 		      },
 		    });
 		var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
-			
-			document.getElementById("user_pic").src = globaPicUrl+"userHead/shaoyf_4.jpg";
-			
+		document.getElementById("user_pic").src = globaPicUrl+"userHead/shaoyf_4.jpg";
+				
+		function upInfo(){//编辑资料
+			location.href="./jz_information.html"
+		}
+		function becomeMaintenancePeople(){//成为养护人
+			location.href="./Nurse_verification.html"
+		}
+		  	
 	</script>
 </html>
