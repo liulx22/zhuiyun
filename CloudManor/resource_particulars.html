@@ -72,7 +72,7 @@
 						 </div>
 					</form>
 					 &nbsp;
-					 <button type="button" class="btn btn-primary btn-sm btn-block">上传养护记录</button>
+					 <button type="button" class="btn btn-primary btn-sm btn-block" id="uploadMaintainRecords">上传养护记录</button>
 					 &nbsp;
 					 <!-- <div style="width: 345px; border: 0.5px dotted;"></div>-->
 					 &nbsp;	 	
@@ -118,6 +118,10 @@
 			//点击查看历史农事记录
 			$("#showHistory").click(function(){
 				window.location.href="./AgriculturalHistory.html";
+			});
+			//上传养护记录
+			$("#uploadMaintainRecords").click(function(){
+				window.location.href="./MaintenanceRecords.html";
 			});
 		})
 		//获取农事信息
