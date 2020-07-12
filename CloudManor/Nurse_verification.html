@@ -143,7 +143,7 @@
 						
 						<div>
 							<button type="button" class="btn btn-default" style="width: 40%;height: 40px;color:#777777 ;position:relative;
-	left:30%;top:100px">确认提交</button>
+	left:30%;top:100px" id="tosubmit">确认提交</button>
 						</div>
 						
                     </div>  
@@ -388,6 +388,11 @@
             task.start();  
               
         }  
+		$(function(){
+			$("#tosubmit").click(function(){
+				window.location.href="./Maintenance_people_index.html";
+			});
+		});
 </script>  
 </body>  
 </html>  
