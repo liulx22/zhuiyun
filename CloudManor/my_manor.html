@@ -10,6 +10,15 @@
 		<link href="css/my_manor_style.css" rel="stylesheet" type="text/css" />
 		<link href="css/swiper.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="css/mui.min.css" /> 
+		<script src="resource/jquery-3.2.1.js"></script>
+		<style>
+			.mui-bar .mui-tab-item.mui-active .mui-icon{
+				color: #77ce36;
+			}
+			.mui-bar .mui-tab-item.mui-active .mui-tab-label{
+				color: #77ce36;
+			}
+		</style> 
 	</head>
 	<body>
 		<section class="jq22-flexView">
@@ -106,7 +115,18 @@
 				</div>
 		
 				<div style="height:50px;"></div>
-		
+		        <!-- 底部导航栏 -->
+		        <nav class="mui-bar mui-bar-tab" id="foot-tab">
+		        	<a id="defaultTab" class="mui-tab-item" href="./index.html">
+		        		<span class="mui-icon mui-icon-home"></span>
+		        		<span class="mui-tab-label">首页</span>
+		        	</a>
+		        	
+		        	<a class="mui-tab-item mui-active" href="./my_manor.html">
+		        		<span class="mui-icon mui-icon-contact active"></span>
+		        		<span class="mui-tab-label">我的</span>
+		        	</a>
+		        </nav>
 
 		</section>
 	</body>
@@ -128,6 +148,10 @@
 		function becomeMaintenancePeople(){//成为养护人
 			location.href="./Nurse_verification.html"
 		}
-		  	
+		$(function(){
+			$("#foot-tab a").click(function(){
+				window.location.href=$(this).attr("href");
+			});
+		});
 	</script>
 </html>
