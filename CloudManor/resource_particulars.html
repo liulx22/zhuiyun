@@ -2,8 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<!-- 设置app适应页面 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="resource/bootstrap/css/bootstrap.css" rel="stylesheet"/>
 		<link href="css/iconfont.css" rel="stylesheet"/>
 		<script src="resource/jquery-3.2.1.js"></script>
 		<script src="js/bootstrap.js"></script>
@@ -30,6 +32,29 @@
 				vertical-align: -5px;
 			}
 			*{padding: 0;margin:0;}
+			#main {
+				position: relative;
+			}
+			
+			.pin {
+				padding: 3% 0 0 3%;
+				float: left;
+				
+			}
+			/*  style=\"padding: 10px;border:1px solid #ccc;border-radius: 5px;box-shadow: 0 0 6px #ccc;background-color: #EEEEEE;\" */
+			.box {
+				padding: 3%;
+				border: 2% solid #ccc;
+				box-shadow: 0 0 6px #ccc;
+				border-radius: 5px;
+				background-color: #EEEEEE;
+			}
+			/* style=\"width:145px;height: auto;\" */
+			.box img {
+				width: 100%;
+				height: auto;
+				
+			}
 			
 		</style>
 	</head>
@@ -46,7 +71,6 @@
 					<div style="width: 20px; height: 30px; float: right;" id="showHistory">
 						<span class="iconfont icon-lishijilu"></span>
 					</div>
-					<!-- <hr width="345px"/> -->
 					&nbsp;<br/>&nbsp;
 					<!-- <div >
 						<span class="iconfont icon-laba"></span>
@@ -61,7 +85,7 @@
 						 <div style="float: right;">
 							 <button type="button" id="nongshi_tijiao" class="btn btn-default">提交</button>
 						 </div>
-						 <div style="width: 290px">
+						 <div style="width: 80%">
 							 <input type="text" class="form-control" id="nongshi" placeholder="农事提醒" value="">
 						 </div>
 					</form>
@@ -71,7 +95,7 @@
 					 <!-- <div style="width: 345px; border: 0.5px dotted;"></div>-->
 					 &nbsp;	 	
 					 <!-- 养护记录 	------------	-->
-					 <div id="main" style="position: relative;">
+					 <div id="main">
 					     <!-- <div class="pin">
 					         <div class="box">
 								 <div style="width: 145px;background-color: #FFFFFF;">
@@ -118,6 +142,9 @@
 				window.location.href="./MaintenanceRecords.html";
 			});
 		})
+		$(".icon-fanhui2").click(function(){
+			history.go(-1);
+		});
 		//获取农事信息
 		function huoqunongshi(){
 			$("#nongshi_zhanshi").html("今天可以除草打虫了！！");
@@ -138,6 +165,7 @@
 		})
 		//养护记录照片和视频
 		function yanghujilu(){
+			var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
 			$.ajax({
 				url:"file/record_list.json",
 				type:"get",
@@ -145,17 +173,16 @@
 				success:function(data){
 					var mm="";
 					$(data.list).each(function(a,b){
-						var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/record/"+b.img+"";
 						var imglen=b.img;
 						var imghouzhui=imglen.substring(imglen.length-3);
-							mm+="<div class=\"pin\" style=\"padding: 0px 0 0 5px; float:left;\"> \n"+
-								 "<div class=\"box\" style=\"padding: 10px;border:1px solid #ccc;border-radius: 5px;box-shadow: 0 0 6px #ccc;background-color: #EEEEEE;\"> \n"+
+							mm+="<div class=\"pin\"> \n"+
+								 "<div class=\"box\"> \n"+
 									"<div style=\"width: 145px;background-color: #FFFFFF;\">";
 										if(imghouzhui=='jpg'){
-											mm+="<img src=\""+globaPicUrl+"\" style=\"width:145px;height: auto;\"/><br> ";
+											mm+="<img src=\""+globaPicUrl+"/resource/record/"+imglen+"\"/><br> ";
 										}else if(imghouzhui=='mp4'){
 											mm+="<video width=\"145\" height=\"auto\" controls autoplay>\n"+
-												"<source src=\""+globaPicUrl+"\" type=\"video/mp4\">\n"+
+												"<source src=\""+globaPicUrl+"/resource/record/"+imglen+"\" type=\"video/mp4\">\n"+
 											"</video><br>";
 										}
 										mm+="<div style=\"width: 145px;padding: 8px; font-size: 11px;\"> \n"+
