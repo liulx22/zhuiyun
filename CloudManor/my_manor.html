@@ -10,6 +10,7 @@
 		<link href="css/my_manor_style.css" rel="stylesheet" type="text/css" />
 		<link href="css/swiper.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="css/mui.min.css" /> 
+		<script src="http://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="resource/jquery-3.2.1.js"></script>
 		<style>
 			.mui-bar .mui-tab-item.mui-active .mui-icon{
@@ -60,32 +61,47 @@
 								关注&nbsp;<span>11</span>
 							</div>
 						</a>
-						<a href="javascript:;" class="jq22-palace-grid">
-							
-							<div class="jq22-palace-grid-text">		
-								获赞&nbsp;<span>22</span>
-							</div>
-						</a>
+					
 						<a href="javascript:;" class="jq22-palace-grid">
 							
 							<div class="jq22-palace-grid-text">
-								粉丝&nbsp;<span>452</span>
+								喜欢&nbsp;<span>452</span>
 							</div>
 						</a>
 						<a href="PingLun.html" class="jq22-palace-grid">
 							
 							<div class="jq22-palace-grid-text">
-								评论&nbsp;<span>282</span>
+								<svg class="icon" aria-hidden="true" >
+									<use xlink:href="#icon-pinlun1"></use>
+								</svg>&nbsp;
+								<span>282</span>
 							</div>
 						</a>
 					</div>
 				</div>
-		
+				<div class="biaoti">
+					<span>
+						马东建的庄园
+					</span>
+					
+				</div>
 				<div class="jq22-flex jq22-flex-fore">
+					
 					<div class="swiper-container">
 					    <div class="swiper-wrapper">
 					        <div class="swiper-slide">
-								当前农事：<span>除草</span><a style="float: right;">历史农事</a>
+								<div style="width: 72%;">
+									<div style="width:35%;float: left;">当前农事：</div>
+									<div style="width:65%;float: left;">
+										<marquee  direction="left">
+											<span id="farming_info1" ></span>
+										</marquee> 
+										
+									</div>
+									
+								</div>
+								<a style="float: right;color: #6D6D72;">历史农事</a>
+								
 								<br/>
 								<br/>
 								<video id="video_1" src="Picture/resource-vido/linux_01_001.mp4" controls width="100%" 
@@ -93,7 +109,17 @@
 								</video>
 							</div>
 					        <div class="swiper-slide">
-					        	当前农事：<span>浇水</span><a style="float: right;">历史农事</a>
+					        	<div style="width: 72%;">
+					        		<div style="width:35%;float: left;">当前农事：</div>
+					        		<div style="width:65%;float: left;">
+					        			<marquee  direction="left">
+					        				<span id="farming_info2" ></span>
+					        			</marquee> 
+					        			
+					        		</div>
+					        		
+					        	</div>
+								<a style="float: right;color: #6D6D72;">历史农事</a>
 					        	<br/>
 					        	<br/>
 					        	<video src="Picture/resource-vido/linux_01_001.mp4" controls width="100%" 
@@ -102,7 +128,17 @@
 					        </div>
 					        <div class="swiper-slide">
 								
-									当前农事：<span>施肥</span><a style="float: right;">历史农事</a>
+									<div style="width: 72%;">
+										<div style="width:35%;float: left;">当前农事：</div>
+										<div style="width:65%;float: left;">
+											<marquee  direction="left">
+												<span id="farming_info3" ></span>
+											</marquee> 
+											
+										</div>
+										
+									</div>
+									<a style="float: right;color: #6D6D72;">历史农事</a>
 								
 								<br/>
 								<br/>						
@@ -153,5 +189,10 @@
 				window.location.href=$(this).attr("href");
 			});
 		});
+		$(function(){
+			$("#farming_info1").html("杂草变多了，今天在除草");
+			$("#farming_info2").html("枝丫变多了，今天在剪枝");
+			$("#farming_info3").html("终于成熟了，可以收获了");
+		})
 	</script>
 </html>

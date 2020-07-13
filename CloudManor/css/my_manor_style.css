@@ -233,7 +233,22 @@ a {
     background:#fff;
     border-radius:5px;
     margin:1rem;
+	margin-bottom: 1.5rem;
 }
+
+.biaoti{
+	margin-bottom: -13px;	
+	text-align: center;
+ }
+ .biaoti span{
+	 
+	 font-size: 18px; 
+	 background: linear-gradient(to right, #007aff,#28afea);
+	 -webkit-background-clip: text;
+	 color: transparent;
+ }
+
+
 
 
 .jq22-flex-fore{
@@ -242,11 +257,14 @@ a {
     border-radius:5px;
 	
 }
-.select_times_list{
-	display: flex;
-	overflow-x: auto;
-	overflow-y: hidden;
+.swiper-slide{
+	font-size: 14.5px;
 }
+.swiper-slide marquee{
+	
+	color: crimson;
+}
+
 
 
 
