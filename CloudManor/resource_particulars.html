@@ -6,10 +6,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link href="resource/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-		<link href="css/iconfont.css" rel="stylesheet"/>
+		
 		<script src="resource/jquery-3.2.1.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/waterfall.js"/></script>
+		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<title></title>
 		<style type="text/css">
 			.icon-fanhui2 {
@@ -62,24 +63,31 @@
 		<div class="container">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<div style="width: 20px; height: 40px;">
-						<span class="iconfont icon-fanhui2"></span>
-					</div>	
-					<div style="width: 80px; height: 30px; margin: -26px 140px; color: #888888; font-size: 18px;">
-						资源详情
-					</div>
-					<div style="width: 20px; height: 30px; float: right;" id="showHistory">
-						<span class="iconfont icon-lishijilu"></span>
+					<div style="height:30px;text-align: center;margin-bottom: -20px;margin-top: 20px;">
+						<svg class="icon" aria-hidden="true" style="width: 30px;height: 30px;float: left;">
+							<use xlink:href="#icon-arrow-lift"></use>
+						</svg>
+						<!-- width: 80px; height: 30px; margin: -26px 140px; -->
+						<span style="color: #888888; font-size: 18px;">
+							资源详情
+						</span>
+						<svg class="icon" aria-hidden="true" style="width: 20px;height: 30px;float: right;" id="showHistory">
+							<use xlink:href="#icon-lishijilu"></use>
+						</svg>
 					</div>
 					&nbsp;<br/>&nbsp;
 					<!-- <div >
 						<span class="iconfont icon-laba"></span>
 					</div> -->
 					<div id="nongshi_z" class="show" style="height: 34px; border-bottom: 1px solid #CCCCCC; border-top: 1px solid #CCCCCC;">
+						
 						<marquee direction=left style="line-height: 2.5;">
-							<span class="iconfont icon-laba"></span>
-							<span id="nongshi_zhanshi"></span>
+							<svg class="icon" aria-hidden="true" style="width: 20px;height: 30px;float: left;">
+								<use xlink:href="#icon-xiaolaba"></use>
+							</svg>&nbsp;
+							<span id="nongshi_zhanshi" ></span>
 						</marquee>
+						
 					</div>
 					<form role="form" id="nongshi_b" class="hide">
 						 <div style="float: right;">
@@ -123,11 +131,6 @@
 		</div>
 	</body>
 	<script>
-		//图片服务器地址
-		/* var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/record/";
-		
-		var conserve_head="zhihui_1_1_5";
-		document.getElementById("video1").src = globaPicUrl+conserve_head+".mp4"; */
 		$(function(){
 			//获取农事信息
 			huoqunongshi();
