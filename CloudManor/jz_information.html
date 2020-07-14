@@ -16,9 +16,14 @@
 	<body>
 		<b class="line"></b>
 		<div class="user-info">
+			
 			<!--标题 -->
-			<div class="am-cf am-padding">
-				<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong> / <small>Personal&nbsp;information</small></div>
+			<div class="top-header">
+				<!-- <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong></div> -->
+				<a class="icona" href="javascript:history.go(-1)">
+						<img src="Picture/GlobalPicture/left.jpg"/>
+				</a>
+				<h4>个人资料</h4>
 			</div>
 			<hr/>
 
@@ -32,7 +37,6 @@
 				<!-- <p class="am-form-help">头像</p> -->
 				<div class="info-m">
 					<div><b>用户名：<i>小叮当</i></b></div>
-					<div><b>用户名：<i>小萨芬</i></b></div>
 				</div>
 			</div>
 
@@ -85,10 +89,15 @@
 						</div>
 					</div>
 					<div class="info-btn">
-						<div class="am-btn am-btn-danger" align="center">保存修改</div>
+						<div class="am-btn am-btn-danger" onclick="baocun()">保存修改</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</body>
 </html>
+<script>
+	function baocun(){
+		window.location.href="my_manor.html"
+	}
+</script>
