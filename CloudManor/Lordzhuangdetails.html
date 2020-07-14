@@ -4,18 +4,33 @@
     <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <title>庄主产品详情页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
 		<!-- 转发分享css -->
-		<link rel="stylesheet" href="dist/css/share.min.css">
+		<link rel="stylesheet" href="resource/dist/css/share.min.css">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/zbw/app.css"/>
+		<!-- 点击发表评论表情包css -->
+		<link  rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/sinaFaceAndEffec.css" />
+		<script src="js/mui.min.js"></script>
+		
 		<!-- bootstrap -->
 		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- 转发分享js -->
-		<script src="src/js/social-share.js"></script>
-		<script src="src/js/qrcode.js"></script>
+		<script src="resource/src/js/social-share.js"></script>
+		<script src="resource/src/js/qrcode.js"></script>
+		
         <style type="text/css">
 			.list{width:760px; margin:20px auto}
-			.list li{float:left; margin:10px; position:relative}
+			.list li{ position:relative;left: -1rem;}
+			/* float:left;  margin-left:10px;*/
 			.list li img{width:226px; height:317px;}
 			.list li p{position:absolute; top:760px; left:650px; width:100px; height:24px; line-height:24px;  opacity:.8;filter:alpha(opacity=80);}
             
@@ -24,8 +39,8 @@
 		       display: flex;
 		       flex-direction: row;
 			   position:absolute; 
-			   top:800px;
-			   left:765px;
+			   top:20rem;
+			   left:25.5rem;
 		     }
 		   
 		    #zan,
@@ -33,13 +48,13 @@
 		    #zan #num1,
 		    /* 头像*/
 	     	.round_icon{width: 50px; height: 50px; display: flex;border-radius: 60%;align-items: center;justify-content: center;overflow: hidden;}
-		    .headphoto{ position:absolute;top:760px; left:790px; }
+		    .headphoto{ position:absolute;top:15rem; left:28rem; }
 		    /* 评论*/
-			.transmit{ position:absolute; top:910px;left:790px;}
+			.transmit{ position:absolute; top:33rem;left:28rem;}
 			/* 转发 */
-			.comment{position:absolute;top:980px;left:790px; }
+			.comment2{position:absolute;top:40rem;left:28rem; }
 		    /* section{ position:relative;} */
-	        .fontsuspended{ position:absolute; bottom:70px;left:10px;color:rgba(255,255,255,1);font-family:"微软雅黑";font-size:25px;}
+	        .fontsuspended{ position:absolute; bottom:70px;left:4rem;color:rgba(255,255,255,1);font-family:"微软雅黑";font-size:25px;}
 		
 		
 		    /* 转发弹窗 */
@@ -119,16 +134,43 @@
 		    from {opacity: 0} 
 		    to {opacity: 1}
 		}
+		/* .app{width: 100%; height:100%; position: absolute; top:0px; right:0px; bottom: 0px; left:0px; overflow: hidden;} */
+		
+		/* html,body{
+		        height: 100%;
+		} */
+		.fr-tc{
+		        /* 控制弹窗高度 */
+		        height: 50%;        
+		}
+		.fr-div-w{
+		        border-radius: 10px 10px  0px 0px;
+		        background-color: #FFFFFF;
+		        height: 100%;
+		        padding: 15px;
+		}
+	
 		</style>
     </head>
 	
 	
     <body>
-        <div class="container" id="main">
-            <div class="demo">
+		<!-- <header class="mui-bar mui-bar-nav" >
+			<!-- 返回键按钮 -->
+			
+		<!-- </header> -->
+		
+		<div  class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ></a><!-- style="margin-top: 4rem;" -->
+		</div>
+		
+		
+		<!-- 视频 -->
+        <div  class="mui-content" id="main" style="left: 100rem;"><!-- class="container" -->
+            <div class="demo" style="position:absolute; top:4rem;">
                 <ul class="list clearfix">
                     <li>
-                       <video   muted  controls="controls" autoplay="autoplay" >
+                       <video style="width: 40rem;height: 60rem;"  muted  controls="controls" autoplay="autoplay" >
                        	  <source src="Picture/resource-vido/linux_01_001.mp4" type="video/mp4" />
                        </video>
 					   <!--悬浮字体在视频上 定位 -->
@@ -158,12 +200,12 @@
 				
 				<!--评论显示  悬浮-->
 				<div>
-					<img  style="width: 50px;height: 50px;" src="Picture/GlobalPicture/transmit2.jpg" type="button" data-toggle="modal"   class="transmit"   onclick="transmitbutton()"   alt="评论">    
+					 <a  href="#fengrui"><img  style="width: 50px;height: 50px;" src="Picture/GlobalPicture/transmit2.jpg" type="button" data-toggle="modal"   class="transmit"     alt="评论"></a>    
 				</div>
 				
 				<!--转发显示  悬浮-->
 				<div >
-					<img style="width: 50px;height: 50px;" src="Picture/GlobalPicture/comment2.jpg" class="comment"   id="myBtn" alt="转发">    
+					<a href="#myBtn1"><img style="width: 50px;height: 50px;" src="Picture/GlobalPicture/comment2.jpg" class="comment2"  alt="转发"></a>    
 				</div>
 				
 				
@@ -173,86 +215,86 @@
 		 
 		 
 		 
-   	  
-	   <!--转发底部弹窗 -->
-	   <div id="myModal" class="modal">
-	     <!-- 弹窗内容 -->
-	   	<div class="modal-content">
-	   	  <div class="modal-header">
-	   	    <span class="close" style=" position: relative;right:100px;">&times;</span>
-	   	    <h4>转发方式</h4>
-	   	  </div>
-	   	  <div class="modal-body">
-	   		  <!--转发 内容 展示-->
-	   	       <div id="share-2" style=" position: relative;left:150px;"></div>
-	   	  </div>
-	   	</div>
+   	 <!--转发 -->
+	   <div id="myBtn1" class="box mui-popover mui-popover-action mui-popover-bottom">
+	   			<div style="width: 100%;height: 30rem;background-color: white;">
+	   				<!--转发 内容 展示-->
+	   				 <div id="share-2" style=" position: relative;top: 10rem;"></div>
+	   			</div>
+	   			 
+	   			 
 	   </div>
 	   
 	   
+	   
+	   
+	   <!-- 评论 -->
+	   <div class="mui-content">
+	       <!-- 点击触发 -->
+	       <!--mui-popover-action：表示点击时显示-->
+	       <div class="mui-popover mui-popover-bottom mui-popover-action fr-tc" id="fengrui">
+	                           <div class="fr-div-w">
+	   							<!-- 弹框展示发布内容 -->
+	                             <div id="content" style="">
+	                               	<div class="wrap">
+	                               		<div class="comment">
+	                               			<div class="head-face">
+	                               				<img src="Picture/userHead/linux_1.jpg" / >
+	                               				<p>我是小白</p>
+	                               			</div>
+	                               			<div class="content" >
+	                               				<div class="cont-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
+	                               					<textarea class="text"  placeholder="请输入..."></textarea>
+	                               				</div>
+	                               				<div class="tools-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
+	                               					<div class="operator-box-btn"><span class="face-icon"  >☺</span></div>
+	                               					<div class="submit-btn" style="width:10rem;margin-top: -3rem;"><input style="height: 5rem;" type="button" onClick="out()"value="提交评论" /></div>
+	                               				</div>
+	                               			</div>
+	                               		</div>
+	                               		<div id="info-show" style="height: 12rem;overflow-y:auto " ><!--  -->
+	                               			<ul></ul>
+	                               		</div>
+	                               	</div>
+	                               </div>
+	                              <script type="text/javascript" src="js/main.js"></script>
+	                               <script type="text/javascript" src="js/sinaFaceAndEffec.js"></script>
+	                                <script type="text/javascript">
+	                                	// 绑定表情
+	                                	$('.face-icon').SinaEmotion($('.text'));
+	                                	// 测试本地解析
+	                                	function out() {
+	                                		var inputText = $('.text').val();
+	                                		$('#info-show ul').append(reply(
+	                                		(inputText)));
+	                                	}
+	                                	
+	                                	var html;
+	                                	function reply(content){
+	                                		html  = '<li>';
+	                                		html += '<div class="head-face">';
+	                                		html += '<img src="Picture/userHead/linux_1.jpg" / >';
+	                                		html += '</div>';
+	                                		html += '<div class="reply-cont" >';
+	                                		html += '<p class="username" style="margin-left: 3rem;">我是小白</p>';
+	                                		html += '<p class="comment-body" style="margin-top:2rem;margin-left:5rem;">'+content+'</p>';
+	                                		html += '<p class="comment-footer" style="margin-top:1rem;margin-left: 3rem;">2016年10月5日</p>';
+	                                		html += '</div>';
+	                                		html += '</li>';
+	                                		return html;
+	                                	}
+	                                </script>
+	                             
+	                               <div style="text-align:center;">
+	                               </div>
+	                           </div>
+	       </div>
+	   </div>
+	   
 	
-	<!-- 评论模态框（Modal） -->
-	<div class="modal fade" id="transmitmyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
-		<div class="modal-dialog modal-lg"style=" position: relative;top:900px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times;
-					</button>
-					<h4 class="modal-title" id="myModalLabel">
-						发表评论
-					</h4>
-				</div>
-				<div class="modal-body">
-					<!-- 评论回显-->
-					    <div class="panel-body" style="height: 100px; overflow:scroll">
-					         <div style="border: 1px  #000000; width: 90%; margin: 0 auto;">
-					             <p>张三：这个种植的不错</p>
-								<p>李四：这个怎么租？</p>
-					         </div>
-					      </div>
-							  <!--发表评论 展示-->
-							  <!-- 添加到数据库（redis），回显上面评论 -->
-							   <form action="#" method="post">
-							            <p>留言<textarea name="content"></textarea><button type="button" class="btn btn-default" >发布</button></p>
-							    </form>	  
-			  </div>
-			</div>
-		</div>
-	</div>
-	
+
 	    
-	   <!-- 底部弹窗动画js -->
-	        <script>
-	   			// 获取弹窗
-	   			var modal = document.getElementById('myModal');
-	   			// 打开弹窗的按钮对象
-	   			var btn = document.getElementById("myBtn");	
-	   			// 获取 <span> 元素，用于关闭弹窗 that closes the modal
-	   			var span = document.getElementsByClassName("close")[0];
-	   			// 点击按钮打开弹窗
-	   			btn.onclick = function() {
-	   			    modal.style.display = "block";
-	   			}
-	   			// 点击 <span> (x), 关闭弹窗
-	   			span.onclick = function() {
-	   			    modal.style.display = "none";
-	   			}	
-	   			// 在用户点击其他地方时，关闭弹窗
-	   			window.onclick = function(event) {
-	   			    if (event.target == modal) {
-	   			        modal.style.display = "none";
-	   			    }
-	   			}
-	   		</script>
-			
-			<!-- 点击评论js -->
-			<script>
-				function  transmitbutton(){
-					$("#transmitmyModal").modal("show")
-				}
-			</script>
-					
+	 
 					
 	   <!-- 转发 展示图js-->
 	   	<script>
