@@ -10,6 +10,7 @@
 		<script src="resource/bootstrap/js/bootstrap.js"></script>
 		<script type="text/javascript" src="resource/js/waterfall.js"/></script>
 		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
+		<script src="resource/js/iconfont.js"></script>
 		<title></title>
 		<style type="text/css">
 			*{padding: 0;margin:0;}
@@ -104,7 +105,7 @@
 							 </div>
 					     </div> -->
 						
-						 
+						
 						 
 					</div>
 					
@@ -158,32 +159,43 @@
 				dataType:"json",
 				success:function(data){
 					var mm="";
-					$(data.list).each(function(a,b){
-						var imglen=b.img;
-						var imghouzhui=imglen.substring(imglen.length-3);
-							mm+="<div class=\"pin\"> \n"+
-								 "<div class=\"box\"> \n"+
-									"<div style=\"width: 145px;background-color: #FFFFFF;\">";
-										if(imghouzhui=='jpg'){
-											mm+="<img src=\""+globaPicUrl+"/resource/record/"+imglen+"\"/><br> ";
-										}else if(imghouzhui=='mp4'){
-											mm+="<video width=\"145\" height=\"auto\" controls autoplay>\n"+
-												"<source src=\""+globaPicUrl+"/resource/record/"+imglen+"\" type=\"video/mp4\">\n"+
-											"</video><br>";
-										}
-										mm+="<div style=\"width: 145px;padding: 8px; font-size: 11px;\"> \n"+
-										"	"+b.remark+"\n"+
+					if(data!=null||data!=""){
+						$(data.list).each(function(a,b){
+							var imglen=b.img;
+							var imghouzhui=imglen.substring(imglen.length-3);
+								mm+="<div class=\"pin\"> \n"+
+									 "<div class=\"box\"> \n"+
+										"<div style=\"width: 145px;background-color: #FFFFFF;\">";
+											if(imghouzhui=='jpg'){
+												mm+="<img src=\""+globaPicUrl+"/resource/record/"+imglen+"\"/><br> ";
+											}else if(imghouzhui=='mp4'){
+												mm+="<video width=\"145\" height=\"auto\" controls autoplay>\n"+
+													"<source src=\""+globaPicUrl+"/resource/record/"+imglen+"\" type=\"video/mp4\">\n"+
+												"</video><br>";
+											}
+											mm+="<div style=\"width: 145px;padding: 8px; font-size: 11px;\"> \n"+
+											"	"+b.remark+"\n"+
+											"</div>\n"+
+											"<div style=\"width: 145px;color: #C0C0C0; font-size: 11px; text-indent: 1em;height: 25px;margin: 0px 80px;\">\n"+
+												"	"+b.time+"\n"+
+											"</div> \n"+
 										"</div>\n"+
-										"<div style=\"width: 145px;color: #C0C0C0; font-size: 11px; text-indent: 1em;height: 25px;margin: 0px 80px;\">\n"+
-											"	"+b.time+"\n"+
-										"</div> \n"+
-									"</div>\n"+
-								 "</div>\n"+
-							 "</div>";
-					})
+									 "</div>\n"+
+								 "</div>";
+						})
+						
+					}else{
+						mm+="<svg class=\"icon\" aria-hidden=\"true\" style=\"margin-top: 30%;margin-left: 10%;\">\n"+
+							"<use xlink:href=\"#icon-nopicture\"></use>\n"+
+						"</svg>";
+					}
 					$("#main").html(mm);
 				},error:function(){
-					alert("您还没有上传养护记录！");
+					alert("异常");
+					var mm="<svg class=\"icon\" aria-hidden=\"true\" style=\"margin-top: 30%;margin-left: 10%;\">\n"+
+						"<use xlink:href=\"#icon-nopicture\"></use>\n"+
+					"</svg>";
+					$("#main").html(mm);
 				}
 			})
 		}
