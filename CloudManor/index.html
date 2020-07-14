@@ -6,7 +6,7 @@
 		<title></title>
 		<link rel="stylesheet" href="css/mui.min.css" /> 
 		<script src="./resource/jquery-3.2.1.js"></script>
-		<style>
+		<!-- <style>
 			.mui-bar .mui-tab-item.mui-active .mui-icon{
 				color: #77ce36;
 			}
@@ -26,7 +26,7 @@
 		 		padding: 3% 0 0 3%;
 		 		float: left;
 		 		width: 48%;
-		 		height: 150px;
+		 		height: auto;
 		 	}
 		 
 		 	.box {
@@ -38,7 +38,7 @@
 		 
 		 	.box img {
 		 		width: 100%;
-		 		height: auto;
+		 		height:auto;
 		 		margin-bottom: 20px;
 		 	}
 		 		 
@@ -71,7 +71,125 @@
 			.text-under-img span{
 				cursor: pointer;
 			}
+			.text-under-img img{
+				width: 1.25rem;
+				height: 1.25rem;
+				border-radius: 0.625rem;
+				position: absolute;
+				right: 5%;
+				top: -2rem;
+			}
+			#address_icon{
+				position: absolute;
+				left: 5%;
+				top: -1.75rem;
+				/* background: linear-gradient(to right, red, blue);
+				        -webkit-background-clip: text;
+				        color: transparent; */
+				color: #850aff;
+				font-weight: 1000;
+			}
+		 </style> -->
+		 <!-- 搜素的css-->
+		 <style>
+		 	#user_search{
+		 		float:left;
+		 		width: 100%;
+				background-color: #f7f7f7;
+		 	}
+		 	#search1{
+		 		position: absolute;
+		 		left: 93%;
+		 		top: 3.2rem;
+		 	}
 		 </style>
+		 
+		 <style>
+		 	ul,li{ 
+		 	    padding:0px; 
+		 	    margin:0px; 
+		 	    list-style: none; 
+		 	    font-style:normal; 
+		 	    font-family: arial; 
+		 	    font-family: Microsoft YaHei,arial; 
+		 	} 
+		 	.twoRankedBox{ 
+		 		position: absolute;
+		 		top: 5rem;
+		 	    margin:6px 8px; 
+		 	    overflow: hidden; 
+		 	    padding-bottom:25px; 
+		 	} 
+			p{
+				margin-top: 0.0625rem;
+				margin-bottom: 0.0625rem;
+			}
+		 	.twoRankedBox ul{ 
+		 	    width:49%; 
+		 	    float: left; 
+		 	} 
+		 	.twoRankedBox ul:last-child{ 
+		 	    margin-left:2%; 
+		 	} 
+		 	.twoRankedBox ul li{ 
+		 	    padding:5px; 
+		 	    margin-bottom:6px; 
+		 	    padding-bottom:8px; 
+		 	    background-color: #FFFFFF; 
+		 	} 
+		 	.twoRankedBox ul li p:first-child{ 
+		 	    padding-top:0px; 
+		 	} 
+		 	.twoRankedBox ul li p{ 
+		 	    padding-top:0.125rem; 
+		 	} 
+		 	.product_picture img{ 
+		 	    display: block; 
+		 	    width:100%; 
+				height: 10.25rem;
+		 	} 
+		 	.product_np{ 
+		 	    overflow: hidden; 
+		 	    line-height:0.625rem; 
+		 	} 
+		 	.product_np a{ 
+		 	    display: block; 
+		 	    overflow:hidden; 
+		 	    text-overflow:ellipsis; 
+		 	    white-space:nowrap; 
+		 	} 
+		 	.product_np a:first-child{ 
+		 	    font-size:0.9375rem; 
+		 	    color:#58b7e3; 
+		 	    width:65%; 
+				line-height: 1.25rem;
+				height: 1.25rem;
+		 	    float: left; 
+		 	} 
+		 	.product_np a:last-child{ 
+		 	    font-size:0.8em; 
+		 	    color:#f00; 
+		 	    float: right; 
+				height: 1.875rem;
+				margin-top: -0.3125rem;
+		 	    width:35%; 
+		 	    text-align: right; 
+		 	} 
+			.product_np a:last-child img{
+			    width: 1.5625rem;
+			    height: 1.5625rem;
+			    border-radius: 1.25rem;
+			} 
+		 	.product_ie{ 
+		 	    font-size:0.8em; 
+		 	    color:#777; 
+		 	} 
+		 	.BoxRight{
+		 		padding-top: 0.625rem;
+		 	}
+		 </style>
+		 
+		 
 		 <script>
 			 $(function(){
 			 	var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
@@ -85,14 +203,23 @@
 			 	        //请求成功完成后要执行的方法
 			 	        success: function(data){
 			 			    //使用$.each方法遍历返回的数据date,插入到id为#result中
-			 				var str="";
-			 				$.each(data,function(i,n){
-			 				 str+="<div class=\"pin\"><div class=\"box\"><img src=\""+globaPicUrl+"resource/"+n[0]+"\" onclick=\"gotodetail('"+n[0]+"')\"/></div>";
-			 				 str+="<div class=\"text-under-img\">";
-			 				 str+="<span class=\"col-xs-4\">标题行  </span>";
-			 				 str+="</div></div>";
-			 				})
-			 				$("#main").append(str);
+			 				/* var str=""; */
+							for(var i=0;i<data.length;i++){ 
+								 /* str+="<div class=\"pin\"><div class=\"box\"><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]+"')\"/></div>";
+								 str+="<div class=\"text-under-img\">";
+								 str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>石家庄</span><span class=\"col-xs-4\">标题行</span>";
+								 str+="<img src='./images/heart.png' />";
+								 str+="</div></div>"; */
+								 
+								 var chtml ="<li><p class='product_picture'><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]+"')\"></p><p class='product_np'><a class='mui-icon mui-icon-location' style='font-size:13px;'>石家庄</a><a><img src='./images/iconfont-tianjia.png' /></a></p><p class='product_ie'>标题行</p></li>"
+								 if($('.BoxLeft').height() < $('.BoxRight').height()){ 
+								     $('.BoxLeft').append(chtml); 
+								 }else{ 
+								     $('.BoxRight').append(chtml); 
+								 } 
+			 				}
+							/* $("#main").append(str); */
+			 				
 			 		   }
 			 	  });
 			 	  
@@ -101,25 +228,44 @@
 				  window.location.href="./Lordzhuangdetails.html";
 			  }
 		 </script>
+		
 	</head>
     
 	<body>
-		<div class="row clearfix">
-			<!-- 货源列表 --> 
-			<div class="col-xs-12 column">
-				<div id="main">
-					<!-- <div class="pin">
-						<div class="box"> 
-							<img src="Picture/GlobalPicture/1.jpg" />
-						</div>
-						<div class="text-under-img">
-							<span class="col-xs-4">标题行 </span>
-						</div>
-					</div> -->
-					
-				
-			</div>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">标题</h1>
+		</header>
+		<div class="mui-content">
+			<form >
+				<input type="search" id="user_search" name="user_search" placeholder="请输入搜素">
+					<span id="search1" class="mui-icon mui-icon-search" value=""></span>
+				</input>
+			</form>
+			<!-- 资源列表 -->
+			    <div class="twoRankedBox"> 
+			        <ul class="BoxLeft"> 
+			 
+			        </ul> 
+			 
+			        <ul class="BoxRight"> 
+			 
+			        </ul> 
+				</div>
 		</div>
+		<!-- 货源列表 --> 
+		<!-- <div class="col-xs-12 column">
+			<div id="main">
+				<div class="pin">
+					<div class="box"> 
+						<img src="Picture/GlobalPicture/1.jpg" />
+					</div>
+					<div class="text-under-img">
+						<span class="col-xs-4">标题行 </span>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		
 		<nav class="mui-bar mui-bar-tab">
 			<a id="defaultTab" class="mui-tab-item" href="./index.html">
 				<span class="mui-icon mui-icon-home mui-active"></span>
@@ -134,6 +280,20 @@
 		<script type="text/javascript" charset="utf-8">
 		
 			
+		</script>
+		<!-- 搜索-->
+		<script type="text/javascript">
+			$("#search1").click(function(){
+				alert($("#user_search").val())
+			})
+			$("#user_search").on('keypress',function(e) {
+			                var keycode = e.keyCode;
+			                var searchName = $(this).val();
+			                if(keycode=='13') {
+			                    e.preventDefault();  
+			                    //请求搜索接口
+			                }
+			         });
 		</script>
 	</body>
 
