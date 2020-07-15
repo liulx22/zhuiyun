@@ -14,5 +14,8 @@
   产品详情resource-detail   用户名_用户id_资源id_detail序号.jpg
   农事记录resource-record   用户名_用户id_资源id_record序号.jpg
 3.项目根路径下的file用于存放请求的json文件
+4.打包
+keytool -genkey -alias CloudManorKey -keyalg RSA -keysize 2048 -validity 36500 -keystore CloudManorKeyStore.keystore
+
   
   
