@@ -26,8 +26,13 @@
 		<!-- 转发分享js -->
 		<script src="resource/src/js/social-share.js"></script>
 		<script src="resource/src/js/qrcode.js"></script>
+	
+		<!--图标js-->
+		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
+        
 		
-        <style type="text/css">
+		
+		<style type="text/css">
 			.list{width:760px; margin:20px auto}
 			.list li{ position:relative;left: -1rem;}
 			/* float:left;  margin-left:10px;*/
@@ -50,9 +55,9 @@
 	     	.round_icon{width: 50px; height: 50px; display: flex;border-radius: 60%;align-items: center;justify-content: center;overflow: hidden;}
 		    .headphoto{ position:absolute;top:15rem; left:28rem; }
 		    /* 评论*/
-			.transmit{ position:absolute; top:33rem;left:28rem;}
+			.transmit{ position:absolute; top:29rem;left:28rem;}
 			/* 转发 */
-			.comment2{position:absolute;top:40rem;left:28rem; }
+			.comment2{position:absolute;top:35rem;left:28rem; }
 		    /* section{ position:relative;} */
 	        .fontsuspended{ position:absolute; bottom:70px;left:4rem;color:rgba(255,255,255,1);font-family:"微软雅黑";font-size:25px;}
 		
@@ -134,11 +139,6 @@
 		    from {opacity: 0} 
 		    to {opacity: 1}
 		}
-		/* .app{width: 100%; height:100%; position: absolute; top:0px; right:0px; bottom: 0px; left:0px; overflow: hidden;} */
-		
-		/* html,body{
-		        height: 100%;
-		} */
 		.fr-tc{
 		        /* 控制弹窗高度 */
 		        height: 50%;        
@@ -155,13 +155,11 @@
 	
 	
     <body>
-		<!-- <header class="mui-bar mui-bar-nav" >
-			<!-- 返回键按钮 -->
-			
-		<!-- </header> -->
-		
-		<div  class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ></a><!-- style="margin-top: 4rem;" -->
+		<div>
+			<!-- 返回键 -->
+			<svg class="icon" id="arrow-lift" aria-hidden="true" style="width: 30px;height: 30px;float: left;">
+			  <use xlink:href="#icon-arrow-lift"></use>
+			</svg>
 		</div>
 		
 		
@@ -175,9 +173,27 @@
                        </video>
 					   <!--悬浮字体在视频上 定位 -->
 					   <div class="fontsuspended" >
-						   <div><img  style="width: 50px;height: 50px;"  src="Picture/GlobalPicture/location.jpg"  alt="定位">湖南省</div>
-						   <div><img  style="width: 50px;height: 50px;"  src="Picture/GlobalPicture/preview .jpg"  alt="预览">500人</div>
-						   <div><img  style="width: 50px;height: 50px;"  src="Picture/GlobalPicture/shoppingcart.jpg"  alt="购物车" onclick="tobuy()">100人购买</div>
+						   <!-- 定位-->
+						   <div>
+						    <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+								<use xlink:href="#icon-dingwei-1"></use>
+								<span style="position:absolute; top:0.5rem;">湖南省</span>
+						    </svg>
+						   </div>
+						   <!-- 预览-->
+						   <div>
+						     <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						   		<use xlink:href="#icon-icon-test""></use>
+						     </svg>
+							 <span style="position:absolute; top:5.5rem;">500人预览</span>
+						   </div>
+						   <!-- 购买-->
+						   <div >
+						   <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						   		<use xlink:href="#icon-icon-test3" onclick="tobuy()"> </use>
+						   </svg>
+						     <span style="position:absolute; top:10.5rem;">100人购买</span>
+						   </div>
 						   <div>&nbsp;&nbsp;生菜种植 #蔬菜</div>
 					   </div>
                     </li>
@@ -185,13 +201,15 @@
 				
 				<!-- 点赞 -->
 				<div class="dian">
-				 <div id="zan" style="width: 100px;height: 100px;" >
-				 <img style="width: 50px;height: 50px;" src="Picture/GlobalPicture/heart2.png" alt="赞一个">
+				 <div id="zan" style="width: 100px;height: 100px;">
+				   <svg  class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						<use xlink:href="#icon-dianzan"></use>
+				   </svg>
 				 </div>
-				 <div id="num1"  style="position:absolute;top:70px;right: 40px; font-size: 20px;color: #FEFEFE;" >30</div>
-				
+				  <!--赞数-->
+				  <div id="num1" style="position:absolute;top:70px;right: 40px; font-size: 20px;color:white;" >30</div>
 				</div>
-				
+			
 				
 				<!--头像显示  悬浮-->
 				<div class="headphoto">
@@ -199,35 +217,33 @@
 				</div>
 				
 				<!--评论显示  悬浮-->
-				<div>
-					 <a  href="#fengrui"><img  style="width: 50px;height: 50px;" src="Picture/GlobalPicture/transmit2.jpg" type="button" data-toggle="modal"   class="transmit"     alt="评论"></a>    
+				<div class="transmit">
+				  <a  href="#fengrui"><svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						<use xlink:href="#icon-pinglun1"></use></a>
+				  </svg>
 				</div>
 				
 				<!--转发显示  悬浮-->
-				<div >
-					<a href="#myBtn1"><img style="width: 50px;height: 50px;" src="Picture/GlobalPicture/comment2.jpg" class="comment2"  alt="转发"></a>    
+				<div class="comment2">
+				  <a  href="#myBtn1"><svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						<use xlink:href="#icon-icon-test6"></use></a>
+				  </svg>
 				</div>
-				
-				
             </div>  
          </div>
 		 
 		 
 		 
 		 
-   	 <!--转发 -->
+   	  <!--转发 -->
 	   <div id="myBtn1" class="box mui-popover mui-popover-action mui-popover-bottom">
 	   			<div style="width: 100%;height: 30rem;background-color: white;">
 	   				<!--转发 内容 展示-->
 	   				 <div id="share-2" style=" position: relative;top: 10rem;"></div>
-	   			</div>
-	   			 
-	   			 
+	   			</div>	   			 
 	   </div>
 	   
-	   
-	   
-	   
+	    
 	   <!-- 评论 -->
 	   <div class="mui-content">
 	       <!-- 点击触发 -->
@@ -248,7 +264,7 @@
 	                               				</div>
 	                               				<div class="tools-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
 	                               					<div class="operator-box-btn"><span class="face-icon"  >☺</span></div>
-	                               					<div class="submit-btn" style="width:10rem;margin-top: -3rem;"><input style="height: 5rem;" type="button" onClick="out()"value="提交评论" /></div>
+	                               					<div class="submit-btn" style="width:10rem;margin-top: -2.5rem;"><input style="height: 5rem;" type="button" onClick="out()"value="提交评论" /></div>
 	                               				</div>
 	                               			</div>
 	                               		</div>
@@ -293,9 +309,7 @@
 	   
 	
 
-	    
-	 
-					
+	    			
 	   <!-- 转发 展示图js-->
 	   	<script>
 	   	socialShare('#share-1');
@@ -305,7 +319,8 @@
 	   	</script>	
 	   
 	   <!-- 点赞-->
-	 <script>
+	   
+	   <script>
 	 	var zan = document.getElementById('zan');
 	 	var num1 = document.getElementById('num1');
 	 	var flag1 = 0;
@@ -334,6 +349,14 @@
 		function tobuy(){
 			window.location.href="./buy.html";
 		}
+	</script>
+	
+	<!-- 返回键 -->
+	<script>
+		//返回
+				$("#arrow-lift").click(function(){
+					history.go(-1);
+				});
 	</script>
     </body>
 </html>
