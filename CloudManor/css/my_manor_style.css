@@ -172,6 +172,7 @@ a {
     width: 25%;
     box-sizing: border-box;
     margin: 5px 0;
+	
 }
 
 
@@ -187,7 +188,7 @@ a {
 }
 
 .jq22-palace-grid-text span {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: normal;
     color: #858585;
 }
