@@ -7,7 +7,8 @@
         <meta name="HandheldFriendly" content="true" />  
         <meta name="MobileOptimized" content="320" />  
         <title>HTML5 Plus 拍照或者相册选择图片上传</title>  
-        <link rel="stylesheet" href="Image/css/mui.min.css">  
+        <link href="resource/mui/css/mui.css" rel="stylesheet" /> 
+		<link href="resource/mui/css/mui.picker.min.css" rel="stylesheet" /> 
         <link rel="stylesheet" type="text/css" href="Image/css/app.css" />  
         <link rel="stylesheet" type="text/css" href="Image/css/iconfont.css" />  
         <link rel="stylesheet" type="text/css" href="Image/css/feedback-page.css" />  
@@ -15,11 +16,13 @@
 		<!-- 引入bootstarp的css -->
 		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 		
-        <script src="Image/js/jquery.js"></script>  
+        <script src="resource/jquery-3.2.1.js"></script> 
 		<!-- 引入bootstarp的js -->
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="Image/js/common.js"></script>  
         <script type="text/javascript" src="Image/js/utitls.js"></script>  
+		<script src="resource/mui/js/mui.min.js"></script>
+		<script src="resource/mui/js/mui.picker.min.js"></script>
         <style type="text/css">  
             .del {  
                 position: absolute;  
@@ -119,37 +122,48 @@
         </style>  
     </head>  
     <body>  
-       <header class="bar bar-nav">  
-           <h1 class="title">养护人身份验证</h1> 
-        </header> 
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+		<h1 class="mui-title">养护人身份验证</h1>
+	</header>
+	
 		
-        <div class="content">  
-            <div style="margin-top: 10px;"></div>  
+        <div class="mui-content">  
+            <div style="margin-top: 10%;"></div> 
             <input type="hidden" id="ckjl.id" name="ckjl.id" value="429">  
                     <div class="collapse-content" > 
 					   <div>
 					      <div>
 					      	<span style="margin-left: 15%;font-size: 20px;color: #222222;">请拍摄或选取本人的二代身份证</span>					   
 					      </div>
-						  <div><span style="margin-left: 30%;font-size: 10px;color: #777777;">确保拍摄证件的清晰完整</span></div>
-					   </div>
-					  
+						  <div>
+							  <span style="margin-left: 30%;font-size: 10px;color: #777777;">确保拍摄证件的清晰完整</span>
+						  </div>
+					 </div>
+					  <div class="collapse-content" style="margin: 0 3% 0 10%;">  
                         <form>  
                             <label class="row-label"></label>  
                             <div id='F_CKJLBS' class="row image-list">  
                                 <div class="image-item " id="F_CKJLB" onclick="showActionSheet(this);"></div>  
-                        </div>  
-                        </form>  
-						
-						<div>
-							<button type="button" class="btn btn-default" style="width: 40%;height: 40px;color:#777777 ;position:relative;
-	left:30%;top:100px" id="tosubmit">确认提交</button>
-						</div>
-						
-                    </div>  
+                            </div>  
+                       </form>  
+            
+						<button type="button" class="btn btn-default" style="width: 40%;height: 40px;color:#777777 ;position:relative;left:30%;top:100px" id="tosubmit">确认提交</button>
+					</div>
+			       </div> 
         </div>  
-        <script src="Image/js/mui.min.js"></script>  
+    
+		
 <script>  
+    mui.init()
+    var oldBack = mui.back;
+    mui.back=function(e){
+        mui.confirm("尚未提交信息，返回后将会丢失填写内容物，是否返回？","返回确认",['返回','取消'],function(e){
+            if(e.index==0)
+                oldBack();
+        })
+    }
     var procinstid = 0;  
     //初始化页面执行操作  
     function plusReady() {  
