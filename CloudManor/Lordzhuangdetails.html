@@ -262,13 +262,14 @@
 	                               				<div class="cont-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
 	                               					<textarea class="text"  placeholder="请输入..."></textarea>
 	                               				</div>
-	                               				<div class="tools-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
-	                               					<div class="operator-box-btn"><span class="face-icon"  >☺</span></div>
-	                               					<div class="submit-btn" style="width:10rem;margin-top: -2.5rem;"><input style="height: 5rem;" type="button" onClick="out()"value="提交评论" /></div>
-	                               				</div>
+	                               				<div  style="width:25rem;height: 5rem;margin-left: 3rem;"><!-- class="tools-box" --> 	
+												   
+	                               					<div class="submit-btn" style="width:5rem;margin-top: -2.5rem;"><input style="height: 3rem;background-color:#66cc33;color:white;" type="button" onClick="out()"value="提交评论" /></div>
+												    <div id="pinglun"></div>
+												</div>
 	                               			</div>
 	                               		</div>
-	                               		<div id="info-show" style="height: 12rem;overflow-y:auto " ><!--  -->
+	                               		<div id="info-show" style="height: 12rem;overflow-y:auto " >
 	                               			<ul></ul>
 	                               		</div>
 	                               	</div>
@@ -281,8 +282,12 @@
 	                                	// 测试本地解析
 	                                	function out() {
 	                                		var inputText = $('.text').val();
-	                                		$('#info-show ul').append(reply(
-	                                		(inputText)));
+											if(inputText==null||inputText==""){/* style="color:red;"> */
+												$("<span style=\"color:red;\"> 评论不可为空，请输入内容！</span>").appendTo("#pinglun");
+											}else{
+												$('#info-show ul').append(reply((inputText)));
+											}
+	                                		
 	                                	}
 	                                	
 	                                	var html;
