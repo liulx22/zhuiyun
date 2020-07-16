@@ -216,9 +216,11 @@
 					<!--评论显示  悬浮-->
 					<div class="transmit">
 					 <div id="pinglun" class="round_icon">
-					   <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
+					   <a  href="#fengrui">
+						 <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
 							<use xlink:href="#icon-pinglun1"></use>
 					   </svg>
+					   </a>
 					 </div>
 					  <!--评论个数-->
 					  <div id="pinglun_num" class="round_icon" style="text-align: center;margin: 0 auto 1rem auto;height:1.5rem;" >30</div>
@@ -226,10 +228,12 @@
 					
 					<!--转发显示图标  悬浮-->
 					<div class="comment2">
-					 <div id="myBtn1" class="round_icon">
-					   <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
+					 <div  class="round_icon">
+					    <a  href="#myBtn1">
+							<svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
 							<use xlink:href="#icon-icon-test6"></use>
 					   </svg>
+					   </a>
 					 </div>
 					</div>
 			
@@ -237,12 +241,14 @@
             </div>  
          </div>
 		 
-		 
-		 
+		  
 		 
    	  <!--转发 -->
 	   <div id="myBtn1" class="box mui-popover mui-popover-action mui-popover-bottom">
 	   			<div style="width: 100%;height: 30rem;background-color: white;">
+					 <div  style="height: 6rem;background-color:#666666;color:white;">
+						 <span style="margin-left:11rem;font-size:20px; position: relative;top: 1.5rem;">分享</span>
+					 </div>
 	   				<!--转发 内容 展示-->
 	   				 <div id="share-2" style=" position: relative;top: 10rem;"></div>
 	   			</div>	   			 
@@ -267,11 +273,10 @@
 	                               				<div class="cont-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
 	                               					<textarea class="text"  placeholder="请输入..."></textarea>
 	                               				</div>
-	                               				<div  style="width:25rem;height: 5rem;margin-left: 3rem;"><!-- class="tools-box" --> 	
-												   
+	                               				<div  style="width:25rem;height: 5rem;margin-left: 3rem;"><!-- class="tools-box" --> 	  
 	                               					<div class="submit-btn" style="width:5rem;margin-top: -2.5rem;"><input style="height: 3rem;background-color:#66cc33;color:white;" type="button" onClick="out()"value="提交评论" /></div>
-												    <div id="pinglun"></div>
-												</div>
+	   												<div id="pinglun2"></div>
+	   											</div>
 	                               			</div>
 	                               		</div>
 	                               		<div id="info-show" style="height: 12rem;overflow-y:auto " >
@@ -287,11 +292,11 @@
 	                                	// 测试本地解析
 	                                	function out() {
 	                                		var inputText = $('.text').val();
-											if(inputText==null||inputText==""){/* style="color:red;"> */
-												$("<span style=\"color:red;\"> 评论不可为空，请输入内容！</span>").appendTo("#pinglun");
-											}else{
-												$('#info-show ul').append(reply((inputText)));
-											}
+	   											if(inputText==null||inputText==""){/* style="color:red;"> */
+	   												$("<span style=\"color:red;\"> 评论不可为空，请输入内容！</span>").appendTo("#pinglun2");
+	   											}else{
+	   												$('#info-show ul').append(reply((inputText)));
+	   											}
 	                                		
 	                                	}
 	                                	
@@ -317,9 +322,8 @@
 	       </div>
 	   </div>
 	   
+	      
 	
-
-	    			
 	   <!-- 转发 展示图js-->
 	   	<script>
 	   	socialShare('#share-1');
