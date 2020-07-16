@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<link rel="stylesheet" href="css/mui.min.css" /> 
+		<link rel="stylesheet" href="./resource/mui/css/mui.min.css" /> 
 		<script src="http://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="./resource/jquery-3.2.1.js"></script>
 		
@@ -94,6 +94,7 @@
 		 </style> -->
 		 <!-- 搜素的css-->
 		 <style>
+			
 		 	#user_search{
 		 		float:left;
 		 		width: 100%;
@@ -278,8 +279,16 @@
 			</div>
 		</div> -->
 		
+		<style>
+			.mui-bar .mui-tab-item.mui-active .mui-icon{
+				color: #77ce36;
+			}
+			.mui-bar .mui-tab-item.mui-active .mui-tab-label{
+				color: #77ce36;
+			}
+		</style>
 		<nav class="mui-bar mui-bar-tab">
-			<a id="defaultTab" class="mui-tab-item" href="./index.html">
+			<a id="defaultTab" class="mui-tab-item mui-active" href="./index.html">
 				<span class="mui-icon mui-icon-home mui-active"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
@@ -289,6 +298,7 @@
 				<span class="mui-tab-label">我的</span>
 			</a>
 		</nav>
+		
 		<script type="text/javascript" charset="utf-8">
 		
 			
