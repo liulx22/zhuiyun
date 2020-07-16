@@ -33,34 +33,30 @@
 		
 		
 		<style type="text/css">
-			.list{width:760px; margin:20px auto}
-			.list li{ position:relative;left: -1rem;}
-			/* float:left;  margin-left:10px;*/
-			.list li img{width:226px; height:317px;}
+			ul.list li{ position:relative;margin-left: -1rem;}
 			.list li p{position:absolute; top:760px; left:650px; width:100px; height:24px; line-height:24px;  opacity:.8;filter:alpha(opacity=80);}
             
-           /* 点赞*/
-		    .dian {
-		       display: flex;
-		       flex-direction: row;
-			   position:absolute; 
-			   top:20rem;
-			   left:25.5rem;
-		     }
-		   
-		    #zan,
-		    #zan img,
-		    #zan #num1,
-		    /* 头像*/
-	     	.round_icon{width: 50px; height: 50px; display: flex;border-radius: 60%;align-items: center;justify-content: center;overflow: hidden;}
-		    .headphoto{ position:absolute;top:15rem; left:28rem; }
-		    /* 评论*/
-			.transmit{ position:absolute; top:29rem;left:28rem;}
-			/* 转发 */
-			.comment2{position:absolute;top:35rem;left:28rem; }
-		    /* section{ position:relative;} */
-	        .fontsuspended{ position:absolute; bottom:70px;left:4rem;color:rgba(255,255,255,1);font-family:"微软雅黑";font-size:25px;}
-		
+           /* 浮动图标*/
+	     	.round_icon{width: 3rem; height: 3rem; display: flex;border-radius: 60%;align-items: center;justify-content: center;overflow: hidden;margin: 0 auto;}
+		    
+	        .fontsuspended{ 
+				position: absolute;
+				bottom: 20px;
+				left: 1rem;
+				color: rgba(255,255,255,1);
+				font-family: "微软雅黑";
+				font-size: 1rem;
+			}
+		    .fontsuspendedright{
+				position: absolute;
+				bottom: 80px;
+				right: 0rem;
+				color: rgba(255,255,255,1);
+				font-family: "微软雅黑";
+				font-size: 1rem;
+				width: 4rem;
+				height: 20rem;
+			}
 		
 		    /* 转发弹窗 */
 		   .modal {
@@ -168,66 +164,75 @@
             <div class="demo" style="position:absolute; top:4rem;">
                 <ul class="list clearfix">
                     <li>
-                       <video style="width: 40rem;height: 60rem;"  muted  controls="controls" autoplay="autoplay" >
+                       <video style="width: 100%;"  muted  controls="controls" autoplay="autoplay" >
                        	  <source src="Picture/resource-vido/linux_01_001.mp4"  type="video/mp4" />
                        </video>
 					   <!--悬浮字体在视频上 定位 -->
 					   <div class="fontsuspended" >
 						   <!-- 定位-->
 						   <div>
-						    <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						    <svg class="icon" aria-hidden="true" style="width: 2rem;height: 2rem;">
 								<use xlink:href="#icon-dingwei-1"></use>
-								<span style="position:absolute; top:0.5rem;">湖南省</span>
+								<span style="vertical-align: super;">湖南省</span>
 						    </svg>
 						   </div>
 						   <!-- 预览-->
 						   <div>
-						     <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						     <svg class="icon" aria-hidden="true" style="width: 2rem;height: 2rem;">
 						   		<use xlink:href="#icon-icon-test""></use>
 						     </svg>
-							 <span style="position:absolute; top:5.5rem;">500人预览</span>
+							 <span style="vertical-align: super;">500人预览</span>
 						   </div>
 						   <!-- 购买-->
 						   <div >
-						   <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
+						   <svg class="icon" aria-hidden="true" style="width: 2rem;height: 2rem;">
 						   		<use xlink:href="#icon-icon-test3" onclick="tobuy()"> </use>
 						   </svg>
-						     <span style="position:absolute; top:10.5rem;">100人购买</span>
+						     <span style="vertical-align: super;">100人购买</span>
 						   </div>
-						   <div>&nbsp;&nbsp;生菜种植 #蔬菜</div>
+						   <div style="margin-top:10px">&nbsp;&nbsp;生菜种植 #蔬菜</div>
 					   </div>
                     </li>
                 </ul>
 				
-				<!-- 点赞 -->
-				<div class="dian">
-				 <div id="zan" style="width: 100px;height: 100px;">
-				   <svg  class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
-						<use xlink:href="#icon-dianzan"></use>
-				   </svg>
-				 </div>
-				  <!--赞数-->
-				  <div id="num1" style="position:absolute;top:70px;right: 40px; font-size: 20px;color:white;" >30</div>
-				</div>
+				<!--悬浮字体在视频上 定位右面 -->
+				<div class="fontsuspendedright" >
+					<!--头像显示  悬浮-->
+					<div class="headphoto">
+						<img  src="Picture/userHead/linux_1.jpg" class="round_icon"  alt="头像" onclick="toManterPage()">    
+					</div>
+					
+					<!-- 点赞 -->
+					<div class="dian">
+					 <div id="zan" class="round_icon">
+					   <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
+							<use xlink:href="#icon-dianzan"></use>
+					   </svg>
+					 </div>
+					  <!--赞数-->
+					  <div id="num1" class="round_icon" style="text-align: center;margin: 0 auto 1rem auto;height:1.5rem;" >30</div>
+					</div>
+					
+					<!--评论显示  悬浮-->
+					<div class="transmit">
+					 <div id="pinglun" class="round_icon">
+					   <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
+							<use xlink:href="#icon-pinglun1"></use>
+					   </svg>
+					 </div>
+					  <!--评论个数-->
+					  <div id="pinglun_num" class="round_icon" style="text-align: center;margin: 0 auto 1rem auto;height:1.5rem;" >30</div>
+					</div>
+					
+					<!--转发显示图标  悬浮-->
+					<div class="comment2">
+					 <div id="myBtn1" class="round_icon">
+					   <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
+							<use xlink:href="#icon-icon-test6"></use>
+					   </svg>
+					 </div>
+					</div>
 			
-				
-				<!--头像显示  悬浮-->
-				<div class="headphoto">
-					<img  src="Picture/userHead/linux_1.jpg" class="round_icon"  alt="头像" onclick="toManterPage()">    
-				</div>
-				
-				<!--评论显示  悬浮-->
-				<div class="transmit">
-				  <a  href="#fengrui"><svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
-						<use xlink:href="#icon-pinglun1"></use></a>
-				  </svg>
-				</div>
-				
-				<!--转发显示  悬浮-->
-				<div class="comment2">
-				  <a  href="#myBtn1"><svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
-						<use xlink:href="#icon-icon-test6"></use></a>
-				  </svg>
 				</div>
             </div>  
          </div>
