@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="resource/mui/css/mui.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="resource/jquery-3.2.1.js"></script> 
+		<script src="resource/mui/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<h1 class="mui-title">养护人身份验证</h1>
+		</header>
+		
+		<div class="mui-content">
+			 <div style="margin-top: 5%;"></div> 
+			<input type="hidden" id="ckjl.id" name="ckjl.id" value="429">  
+			        <div class="collapse-content" > 
+					   <div>
+					      <div>
+					      	<span style="margin-left: 15%;font-size: 20px;color: #222222;">请拍摄或选取本人的二代身份证</span>					   
+					      </div>
+						  <div>
+							  <span style="margin-left: 30%;font-size: 10px;color: #777777;">确保拍摄证件的清晰完整</span>
+						  </div>
+					   </div>
+					</div>
+		
+		<ul class="mui-table-view mui-grid-view" style="text-align: center;">
+		<li class="mui-table-view-cell mui-media mui-col-xs-5">
+		<a href="#">
+		
+		<img class="mui-media-object" src="Image/images/iconfont-tianjia.png" id="zj-photo1" style="height: 9rem; width: 9rem;">
+		
+		
+		<div class="mui-media-body" style="font-size: 10px;">身份证正面<span style="color: red;">(必填)</span>
+		
+		</div>
+		
+		</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-5">
+		<a href="#">
+		<img class="mui-media-object" src="Image/images/iconfont-tianjia.png" id="zj-photo2" style="height: 9rem; width: 9rem;">
+		<div class="mui-media-body" style="font-size: 10px;">身份证反面<span style="color: red;">(必填)</span>
+		</div>
+		
+		</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-5">
+		<a href="#">
+		<img class="mui-media-object" src="Image/images/iconfont-tianjia.png" id="zj-photo3" style="height: 9rem; width: 9rem;">
+		<div class="mui-media-body" style="font-size: 10px;">手持身份证照片<span style="color: red;">(必填)</span>
+		
+		</div>
+		
+		</a>
+		</li>
+		
+		</ul>
+		
+		<div class="mui-content-padded">
+		
+		<p style="font-size: 0.7em;"><span style="color: red;">
+		注</span>:&lt;&lt;身份信息务必真实&gt;&gt;确保信息的准确</p>
+		</div>
+		<button class="mui-btn mui-btn-block mui-btn-block bg_color_eb6100 btn-apply" style="background-color: #FF6600;color: white;" id="apply">提交审核</button>
+		
+		</div>
+		
+		 <!-- 底部导航栏 -->
+		<!-- <nav class="mui-bar mui-bar-tab" id="foot-tab">
+				        	<a id="defaultTab" class="mui-tab-item" href="./index.html">
+				        		<span class="mui-icon mui-icon-home"></span>
+				        		<span class="mui-tab-label">首页</span>
+				        	</a>
+				        	
+				        	<a class="mui-tab-item mui-active" href="./my_manor.html">
+				        		<span class="mui-icon mui-icon-contact active"></span>
+				        		<span class="mui-tab-label">我的</span>
+				        	</a>
+				        </nav> -->
+	</body>
+	<script>
+		$(function(){
+			$("#apply").click(function(){
+				location.href="./cultivate_person_center.html"
+			});
+		});
+	</script>
+</html>
