@@ -80,14 +80,14 @@ body{background-color: #f2f2f2;}
 
 .contaniner .shopcar .shopcar-checkbox{position: relative; float: left; width:10%; height: 3em; padding: 10% 0;}
 .contaniner .shopcar input[type="checkbox"]{ position: absolute; top: 0; left: 0; opacity: 0; }
-.contaniner .shopcar .shopcar-checkbox label{position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url(/js/isunlandBLL/shoppingMallManagement/mycollect/images/check.png) no-repeat; background-size: 60%; background-position: 50% ; -moz-user-select: none; }
-.contaniner .shopcar .shopcar-checkbox .shopcar-checkd{position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url(/js/isunlandBLL/shoppingMallManagement/mycollect/images/checke.png) no-repeat; background-size: 60%; background-position: 50% ;  }
+.contaniner .shopcar .shopcar-checkbox label{position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url(./check.png) no-repeat; background-size: 60%; background-position: 50% ; -moz-user-select: none; }
+.contaniner .shopcar .shopcar-checkbox .shopcar-checkd{position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url(./checke.png) no-repeat; background-size: 60%; background-position: 50% ;  }
 
-.contaniner .shopcar figure{ width: 30%; height: 10em; overflow: hidden; float: left;}
+.contaniner .shopcar figure{ width: 30%; height: 9em; overflow: hidden; float: left;}
 .contaniner .shopcar figure img{ width: 100%; min-height: 100%; }
 .contaniner .shopcar dl{ position: relative; float: left; width: 54%; height: 10em;   margin: 0 3%; overflow: hidden;}
-.contaniner .shopcar dl dt{ font-size: 1.3815em; color: #333;}
-.contaniner .shopcar dl dd{ font-size: 1.169em; color: #999;}
+.contaniner .shopcar dl dt{ font-size: 1.0815em; color: #333;}
+.contaniner .shopcar dl dd{ font-size: 0.769em; color: #999; height: 1.7em;}
 .contaniner .shopcar dl .add{position: absolute; bottom: 0; left: 0; width: 46%; overflow: hidden; display: table; }
 .contaniner .shopcar dl .add span{border: solid 1px #c8c8c8; padding: 1% 10%; display:table-cell;}
 .contaniner .shopcar dl .add input{border: solid 1px #c8c8c8; width:100%;margin-left: -1px; display:table-cell;font-size:1.25em ; padding: 10% 0; color: #666; text-align: center;}
@@ -206,7 +206,7 @@ transition: background-color 0.8s; }
 .contaniner .detail .chose ul h3{ font-size: 1.35em; color: #666; font-weight: normal; margin-bottom: 2%;}
 .contaniner .detail .chose ul li{ width: 20%; padding: 2% 0; text-align: center; border: solid 1px #c8c8c8; float: left; margin: 2% 2%; border-radius: 0.2em;}
 .contaniner .detail .chose ul .chose-active{ border: solid 1px rgba(0,0,0,0); background-image: url(../images/detail-icon03.png); background-repeat: no-repeat; background-size: 100% 100%; }
-.contaniner .detail .seven{ width: 100%; display: block; background-color: #fff; padding: 3% 5%; margin-top: 2%; color: #666; font-size: 1.169em; background-image: url(../images/right.png); background-repeat: no-repeat; background-size: 2%; background-position: 85%;}
+.contaniner .detail .seven{ width: 100%; display: block; background-color: #fff; padding: 3% 5%; margin-top: 2%; color: #666; font-size: 1.169em; background-image: url(./right.png); background-repeat: no-repeat; background-size: 2%; background-position: 85%;}
 .contaniner .detail .seven b{  color: #FC605A; font-weight: normal;}
 .contaniner .detail .same { overflow: hidden; width: 100%; background-color: #fff;margin-top: 2%; padding-bottom: 3%;}
 .contaniner .detail .same a{ width: 100%; display: block;}
@@ -298,6 +298,11 @@ transition: background-color 0.8s; }
 .buy-footer p small{ font-size: 1.169em; color: #666;}
 .buy-footer p b{ font-size: 1.7em; color: #FC605A; font-weight: normal;}
 .buy-footer input[type="button"] { width: 100% ; margin-top: 2%; color: #fff; border: none; padding: 3% 0; font-size: 1.45em; border-radius: 0.3em; background-color: #FC605A;}
+.buy-footer2{ width: 90% ; padding: 3% 5%; background-color: #fff; border-top: solid 1px #ccc;}
+.buy-footer2 p{ width: 100% ; display: block; text-align: center; background-color: #fff;}
+.buy-footer2 p small{ font-size: 1.169em; color: #666;}
+.buy-footer2 p b{ font-size: 1.7em; color: #169FE6; font-weight: normal;}
+.buy-footer2 input[type="button"] { width: 100% ; margin-top: 2%; color: #fff; border: none; padding: 3% 0; font-size: 1.45em; border-radius: 0.3em; background-color: #169FE6;}
 
 
 /*个人信息*/
@@ -351,16 +356,16 @@ transition: background-color 0.8s; }
 .address dt small{ font-size: 1.169em; color: #fff; background-color: #45c018;padding:0.5% 1%; border-radius: 0.4em;}
 .address dd{ width: 100%; text-align: justify; font-size: 1.169em; color: #666;}
 /*修改收货地址*/
-.change-address{ width: 100%; margin: 3% 0;}
+.change-address{ width: 100%; margin: 1% 0;}
 .change-address ul{ width: 100%; background-color: #fff; margin: 3% 0;}
 .change-address ul li{position: relative; width: 90%; padding:6% 5%; border-bottom: solid 1px #ccc; overflow: hidden;}
 .change-address ul li *{ float: left;}
-.change-address ul li .addd{ width: 30%; font-size: 1.25em; color: #999;}
-.change-address ul li input[type="text"]{ width: 70%; border: none; font-size: 1.45em; color: #666;}
-.change-address ul li input[type="tel"]{ width: 70%; border: none; font-size: 1.45em; color: #666;}
+.change-address ul li .addd{ width: 10%; font-size: 0.25em; color: #999;}
+.change-address ul li input[type="text"]{ width: 70%; border: none; font-size: 0.45em; color: #666;}
+.change-address ul li input[type="tel"]{ width: 70%; border: none; font-size: 0.45em; color: #666;}
 .change-address ul li select { border: none;font-size: 1.45em; color: #666; background-color: #fff}
 
-.change-address ul li textarea { border: none;font-size: 1.45em; color: #666; background-color: #fff}
+.change-address ul li textarea { border: none;font-size: 0.45em; color: #666; background-color: #fff}
 .change-address ul li .check{ width: 80%; padding-right: 20%;  font-size: 1.45em; color: #666; -moz-user-select: none;background: url(../images/check.png) no-repeat;background-size: 6%; background-position: 95%;
 }
 
@@ -456,7 +461,7 @@ transition: background-color 0.8s; }
 .warp{max-width: 640px; margin: 0 auto;}
 
 
-.p-top{width: 100%; padding: 5% 0 0; background:url(../uploads/7.jpg) center no-repeat; background-size: cover; text-align: center; position: relative;}
+.p-top{width: 100%; padding: 5% 0 0; background:url(./7.jpg) center no-repeat; background-size: cover; text-align: center; position: relative;}
 .p-top .tu{width: 100px; height: 100px; margin: 0 auto; text-align: center; border-radius: 50%; -webkit-border-radius: 50%; overflow: hidden;}
 .p-top .tu img{width: 100px;}
 .p-top .name{color: #ffffff; font-size: 1.1em;}
@@ -497,9 +502,9 @@ transition: background-color 0.8s; }
 .p-listtwo .tit .number{font-size: 1em; background-color: #fd4f0b; color: #fff; padding: 0 3%; height: 2em; line-height: 2em; margin-top: .75em; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
 .p-listtwo ul li{border-bottom: 1px dashed #c9c9c9; width: 90%; margin: 0 auto; padding: 0;}
 .p-listtwo .list-number{color: #FD4F0B;}
-.icon299{background: url(../img/jianhao.png) center left no-repeat; background-size: 24%; padding-left: 30px; color: #333333;}
-.icon222{background: url(../img/dian.png) center left no-repeat; background-size: 21.2%; padding-left: 30px; color: #333333;}
-.icon223{background: url(../img/dian.png) center left no-repeat; background-size: 18%; padding-left: 30px; color: #333333;}
+.icon299{background: url(./jianhao.png) center left no-repeat; background-size: 24%; padding-left: 30px; color: #333333;}
+.icon222{background: url(./dian.png) center left no-repeat; background-size: 21.2%; padding-left: 30px; color: #333333;}
+.icon223{background: url(./dian.png) center left no-repeat; background-size: 18%; padding-left: 30px; color: #333333;}
 .icon224{background-size: 14.5%;}
 .icon225{background-size: 18.5%;}
 .icon226{background-size: 17%;}
