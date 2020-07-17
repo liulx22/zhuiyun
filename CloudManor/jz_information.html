@@ -11,7 +11,12 @@
 
 		<link href="css/personal.css" rel="stylesheet" type="text/css">
 		<link href="css/jz_info.css" rel="stylesheet" type="text/css">
+		
+		<link rel="stylesheet" href="css/jz_xadmin.css">
 		<script src="resource/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="money/js/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jz_xadmin.js"></script>
+		<script type="text/javascript" src="js/jz_xcity.js"></script>
 	</head>
 	<body>
 		<b class="line"></b>
@@ -88,6 +93,24 @@
 							<input id="user-email" placeholder="Email" type="email">
 						</div>
 					</div>
+		<div class="layui-form-item" id="x-city">
+			<label class="layui-form-label">地址</label>
+			<div class="layui-input-inline">
+			  <select name="province" lay-filter="province">
+				<option value="">请选择省</option>
+			  </select>
+			</div>
+			<div class="layui-input-inline">
+			  <select name="city" lay-filter="city">
+				<option value="">请选择市</option>
+			  </select>
+			</div>
+			<div class="layui-input-inline">
+			  <select name="area" lay-filter="area">
+				<option value="">请选择县/区</option>
+			  </select>
+			</div>
+		</div>
 					<div class="info-btn">
 						<div class="am-btn am-btn-danger" onclick="baocun()">保存修改</div>
 					</div>
@@ -96,8 +119,24 @@
 		</div>
 	</body>
 </html>
+
 <script>
 	function baocun(){
 		window.location.href="my_manor.html"
 	}
+	/*//xcity城市插件 基于于jquery与layui form 模块，使用之前先确认这两者是否引入 
+          //插件文件为 xcity.js,引入 
+          select lay-filter 属性值 为必须 "province/city/area"
+          //初始化
+          $('#x-city').xcity();
+          //传默认值 
+          $('#x-city').xcity('广东','广州市','东山区');*/
+	layui.use(['form','code'], function(){
+        form = layui.form;
+
+        layui.code();
+
+        $('#x-city').xcity('广东','广州市','东山区');
+
+      });
 </script>
