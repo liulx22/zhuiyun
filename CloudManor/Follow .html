@@ -3,6 +3,8 @@
 	<link href="css/zz_index.css" rel="stylesheet" style=""/>
 	<script src="js/jquery-3.2.1.js"></script>
 	<meta charset="utf-8">
+	<!--图标js-->
+	<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	
 	<style>
@@ -23,7 +25,7 @@
 			margin-left: 20%;
 			line-height:150%
 		}
-		#buttonred{
+		#buttonred button{
 			width: 60px;
 			height: 30px;
 			margin-top: 30px;
@@ -33,9 +35,18 @@
 	</style>
 
 	<body>
+		
+		
 		<div style="margin-top: 8px;height: 35px;line-height: 35px;">
+			<div>
+				<!-- 返回键 -->
+				<svg class="icon" id="arrow-lift-1" aria-hidden="true" style="width: 30px;height: 30px;float: left;">
+				  <use xlink:href="#icon-arrow-lift"></use>
+				</svg>
+			</div>
+			
 		<strong>
-		<text style="font-size: 18px;color:grey;">&lt;</text>
+	
 		<a style="margin-left: 35%;font-size: 19px;color:grey;">我的关注</a>
 		<br/>
 		<hr style="width: 100%;">
@@ -69,8 +80,8 @@
 						"\t\t\t<a style=\"color: black;\">"+lists[i].content+"</a><br/>\n" +
 						"\t\t\t\t<a style=\"color: gray;font-size: 5px;\">QQ群："+lists[i].way+"</a>&nbsp;&nbsp;<a style=\"color: gray;font-size: 5px;\"></a><br/>\n" +
 						"\t\t</div>\n" +
-						"\t\t<div style=\"width: 90px;height: 70px;margin-left: 73%;line-height:150%;margin-top: -75px;\">\n" +
-						"\t\t\t<button type=\"button\" class=\"mui-btn mui-btn-danger\" id=\"buttonred\">已关注</button>\n" +
+						"\t\t<div id=\"buttonred\" style=\"width: 90px;height: 70px;margin-left: 73%;line-height:150%;margin-top: -75px;\">\n" +
+						"\t\t\t<button type=\"button\" class=\"mui-btn mui-btn-danger\" id=\"buttonred"+lists[i].id+"\" onclick=\"AttentionPaid("+lists[i].id+")\">已关注</button>\n" +
 						"\t\t</div>\n" +
 						"\t</div>")
 						  document.getElementById(lists[i].id).src = globaPicUrl+"userHead/"+lists[i].userpic+"";
@@ -84,9 +95,25 @@
 			 });
 			
 		})			
+			function AttentionPaid(id){
+				 if (confirm("确认要取消关注？")) {
+						var b="#buttonred"+id
+						 $(b).attr("style","display:none");
+						 
+						 return true;
+				   }else{
+					   alert("222")
+				   }
+					
+			}
 		 </script>
 	</body>
 	<script type="text/javascript">
 		 var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
+		<!-- 返回键 -->
+				//返回
+						$("#arrow-lift-1").click(function(){
+							history.go(-1);
+						});
 	</script>
 </html>

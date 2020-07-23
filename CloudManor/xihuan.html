@@ -4,97 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<link rel="stylesheet" href="./resource/mui/css/mui.min.css" /> 
+		<link rel="stylesheet" href="css/mui.min.css" /> 
 		<script src="http://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="./resource/jquery-3.2.1.js"></script>
 		
-		<!-- <style>
-			.mui-bar .mui-tab-item.mui-active .mui-icon{
-				color: #77ce36;
-			}
-			.mui-bar .mui-tab-item.mui-active .mui-tab-label{
-				color: #77ce36;
-			}
-		 	* {
-		 		padding: 0; 
-		 		margin: 0;
-		 	}
-		 
-		 	#main {
-		 		position: relative;
-		 	}
-		 
-		 	.pin {
-		 		padding: 3% 0 0 3%;
-		 		float: left;
-		 		width: 48%;
-		 		height: auto;
-		 	}
-		 
-		 	.box {
-		 		padding: 2%;
-		 		border: 2% solid #ccc;
-		 		box-shadow: 0 0 10px #ccc;
-		 		border-radius: 5px;
-		 	}
-		 
-		 	.box img {
-		 		width: 100%;
-		 		height:auto;
-		 		margin-bottom: 20px;
-		 	}
-		 		 
-		 
-		 	body {
-		 		background-color: #F5F5F5;
-		 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		 		font-size: 12px;
-		 		line-height: 1.428571429;
-		 		color: #333333;
-		 		background-color: #ffffff;
-		 	}
-		 	.row {
-		 		margin-right: 0px;
-		 		margin-left: 0px;
-		 	}
-		 
-		 	.container {
-		 		padding-right: 0;
-		 		padding-left: 0;
-		 	}
-		 	.col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-		 	    padding-right: 5px;
-		 	    padding-left: 5px;
-		 	}
-			.text-under-img{
-				top: -20px;
-				position: relative;
-			}
-			.text-under-img span{
-				cursor: pointer;
-			}
-			.text-under-img img{
-				width: 1.25rem;
-				height: 1.25rem;
-				border-radius: 0.625rem;
-				position: absolute;
-				right: 5%;
-				top: -2rem;
-			}
-			#address_icon{
-				position: absolute;
-				left: 5%;
-				top: -1.75rem;
-				/* background: linear-gradient(to right, red, blue);
-				        -webkit-background-clip: text;
-				        color: transparent; */
-				color: #850aff;
-				font-weight: 1000;
-			}
-		 </style> -->
-		 <!-- 搜素的css-->
+	
 		 <style>
-			
 		 	#user_search{
 		 		float:left;
 		 		width: 100%;
@@ -215,12 +130,10 @@
 			 			    //使用$.each方法遍历返回的数据date,插入到id为#result中
 			 				/* var str=""; */
 							for(var i=0;i<data.length;i++){ 
-								 /* str+="<div class=\"pin\"><div class=\"box\"><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]+"')\"/></div>";
-								 str+="<div class=\"text-under-img\">";
-								 str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>石家庄</span><span class=\"col-xs-4\">标题行</span>";
-								 str+="<img src='./images/heart.png' />";
-								 str+="</div></div>"; */
-								 
+								/* if(判断喜欢){
+									
+								}
+								 */
 								 var chtml ="<li><p class='product_picture'><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]+"')\"></p><p class='product_np'><a style='font-size:13px;'><svg id='dingwei' class='icon' aria-hidden='true'><use xlink:href='#icon-dingwei-1'></use></svg>石家庄</a><a><img src='./images/iconfont-tianjia.png' /></a></p><p class='product_ie'>标题行</p></li>"
 								 if($('.BoxLeft').height() < $('.BoxRight').height()){ 
 								     $('.BoxLeft').append(chtml); 
@@ -234,6 +147,7 @@
 			 	  });
 			 	  
 			  });
+			  <!-----个人作品页 --->
 			  function gotodetail(){
 				  window.location.href="./Lordzhuangdetails.html";
 			  }
@@ -243,16 +157,16 @@
     
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">首页</h1>
+			<!-------------头部返回------------>
+			<div class="col-md-3 column" style="height: 50px; width: 89.75px; float:left; margin-top: 8px;">
+				<a href="my_manor.html">
+					<img src="/CloudManor/Picture/GlobalPicture/fanhui.png" / width="30px" height="30px">
+				</a>
+			</div>
+			<h1 class="mui-title">我的喜欢</h1>
 		</header>
 		<div class="mui-content">
-			<form >
-				<input type="search" id="user_search" name="user_search" placeholder="请输入搜素">
-					<svg id="search1" class="icon" aria-hidden="true" style="margin-left: 15px;">
-						<use xlink:href="#icon-fangdajing"></use>
-					</svg>	
-				</input>
-			</form>
+		
 			<!-- 资源列表 -->
 			    <div class="twoRankedBox"> 
 			        <ul class="BoxLeft"> 
@@ -265,58 +179,14 @@
 				</div>
 		</div>
 		
-		<!-- 货源列表 --> 
-		<!-- <div class="col-xs-12 column">
-			<div id="main">
-				<div class="pin">
-					<div class="box"> 
-						<img src="Picture/GlobalPicture/1.jpg" />
-					</div>
-					<div class="text-under-img">
-						<span class="col-xs-4">标题行 </span>
-					</div>
-				</div>
-			</div>
-		</div> -->
 		
-		<style>
-			.mui-bar .mui-tab-item.mui-active .mui-icon{
-				color: #77ce36;
-			}
-			.mui-bar .mui-tab-item.mui-active .mui-tab-label{
-				color: #77ce36;
-			}
-		</style>
-		<nav class="mui-bar mui-bar-tab">
-			<a id="defaultTab" class="mui-tab-item mui-active" href="./index.html">
-				<span class="mui-icon mui-icon-home mui-active"></span>
-				<span class="mui-tab-label">首页</span>
-			</a>
-			
-			<a class="mui-tab-item" href="./my_manor.html">
-				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">我的</span>
-			</a>
-		</nav>
+		
 		
 		<script type="text/javascript" charset="utf-8">
 		
 			
 		</script>
-		<!-- 搜索-->
-		<script type="text/javascript">
-			$("#search1").click(function(){
-				alert($("#user_search").val())
-			})
-			$("#user_search").on('keypress',function(e) {
-			                var keycode = e.keyCode;
-			                var searchName = $(this).val();
-			                if(keycode=='13') {
-			                    e.preventDefault();  
-			                    //请求搜索接口
-			                }
-			         });
-		</script>
+	
 	</body>
 
 </html>

@@ -7,9 +7,9 @@
 		<meta content="yes" name="apple-mobile-web-app-capable" />
 		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
 		<meta content="telephone=no" name="format-detection" />
-		<link href="css/my_manor_style.css" rel="stylesheet" type="text/css" />
-		<link href="css/swiper.min.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="css/mui.min.css" /> 
+		<link href="./resource/css/my_manor_style.css" rel="stylesheet" type="text/css" />
+		<link href="./resource/css/swiper.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="./resource/mui/css/mui.min.css" /> 
 		<script src="http://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="resource/jquery-3.2.1.js"></script>
 		<style>
@@ -57,40 +57,42 @@
 				<div class="jq22-take-item">		
 					<div class="jq22-palace">
 						<a href="Follow .html" class="jq22-palace-grid">
-							<div class="jq22-palace-grid-text">
-								<svg class="icon" aria-hidden="true" style="margin-left: 15px;">
+							<div class="jq22-palace-grid-text" style="width: 45%;margin-left: 15px;">
+								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-yiguanzhugongyingshang"></use>
 								</svg>	
-								<span style="margin-left: -28px;">11</span>
+								<span >11</span>
 								
 							</div>
 						</a>
 					
 						<a href="javascript:;" class="jq22-palace-grid">
 						
-							<div class="jq22-palace-grid-text">
+							<div class="jq22-palace-grid-text" style="width: 50%">
 								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-icon-test11"></use>
 								</svg>	
-								<span style="margin-left: -28px;">45</span>
+								<span >45</span>
 							</div>
 						</a>
-						<a href="PingLunWo.html" class="jq22-palace-grid">
+						<a href="PingLunWo.html" id="pingluBtn1" class="jq22-palace-grid">
 							
-							<div class="jq22-palace-grid-text">
+							<div class="jq22-palace-grid-text" style="width: 50%">
 								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-pinglun"></use>
 								</svg>	
-									<span style="margin-left: -28px;">28</span>
+								<span >28</span>	
 							</div>
+							
 						</a>
+						
 						<a href="orderHistory.html" class="jq22-palace-grid">
 							
-							<div class="jq22-palace-grid-text">
+							<div class="jq22-palace-grid-text" style="width: 50%">
 								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-shenqingjilu"></use>
 								</svg>	
-									<span style="margin-left: -32px;">15</span>
+									<span >15</span>
 							</div>
 						</a>
 					</div>
@@ -183,7 +185,7 @@
 		</section>
 	</body>
 	<script src="resource/js/swiper.js"></script>
-	<script src="js/mui.min.js"></script>
+	<script src="./resource/mui/js/mui.min.js"></script>
 	<script>
 		 var swiper = new Swiper('.swiper-container', {
 		      navigation: {
@@ -210,5 +212,9 @@
 			$("#farming_info2").html("枝丫变多了，今天在剪枝");
 			$("#farming_info3").html("终于成熟了，可以收获了");
 		})
+		function pinglunShow(){
+			alert(1)
+			//$("#pingluBtn2").attr("dispaly","block");
+		}
 	</script>
 </html>
