@@ -3,9 +3,8 @@
 <head>
 	
 		
-	<link href="css/zz_index.css" rel="stylesheet" style=""/>
-	<script src="js/jquery-3.2.1.js"></script>
-	<script src="js/mui.js"></script>
+	<link href="resource/css/zz_index.css" rel="stylesheet" style=""/>
+	<script src="resource/jquery-3.2.1.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
@@ -52,7 +51,7 @@
 	$(function(){					
 		var userId=1;
 		 $.ajax({
-		 	url: "file/PingLunWo.json",
+		 	url: "resource/file/PingLunWo.json",
 		 	dataType: "json",
 		 	type: "get",	
 			header: {
@@ -69,7 +68,7 @@
 						  "\t\t<div id=\"a2\">\n" +
 						  "\t\t\t<a style=\"color: black;margin-top: 5px;\"><strong>我评论了："+lists[i].remarkname+"</strong></a></a>\n" +
 						  "\t\t\t<br/>\n" +
-						 "\t\t\t<a style=\"color: black;\">"+lists[i].content+"</a>&nbsp;<img style=\"width: 15px;height: 15px;margin-top: 5px;\"  src=\"images/delete1.png\"><br/>\n" +
+						 "\t\t\t<a style=\"color: black;\">"+lists[i].content+"</a>&nbsp;<img style=\"width: 15px;height: 15px;margin-top: 5px;\"  src=\"resource/images/delete1.png\"><br/>\n" +
 						 "\t\t\t\t<a style=\"color: gray;font-size: 5px;\">"+lists[i].way+"了ta的作品</a>&nbsp;&nbsp;<a style=\"color: gray;font-size: 5px;\">2020-7-22</a><br/>\n" +
 						 "\t\t</div>\n" +
 						 "\t\t<div style=\"width: 90px;height: 70px;margin-left: 73%;line-height:150%;margin-top: -75px;\">\n" +
