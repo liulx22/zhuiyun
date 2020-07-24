@@ -11,12 +11,12 @@
 		<!-- 转发分享css -->
 		<link rel="stylesheet" href="resource/dist/css/share.min.css">
 		<!--标准mui.css-->
-		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="resource/css/mui.min.css">
 		<!--App自定义的css-->
-		<link rel="stylesheet" type="text/css" href="css/zbw/app.css"/>
+		<link rel="stylesheet" type="text/css" href="resource/zbw/app.css"/>
 		<!-- 点击发表评论表情包css -->
-		<link  rel="stylesheet" href="css/main.css" />
-		<link rel="stylesheet" type="text/css" href="css/sinaFaceAndEffec.css" />
+		<link  rel="stylesheet" href="resource/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="resource/css/sinaFaceAndEffec.css" />
 		<script src="js/mui.min.js"></script>
 		
 		<!-- bootstrap -->
@@ -28,7 +28,7 @@
 		<script src="resource/src/js/qrcode.js"></script>
 	
 		<!--图标js-->
-		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
+		<script src="https://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
         
 		
 		
@@ -146,7 +146,9 @@
 		        height: 100%;
 		        padding: 15px;
 		}
-	
+		
+		
+
 		</style>
     </head>
 	
@@ -263,7 +265,7 @@
 	       <div class="mui-popover mui-popover-bottom mui-popover-action fr-tc" id="fengrui">
 	                           <div class="fr-div-w">
 	   							<!-- 弹框展示发布内容 -->
-	                             <div id="content" style="display:none;">
+	                             <div id="content" style="position: relative;top:3rem">
 	                               	<div class="wrap">
 	                               		<div class="comment">
 	                               			<div class="head-face">
@@ -272,7 +274,7 @@
 	                               			</div>
 	                               			<div class="content" >
 	                               				<div class="cont-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
-	                               					<textarea class="text"  placeholder="请输入..."></textarea>
+	                               					<textarea class="text"  placeholder="请输入..." style="position: relative;top:0.5rem"></textarea>
 	                               				</div>
 	                               				<div  style="width:25rem;height: 5rem;margin-left: 3rem;"><!-- class="tools-box" --> 	  
 	                               					<div class="submit-btn" style="width:5rem;margin-top: -2.5rem;"><input style="height: 3rem;background-color:#66cc33;color:white;" type="button" onClick="out()"value="提交评论" /></div>
@@ -285,8 +287,8 @@
 	                               		</div>
 	                               	</div>
 	                               </div>
-	                              <script type="text/javascript" src="js/main.js"></script>
-	                               <script type="text/javascript" src="js/sinaFaceAndEffec.js"></script>
+	                              <script type="text/javascript" src="resource/js/main.js"></script>
+	                               <script type="text/javascript" src="resource/js/sinaFaceAndEffec.js"></script>
 	                                <script type="text/javascript">
 	                                	// 绑定表情
 	                                	$('.face-icon').SinaEmotion($('.text'));
