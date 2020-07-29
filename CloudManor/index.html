@@ -221,11 +221,12 @@
 								 str+="<img src='./images/heart.png' />";
 								 str+="</div></div>"; */
 								 
-								 var chtml ="<li><p class='product_picture'><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]+"')\"></p><p class='product_np'><a style='font-size:13px;'><svg id='dingwei' class='icon' aria-hidden='true'><use xlink:href='#icon-dingwei-1'></use></svg>石家庄</a><a><img src='./images/iconfont-tianjia.png' /></a></p><p class='product_ie'>标题行</p></li>"
-								 if($('.BoxLeft').height() < $('.BoxRight').height()){ 
-								     $('.BoxLeft').append(chtml); 
+								 var chtml ="<li><p class='product_picture'><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]+"')\"></p><p class='product_np'><a style='font-size:13px;'><svg id='dingwei' class='icon' aria-hidden='true'><use xlink:href='#icon-dingwei-1'></use></svg>石家庄</a><a><img src='./resource/css/images/iconfont-tianjia.png' /></a></p><p class='product_ie'>标题行</p></li>"
+								 if($('.BoxLeft').height() > $('.BoxRight').height()){ 
+								      $('.BoxRight').append(chtml); 
 								 }else{ 
-								     $('.BoxRight').append(chtml); 
+								    
+									 $('.BoxLeft').append(chtml); 
 								 } 
 			 				}
 							/* $("#main").append(str); */
