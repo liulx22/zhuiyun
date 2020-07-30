@@ -35,7 +35,7 @@
 			$(function(){
 				$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8081/Lordzhuangdetails/resorceloader",
+				    url: "http://localhost:8080/Lordzhuangdetails/resorceloader",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp",
 				    data: {"resourceId":1},
@@ -72,7 +72,7 @@
 				/*头像回显 */
 				$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8081/Lordzhuangdetails/findheadphoto",
+					    url: "http://localhost:8080/Lordzhuangdetails/findheadphoto",
 					    dataType: "jsonp",
 						jsonpCallback:"success_jsonp2",
 					    data: {"userid":1},
@@ -91,7 +91,7 @@
 				/* 点赞num1赋值 查询点赞数 */
 			    $.ajax({
 				    type: "GET",
-				    url: "http://localhost:8081/Lordzhuangdetails/selectDianZan",
+				    url: "http://localhost:8080/Lordzhuangdetails/selectDianZan",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp4",
 				    data: {"userid":1},
@@ -116,7 +116,7 @@
 			/* 回显评论数量 */
 			$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8081/Lordzhuangdetails/huiXianComment",
+				    url: "http://localhost:8080/Lordzhuangdetails/huiXianComment",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp6",
 				    data: {"resourceId":resourceId},
@@ -147,7 +147,7 @@
 				var num = document.getElementById('yuLAN');
 					$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8081/Lordzhuangdetails/yuLan",
+					    url: "http://localhost:8080/Lordzhuangdetails/yuLan",
 					    dataType: "jsonp",
 						jsonpCallback:"success_jsonpYuLan",
 					    data: {"yuLan":num.innerHTML,"userid":1},
@@ -167,7 +167,7 @@
 			function yulancount(){
 				$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8081/Lordzhuangdetails/selectYuLan",
+				    url: "http://localhost:8080/Lordzhuangdetails/selectYuLan",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonpSelectYuLan",
 				    data: {"userid":1},
@@ -193,7 +193,7 @@
 			function huixianlightherder(){
 				$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8081/Lordzhuangdetails/findheadphoto",
+					    url: "http://localhost:8080/Lordzhuangdetails/findheadphoto",
 					    dataType: "jsonp",
 						jsonpCallback:"success_jsonp2",
 					    data: {"userid":1},
@@ -498,7 +498,7 @@
 									var resourceId=1;
 	                                	$.ajax({
 	                                		 type: "GET",
-	                                		 url: "http://localhost:8081/Lordzhuangdetails/addComment",
+	                                		 url: "http://localhost:8080/Lordzhuangdetails/addComment",
 	                                		 dataType: "jsonp",
 	                                		 jsonpCallback:"success_jsonp7",
 	                                		 data: {"userid":userid,"content":inputText,"resourceId":resourceId,"pid":2},
@@ -520,7 +520,7 @@
 	                                function huixiancomment(resourceId){
 	                                	$.ajax({
 	                                		 type: "GET",
-	                                		 url: "http://localhost:8081/Lordzhuangdetails/huiXianComment",
+	                                		 url: "http://localhost:8080/Lordzhuangdetails/huiXianComment",
 	                                		 dataType: "jsonp",
 	                                		 jsonpCallback:"success_jsonp6",
 	                                		 data: {"resourceId":resourceId},
@@ -574,7 +574,7 @@
 	 	  if (flag1 == 0) {
 			  $.ajax({
 				    type: "GET",
-				    url: "http://localhost:8081/Lordzhuangdetails/dianzan",
+				    url: "http://localhost:8080/Lordzhuangdetails/dianzan",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp3",
 				    data: {"dianzan":num1.innerHTML,"userid":1},
@@ -590,7 +590,7 @@
 	 	  if (flag1 == 1) {
 			$.ajax({
 				type: "GET",
-				url: "http://localhost:8081/Lordzhuangdetails/dcrdianzan",
+				url: "http://localhost:8080/Lordzhuangdetails/dcrdianzan",
 				dataType: "jsonp",
 				jsonpCallback:"success_jsonp5",
 				data: {"dianzan":num1.innerHTML,"userid":1},
