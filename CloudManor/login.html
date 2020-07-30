@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>销售系统</title>
+		<script src="resource/jquery-3.2.1.js"></script>
+		<link href="login/css/mui.min.css" rel="stylesheet" />
+		<link href="login/css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="login/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="login/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="login/css/component.css" />
+		<style type="text/css">
+			.mui-content>.mui-table-view:first-child {
+				margin-top: -1px;
+			}
+			.mui-bar{ box-shadow: none; }
+			.mui-table-view-cell.mui-active{background-color: #fff;}
+			
+		</style>
+	</head>
+
+<body>
+		<header class="mui-bar mui-bar-nav xiaoshoubar_color">
+			<a href="" class="back mui-pull-left"></a>
+			<h1 class="mui-title xiaoshoubar_title">用户登陆</h1>
+		</header>
+		<img src="login/images/微信图片_20200718103906.jpg" style="width: 230px;margin-top: 80px;margin-left: 70px;"></img>
+		<section class="content" style="margin-left: 35px; margin-top: -80px;"> 
+				<span id="phone" class="input input--hoshi">
+					<input class="input__field input__field--hoshi" style="border:none;background-color: #fff0;" type="text" id="input-4" placeholder="请输入手机号"/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+						
+					</label>
+					
+				</span>
+				<span class="input1 input--hoshi" style="float: left;">
+					<input class="input__field input__field--hoshi" style="border:none;background-color: #fff0;" type="text" id="input-7" placeholder="请输入验证码"/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-7">
+					</label>
+				</span>
+				<div class="mui-content password_fasongmima">
+					<div class="mui-content-padded">
+						<button id="yzm" type="button" class="mui-btn mui-btn-outlined">发送验证码</button>
+					</div>
+				</div>
+				<div class="mui-content password_xiugaimima">
+		    		<div class="mui-content-padded">
+		        		<button id="login" type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined oacolor" style="margin-top: 40px;color: #00c4cb;">登陆</button>
+		   			 </div>
+				</div>
+			
+				
+			</section>
+<script src="js/mui.min.js"></script>
+<script src="js/classie.js"></script>
+		<script>
+			
+			$("#yzm").click(function(){
+				var phone=$("#input-4").val();
+				if(phone!=""){
+					$.ajax({
+						url:"http://localhost:8080/login/yzm",
+						data:{phone:phone},
+						type:"post",
+						dataType:"json",
+						success:function(data){
+							if(data){
+								alert("验证码发送成功")
+							}
+						},error:function(){
+							alert(22222)
+						}
+					})
+				}else{
+					alert("请输入手机号")
+				}
+				
+			})
+			$("#login").click(function(){
+				var yzm=$("#input-7").val();
+				var phone=$("#input-4").val();
+				if(phone!=""&&yzm!=""){
+					alert(222)
+					$.ajax({
+						url:"http://localhost:8080/login/login",
+						data:{phone:phone,yzm:yzm}
+						type:"get",
+						dataType:"json",
+						success:function(data){
+							if(data){
+								alert("登陆成功")
+							}
+						}
+					})
+				}else{
+					alert(1111)
+				}
+				
+					
+				
+				
+			})
+			(function() {
+				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+				if (!String.prototype.trim) {
+					(function() {
+						// Make sure we trim BOM and NBSP
+						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+						String.prototype.trim = function() {
+							return this.replace(rtrim, '');
+						};
+					})();
+				}
+
+				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+					// in case the input is already filled..
+					if( inputEl.value.trim() !== '' ) {
+						classie.add( inputEl.parentNode, 'input--filled' );
+					}
+
+					// events:
+					inputEl.addEventListener( 'focus', onInputFocus );
+					inputEl.addEventListener( 'blur', onInputBlur );
+				} );
+
+				function onInputFocus( ev ) {
+					classie.add( ev.target.parentNode, 'input--filled' );
+				}
+
+				function onInputBlur( ev ) {
+					if( ev.target.value.trim() === '' ) {
+						classie.remove( ev.target.parentNode, 'input--filled' );
+					}
+				}
+			})();
+		</script>
+</body>
+</html>
