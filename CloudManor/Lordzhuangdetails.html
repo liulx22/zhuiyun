@@ -44,24 +44,29 @@
 						 var video="<source src="+data.imgDir+" type='video/mp4' />";
 						 /* 回显视频*/
 						 $(video).appendTo("#mv4");
-						 /* 回显地址*/
-						 $("#weizhi").text(data.resourceTreeDetail.geographicPosition);
+						
 						 /* 回显信息*/
 						 if(data.reTypeCode=="fruiter"){
 							  var messagefriut="<span>数目品种:"+data.resourceTreeDetail.breedName+"&nbsp;树龄:"+data.resourceTreeDetail.treeAge+"&nbsp;年产量:"+data.resourceTreeDetail.yearlyOutput+"&nbsp;树木直径:"+data.resourceTreeDetail.diameter+"&nbsp;承包时间:"+data.resourceTreeDetail.leaseTime+"<span>";
 							   $(messagefriut).appendTo("#xinxi");
+							   /* 回显地址*/
+							   $("#weizhi").text(data.resourceTreeDetail.geographicPosition);
 						 }else if(data.reTypeCode=="livestock"){
-							  var messageanimal="<span>牲畜品种:"+data.resourceTreeDetail.breedName+"&nbsp;重量："+data.resourceTreeDetail.weight+
-							  "&nbsp;颜色："+data.resourceTreeDetail.colour+"&nbsp;年龄:"+data.resourceTreeDetail.age+
-							  "&nbsp;是否打过疫苗:"+data.resourceTreeDetail.vaccine+
+							  var messageanimal="<span>牲畜品种:"+data.resourceAnimalDetail.breedName+"&nbsp;重量："+data.resourceAnimalDetail.weight+
+							  "&nbsp;颜色："+data.resourceAnimalDetail.colour+"&nbsp;年龄:"+data.resourceAnimalDetail.age+
+							  "&nbsp;是否打过疫苗:"+data.resourceAnimalDetail.vaccine+
 							   "<span>";
 							   $(messageanimal).appendTo("#xinxi");
+							   /* 回显地址*/
+							   $("#weizhi").text(data.resourceAnimalDetail.geographicPosition);
 						 }else if(data.reTypeCode=="plot"){
-							 var messageplot="<span>去年种植:"+data.resourceTreeDetail.plantType+"&nbsp;产量："+data.resourceTreeDetail.yield+
-							  "&nbsp;面积:"+data.resourceTreeDetail.proportion+"&nbsp;土地类型:"+data.resourceTreeDetail.landType+
-							  "&nbsp;承包时间:"+data.resourceTreeDetail.leaseTime+
+							 var messageplot="<span>去年种植:"+data.resourceGroundDetail.plantType+"&nbsp;产量："+data.resourceGroundDetail.yield+
+							  "&nbsp;面积:"+data.resourceGroundDetail.proportion+"&nbsp;土地类型:"+data.resourceGroundDetail.landType+
+							  "&nbsp;承包时间:"+data.resourceGroundDetail.leaseTime+
 							   "<span>";
 							   $(messageplot).appendTo("#xinxi");
+							    /* 回显地址*/
+							    $("#weizhi").text(data.resourceGroundDetail.geographicPosition);
 						 }	
 				    },
 				    error: function (data) {
