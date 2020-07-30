@@ -30,6 +30,188 @@
 		<!--图标js-->
 		<script src="https://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
         
+		 <script src="resource/js/jquery-1.8.0.min.js"></script>
+		<script>
+			$(function(){
+				$.ajax({
+				    type: "GET",
+				    url: "http://localhost:8081/Lordzhuangdetails/resorceloader",
+				    dataType: "jsonp",
+					jsonpCallback:"success_jsonp",
+				    data: {"resourceId":1},
+				    success: function (data) {
+						 console.log(data);
+						 var video="<source src="+data.imgDir+" type='video/mp4' />";
+						 /* 回显视频*/
+						 $(video).appendTo("#mv4");
+						 /* 回显地址*/
+						 $("#weizhi").text(data.resourceTreeDetail.geographicPosition);
+						 /* 回显信息*/
+						 if(data.reTypeCode=="fruiter"){
+							  var messagefriut="<span>数目品种:"+data.resourceTreeDetail.breedName+"&nbsp;树龄:"+data.resourceTreeDetail.treeAge+"&nbsp;年产量:"+data.resourceTreeDetail.yearlyOutput+"&nbsp;树木直径:"+data.resourceTreeDetail.diameter+"&nbsp;承包时间:"+data.resourceTreeDetail.leaseTime+"<span>";
+							   $(messagefriut).appendTo("#xinxi");
+						 }else if(data.reTypeCode=="livestock"){
+							  var messageanimal="<span>牲畜品种:"+data.resourceTreeDetail.breedName+"&nbsp;重量："+data.resourceTreeDetail.weight+
+							  "&nbsp;颜色："+data.resourceTreeDetail.colour+"&nbsp;年龄:"+data.resourceTreeDetail.age+
+							  "&nbsp;是否打过疫苗:"+data.resourceTreeDetail.vaccine+
+							   "<span>";
+							   $(messageanimal).appendTo("#xinxi");
+						 }else if(data.reTypeCode=="plot"){
+							 var messageplot="<span>去年种植:"+data.resourceTreeDetail.plantType+"&nbsp;产量："+data.resourceTreeDetail.yield+
+							  "&nbsp;面积:"+data.resourceTreeDetail.proportion+"&nbsp;土地类型:"+data.resourceTreeDetail.landType+
+							  "&nbsp;承包时间:"+data.resourceTreeDetail.leaseTime+
+							   "<span>";
+							   $(messageplot).appendTo("#xinxi");
+						 }	
+				    },
+				    error: function (data) {
+						console.log(data);
+				    }
+				});
+				
+				/*头像回显 */
+				$.ajax({
+					    type: "GET",
+					    url: "http://localhost:8081/Lordzhuangdetails/findheadphoto",
+					    dataType: "jsonp",
+						jsonpCallback:"success_jsonp2",
+					    data: {"userid":1},
+					    success: function (data) {
+							 console.log(data);
+							 var headerphoto="<img  src="+data.imgDir+" class='round_icon' alt='头像' onclick='toManterPage()'> ";
+							  /* 回显头像*/
+								$(headerphoto).appendTo("#headerphoto");
+					    },
+					    error: function (data) {
+							console.log(data);
+					    }
+					});
+				
+				
+				/* 点赞num1赋值 查询点赞数 */
+			    $.ajax({
+				    type: "GET",
+				    url: "http://localhost:8081/Lordzhuangdetails/selectDianZan",
+				    dataType: "jsonp",
+					jsonpCallback:"success_jsonp4",
+				    data: {"userid":1},
+				    success: function (data) {
+						//点赞数
+						 console.log(data);
+						 if(data==null){
+							 $("#num1").text(0);
+						 }else{
+							  $("#num1").text(data);
+						 }
+						
+						
+				    },
+				    error: function (data) {
+						console.log(data);
+				    }
+				});
+				
+				
+			var resourceId=1;
+			/* 回显评论数量 */
+			$.ajax({
+				    type: "GET",
+				    url: "http://localhost:8081/Lordzhuangdetails/huiXianComment",
+				    dataType: "jsonp",
+					jsonpCallback:"success_jsonp6",
+				    data: {"resourceId":resourceId},
+				    success: function (data) {
+						console.log(data.length);
+					    $("#pinglun_num").text(data.length);
+						
+				    },
+				    error: function (data) {
+						console.log(data);
+				    }
+				});
+				
+				
+			
+				
+				/* 预览+ */
+				yulan();
+				/* 预览数 */
+				yulancount();
+				
+				
+			});	
+			
+			
+			/* 预览+ */
+			function yulan(){
+				var num = document.getElementById('yuLAN');
+					$.ajax({
+					    type: "GET",
+					    url: "http://localhost:8081/Lordzhuangdetails/yuLan",
+					    dataType: "jsonp",
+						jsonpCallback:"success_jsonpYuLan",
+					    data: {"yuLan":num.innerHTML,"userid":1},
+					    success: function (data) {
+							 console.log(data);
+							 console.log("预览+");
+					    },
+					    error: function (data) {
+							console.log(data);
+					    }
+					});
+					
+			}
+			
+			
+			/* 预览数 */
+			function yulancount(){
+				$.ajax({
+				    type: "GET",
+				    url: "http://localhost:8081/Lordzhuangdetails/selectYuLan",
+				    dataType: "jsonp",
+					jsonpCallback:"success_jsonpSelectYuLan",
+				    data: {"userid":1},
+				    success: function (data) {
+						//预览数
+						 console.log(data);
+						 if(data==null){
+							 $("#yuLAN").text(0);
+						 }else{
+							  $("#yuLAN").text(data);
+						 }
+				    },
+				    error: function (data) {
+						console.log(data);
+				    }
+				});
+				
+			}
+			
+			
+			
+			//点击评论图标回显图片头像
+			function huixianlightherder(){
+				$.ajax({
+					    type: "GET",
+					    url: "http://localhost:8081/Lordzhuangdetails/findheadphoto",
+					    dataType: "jsonp",
+						jsonpCallback:"success_jsonp2",
+					    data: {"userid":1},
+					    success: function (data) {
+							 console.log(data);
+				
+							 var headerphoto="<img src="+data.imgDir+" / ><p>"+data.userName+"</p>";
+							  /* 回显头像*/
+								$(headerphoto).appendTo("#lightheader");
+					    },
+					    error: function (data) {
+							console.log(data);
+					    }
+					});
+				
+			}
+			
+		</script>
 		
 		
 		<style type="text/css">
@@ -150,6 +332,8 @@
 		
 
 		</style>
+		
+
     </head>
 	
 	
@@ -167,8 +351,8 @@
             <div class="demo" style="position:absolute; top:4rem;">
                 <ul class="list clearfix">
                     <li>
-                       <video style="width: 100%;"  muted  controls="controls" autoplay="autoplay" >
-                       	  <source src="Picture/resource-vido/linux_01_001.mp4"  type="video/mp4" />
+                        <video id="mv4" style="width: 100%;"  muted  controls="controls" autoplay="autoplay" >
+                       	  
                        </video>
 					   <!--悬浮字体在视频上 定位 -->
 					   <div class="fontsuspended" >
@@ -176,7 +360,7 @@
 						   <div>
 						    <svg class="icon" aria-hidden="true" style="width: 2rem;height: 2rem;">
 								<use xlink:href="#icon-dingwei-1"></use>
-								<span style="vertical-align: super;">湖南省</span>
+								<span style="vertical-align: super;" id="weizhi">湖南省</span>
 						    </svg>
 						   </div>
 						   <!-- 预览-->
@@ -184,7 +368,7 @@
 						     <svg class="icon" aria-hidden="true" style="width: 2rem;height: 2rem;">
 						   		<use xlink:href="#icon-icon-test""></use>
 						     </svg>
-							 <span style="vertical-align: super;">500人预览</span>
+							 <span style="vertical-align: super;"><span id="yuLAN">0</span>人预览</span>
 						   </div>
 						   <!-- 购买-->
 						   <div >
@@ -193,7 +377,11 @@
 						   </svg>
 						     <span style="vertical-align: super;">100人购买</span>
 						   </div>
-						   <div style="margin-top:10px">&nbsp;&nbsp;生菜种植 #蔬菜</div>
+						   
+						   <!-- 信息-->
+						   <div style="margin-top:10px" id="xinxi">
+							  
+						   </div>
 					   </div>
                     </li>
                 </ul>
@@ -201,8 +389,8 @@
 				<!--悬浮字体在视频上 定位右面 -->
 				<div class="fontsuspendedright" >
 					<!--头像显示  悬浮-->
-					<div class="headphoto">
-						<img  src="Picture/userHead/linux_1.jpg" class="round_icon"  alt="头像" onclick="toManterPage()">    
+					<div class="headphoto" id="headerphoto">
+						<!-- <img  src="Picture/userHead/linux_1.jpg" class="round_icon"  alt="头像" onclick="toManterPage()"> -->    
 					</div>
 					
 					<!-- 点赞 -->
@@ -213,13 +401,15 @@
 					   </svg>
 					 </div>
 					  <!--赞数-->
-					  <div id="num1" class="round_icon" style="text-align: center;margin: 0 auto 1rem auto;height:1.5rem;" >30</div>
+					  <div id="num" class="round_icon" style="text-align: center;margin: 0 auto 1rem auto;height:1.5rem;" >
+						<span id='num1'></span>
+					  </div>
 					</div>
 					
 					<!--评论显示  悬浮-->
 					<div class="transmit">
 					 <div id="pinglun" class="round_icon">
-					   <a  href="#fengrui">
+					   <a  href="#fengrui" onclick="huixianlightherder()">
 						 <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
 							<use xlink:href="#icon-pinglun1"></use>
 					   </svg>
@@ -245,7 +435,6 @@
          </div>
 		 
 		  
-		 
    	  <!--转发 -->
 	   <div id="myBtn1" class="box mui-popover mui-popover-action mui-popover-bottom">
 	   			<div style="width: 100%;height: 30rem;background-color: white;">
@@ -268,9 +457,9 @@
 	                             <div id="content" style="position: relative;top:3rem">
 	                               	<div class="wrap">
 	                               		<div class="comment">
-	                               			<div class="head-face">
-	                               				<img src="Picture/userHead/linux_1.jpg" / >
-	                               				<p>我是小白</p>
+	                               			<div class="head-face" id="lightheader">
+	                               				<!-- <img src="Picture/userHead/linux_1.jpg" / >
+	                               				<p>我是小白</p> -->
 	                               			</div>
 	                               			<div class="content" >
 	                               				<div class="cont-box" style="width:25rem;height: 5rem;margin-left: 3rem;">
@@ -290,33 +479,72 @@
 	                              <script type="text/javascript" src="resource/js/main.js"></script>
 	                               <script type="text/javascript" src="resource/js/sinaFaceAndEffec.js"></script>
 	                                <script type="text/javascript">
-	                                	// 绑定表情
-	                                	$('.face-icon').SinaEmotion($('.text'));
-	                                	// 测试本地解析
-	                                	function out() {
-	                                		var inputText = $('.text').val();
-	   											if(inputText==null||inputText==""){/* style="color:red;"> */
-	   												$("<span style=\"color:red;\"> 评论不可为空，请输入内容！</span>").appendTo("#pinglun2");
-	   											}else{
-	   												$('#info-show ul').append(reply((inputText)));
-	   											}
-	                                		
-	                                	}
+	                                //评论
+	                                function out() {
+	                                	var inputText = $('.text').val();
+	                                			if(inputText==null||inputText==""){/* style="color:red;"> */
+	                                				$("<span style=\"color:red;\"> 评论不可为空，请输入内容！</span>").appendTo("#pinglun2");
+	                                			}else{
+	                                			    //添加评论
+	                                			    addComment(inputText);
+	                                			 }
 	                                	
-	                                	var html;
-	                                	function reply(content){
-	                                		html  = '<li>';
-	                                		html += '<div class="head-face">';
-	                                		html += '<img src="Picture/userHead/linux_1.jpg" / >';
-	                                		html += '</div>';
-	                                		html += '<div class="reply-cont" >';
-	                                		html += '<p class="username" style="margin-left: 3rem;">我是小白</p>';
-	                                		html += '<p class="comment-body" style="margin-top:2rem;margin-left:5rem;">'+content+'</p>';
-	                                		html += '<p class="comment-footer" style="margin-top:1rem;margin-left: 3rem;">2016年10月5日</p>';
-	                                		html += '</div>';
-	                                		html += '</li>';
-	                                		return html;
-	                                	}
+	                                }
+	                                
+	                                
+	                                //添加评论
+	                                function addComment(inputText){
+	                                var userid=1;
+									var resourceId=1;
+	                                	$.ajax({
+	                                		 type: "GET",
+	                                		 url: "http://localhost:8081/Lordzhuangdetails/addComment",
+	                                		 dataType: "jsonp",
+	                                		 jsonpCallback:"success_jsonp7",
+	                                		 data: {"userid":userid,"content":inputText,"resourceId":resourceId,"pid":2},
+	                                		 success: function (data) {
+	                                		 console.log(data);
+	                                		 console.log("评论已发送");
+	                                		  //回显评论
+	                                		  huixiancomment(resourceId);
+	                                	      },
+	                                		  error: function (data) {
+	                                			console.log(data);
+	                                		  }
+	                                	});
+	                                }
+	                                
+	                                
+	                                
+	                                 //回显评论
+	                                function huixiancomment(resourceId){
+	                                	$.ajax({
+	                                		 type: "GET",
+	                                		 url: "http://localhost:8081/Lordzhuangdetails/huiXianComment",
+	                                		 dataType: "jsonp",
+	                                		 jsonpCallback:"success_jsonp6",
+	                                		 data: {"resourceId":resourceId},
+	                                		 success: function (data) {
+	                                		 console.log(data);
+	                                		 
+	                                		 for (i = 0; i < data.length; i++) { 
+	                                			 var pingluncomment="<li><div class='head-face'><img src="+data[i].imgDir+" / ></div><div class='reply-cont' >"
+	                                			 +"<p class='username' style='margin-left: 3rem;'>"+data[i].userName+" </p><p class='comment-body' style='margin-top:2rem;margin-left:5rem;'>"+data[i].content+"</p>"
+	                                			 +"<p class='comment-footer' style='margin-top:1rem;margin-left: 3rem;'>"+data[i].time+"</p>"
+	                                			 +"</div></li>";
+	                                			 											
+	                                			 $('#info-show ul').append(pingluncomment);
+	                                			 
+	                                		    }		
+	                                	      },
+	                                		  error: function (data) {
+	                                			console.log(data);
+	                                				}
+	                                	});
+	                                	
+	                                }
+	                                
+
 	                                </script>
 	                             
 	                               <div style="text-align:center;">
@@ -344,9 +572,35 @@
 	 	var flag2 = 0;
 	 	zan.onclick = function() {
 	 	  if (flag1 == 0) {
-	 	    num1.innerHTML++;
+			  $.ajax({
+				    type: "GET",
+				    url: "http://localhost:8081/Lordzhuangdetails/dianzan",
+				    dataType: "jsonp",
+					jsonpCallback:"success_jsonp3",
+				    data: {"dianzan":num1.innerHTML,"userid":1},
+				    success: function (data) {
+						 console.log(data);
+				    },
+				    error: function (data) {
+						console.log(data);
+				    }
+				 });
+				num1.innerHTML++;
 	 	  }
 	 	  if (flag1 == 1) {
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:8081/Lordzhuangdetails/dcrdianzan",
+				dataType: "jsonp",
+				jsonpCallback:"success_jsonp5",
+				data: {"dianzan":num1.innerHTML,"userid":1},
+				success: function (data) {
+				console.log(data);
+				},
+				error: function (data) {
+				console.log(data);
+				}
+			});  
 	 	    num1.innerHTML--;
 	 	  }
 	 	  if (flag1 == 2) {
