@@ -1,0 +1,19 @@
+var fruiter={"title":"一棵苹果树，现在购买只要998","money":"998","breed_name":"桃树","diameter":"5","geographic_position":"乌鲁木齐","lease_time":"3","tree_age":"5","yearly_output":"50"};
+var livestock={"title":"一只小山羊，现在购买只要998","money":"998","breed_name":"山羊","weight":"30","colour":"白色","age":"70","vaccine":"是","geographic_position":"内蒙古"};
+var plot={"title":"一块黑土地，现在购买只要998","money":"998","plant_type":"玉米","yield":"100","proportion":"300","land_type":"耕地","lease_time":"3","geographic_position":"黑龙江"};
+
+
+
+var dataFromJSON = {
+                "text":"外部json",
+                "iconCls":"fa fa-wpforms",
+                "state":"open",
+                "children":{
+                    "breed_name":"桃树",
+                    "diameter":"5",
+					"geographic_position":"乌鲁木齐",
+					"lease_time":"3",
+					"tree_age":"5",
+					"yearly_output":"50"
+                }
+                };
