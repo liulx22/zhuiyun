@@ -47,43 +47,65 @@
 	</div>
 	
 	<script type="text/javascript">
+		function bbb(id){
+			alert("55")
+			$.ajax({
+				url: "http://localhost:8080/CommentController/delete",
+				dataType: "json",
+				type: "post",
+				data:{"id":id},
+				 success: function(dat) {
+				                    console.log(dat);
+				                    if(dat){
+				                        alert("删除成功");
+										 window.location.reload();
+				                    }else{
+				                        alert("删除失败！");
+				                    }
+				                },error:function(){
+				                    alert("删除失败！");
+				                }
+			})
+		
+																
+		}
 		
 	$(function(){					
-		var userId=1;
+		var id=1;
 		 $.ajax({
-		 	url: "resource/file/PingLunWo.json",
+		 	url: "http://localhost:8080/CommentController/getAll",
 		 	dataType: "json",
-		 	type: "get",	
+		 	type: "post",	
+		 	data:{
+		 		"id":id
+		 	},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded'
 			},
 			success: function(data) {
-			/* console.log(data) */
-				var lists=data.list;
-				 var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
-				 for(var i=0;i<lists.length;i++){
-					
+			console.log(data)
+				 for(var i=0;i<data.length;i++){
 						 $("#boss").append("<div id=\"a1\">\n" +
-						  "\t\t<img id="+lists[i].id+i+" style=\"width:55px; height: 55px;border-radius: 100%;margin-top: 10px;margin-left: 7px;position:absolute;\">\n" +
+						  "\t\t<img id="+data[i].userId+" style=\"width:55px; height: 55px;border-radius: 100%;margin-top: 10px;margin-left: 7px;position:absolute;\">\n" +
 						  "\t\t<div id=\"a2\">\n" +
-						  "\t\t\t<a style=\"color: black;margin-top: 5px;\"><strong>我评论了："+lists[i].remarkname+"</strong></a></a>\n" +
+						  "\t\t\t<a style=\"color: black;margin-top: 5px;\"><strong>我评论了："+data[i].userName+"</strong></a></a>\n" +
 						  "\t\t\t<br/>\n" +
-						 "\t\t\t<a style=\"color: black;\">"+lists[i].content+"</a>&nbsp;<img style=\"width: 15px;height: 15px;margin-top: 5px;\"  src=\"resource/images/delete1.png\"><br/>\n" +
-						 "\t\t\t\t<a style=\"color: gray;font-size: 5px;\">"+lists[i].way+"了ta的作品</a>&nbsp;&nbsp;<a style=\"color: gray;font-size: 5px;\">2020-7-22</a><br/>\n" +
+						 "\t\t\t<a style=\"color: black;\">"+data[i].content+"</a>&nbsp;<img onclick=\"bbb(id="+data[i].commentId+")\" style=\"width: 15px;height: 15px;margin-top: 5px;\"  src=\"resource/images/delete1.png\"><br/>\n" +
+						 "\t\t\t\t<a style=\"color: gray;font-size: 5px;\">评论了ta的作品</a>&nbsp;&nbsp;<a style=\"color: gray;font-size: 5px;\">2020-7-22</a><br/>\n" +
 						 "\t\t</div>\n" +
 						 "\t\t<div style=\"width: 90px;height: 70px;margin-left: 73%;line-height:150%;margin-top: -75px;\">\n" +
-						 "\t\t\t<img id="+lists[i].remarkid+" style=\"width:90px; height: 70px;\">\n" +
+						 "\t\t\t<img id="+data[i].imagetu+" style=\"width:90px; height: 70px;\">\n" +
 						 "\t\t</div>\n" +
 						 "\t</div>")
 					 
 					
-					  document.getElementById(lists[i].id+i).src = globaPicUrl+"userHead/"+lists[i].userpic+"";
-					   document.getElementById(lists[i].remarkid).src =  globaPicUrl+"resource/pictrue/"+lists[i].cover+"";
+					  document.getElementById(data[i].userId).src =data[i].imgDir;
+					   document.getElementById(data[i].imagetu).src = data[i].imagetu;
 				   } 
 				 
 			},
 			error:function(data){
-			                alert(系统错误);
+			                alert('系统错误');
 			            }
 		 
 		 });
@@ -91,13 +113,6 @@
 	})			
 	 </script>
 </body>
-	<script type="text/javascript">
-		 var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
-		document.getElementById("pic1").src = globaPicUrl+"userHead/luozj_3.jpg";
-		document.getElementById("pic2").src = globaPicUrl+"userHead/liulx_2.jpg";
-		document.getElementById("pic3").src = globaPicUrl+"userHead/shaoyf_4.jpg";
-		document.getElementById("pic4").src = globaPicUrl+"userHead/admin_1.jpg";
-		document.getElementById("pic01").src = globaPicUrl+"resource/pictrue/luozj_3_4.jpg"; 
-	</script>
+	
 	
 </html>
