@@ -5,9 +5,9 @@
 		<!-- 设置app适应页面 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link href="resource/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+		<link href="resource/css/bootstrap.css" rel="stylesheet"/>
 		<script src="resource/jquery-3.2.1.js"></script>
-		<script src="resource/bootstrap/js/bootstrap.js"></script>
+		<script src="resource/js/bootstrap.js"></script>
 		<script type="text/javascript" src="resource/js/waterfall.js"/></script>
 		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="resource/js/iconfont.js"></script>
@@ -138,7 +138,7 @@
 			var mid=1//庄主用户id
 			$.ajax({
 				url:"http://localhost:8080/resource/getAgriculture",
-				type:"get",
+				type:"GET",
 				dataType:"json",
 				data:{
 					rid:rid,
