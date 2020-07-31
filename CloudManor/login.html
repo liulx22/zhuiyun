@@ -78,19 +78,21 @@
 					alert("请输入手机号")
 				}
 				
-			})
+			}) 
 			$("#login").click(function(){
 				var yzm=$("#input-7").val();
 				var phone=$("#input-4").val();
 				if(phone!=""&&yzm!=""){
-					alert(222)
 					$.ajax({
 						url:"http://localhost:8080/login/login",
 						data:{phone:phone,yzm:yzm}
 						type:"get",
 						dataType:"json",
 						success:function(data){
-							if(data){
+							if(data!=""){
+								var userInfo = JSON.stringify(data.user)
+								localStorage.setItem("userInfo",userInfo);
+								
 								alert("登陆成功")
 							}
 						}
