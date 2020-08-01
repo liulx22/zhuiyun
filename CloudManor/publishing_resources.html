@@ -209,7 +209,7 @@
 			</div>
 			<div class="mui-input-row">
 				<label>承包时间（年）：</label>
-				<input name="leaseTime" type="text" class="mui-input-clear" placeholder="请输入承包时间（年）" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
+				<input name="leaseTime" type="datetime-local" class="mui-input-clear" placeholder="请输入承包时间（年）">
 			</div>
 			<div class="mui-input-row">
 				<label>价格（元）：</label>
@@ -283,7 +283,7 @@
 			</div>
 			<div class="mui-input-row">
 				<label>承包时间（年）：</label>
-				<input name="leaseTime" type="text" class="mui-input-clear" placeholder="请输入承包时间（年）" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
+				<input name="leaseTime" type="datetime-local" class="mui-input-clear" placeholder="请输入承包时间（年）">
 			</div>
 			<div class="mui-input-row">
 				<label>价格（元）：</label>
@@ -596,7 +596,7 @@
                                 }  
                             }  
                         );  
-            task.addData("id",id); 
+            task.addData("id","2"); 
 			
            /* for(var i=0; i<imgArray.length;i++){    
                 var itemkey=id+"img-F_CKJLB";//+imgArray[i];  
@@ -824,7 +824,7 @@
 		        
 		        function uploadVideo(){ 
 		            //第二个参数一定要有，然后把文件路径扔进来
-		            var task=plus.uploader.createUpload("http://192.168.32.144:8080/web/ceshi3", {  
+		            var task=plus.uploader.createUpload(getUrl(), {  
                                 method: "POST"  
                             },  
                             function(t, status) {  
@@ -838,6 +838,7 @@
                                 }  
                             }  
                         );
+					task.addData("id","1");
 		            task.addFile(file,{key:"file"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
 		            task.start();//开始上传
 		        }
@@ -955,7 +956,7 @@
 		}
 		function up2(){
 			//第二个参数一定要有，然后把文件路径扔进来
-            var task=plus.uploader.createUpload("http://192.168.32.144:8080/web/ceshi1", {  
+            var task=plus.uploader.createUpload(getUrl(), {  
 						method: "POST" 
 					},  
 					function(t, status) { 
@@ -968,6 +969,7 @@
 						}  
 					}  
 				);
+			task.addData("id","3");
             task.addFile(photofile,{key:"photofile"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
             task.start();//开始上传
 		}	
