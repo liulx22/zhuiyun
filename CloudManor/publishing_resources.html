@@ -209,7 +209,7 @@
 			</div>
 			<div class="mui-input-row">
 				<label>承包时间（年）：</label>
-				<input name="leaseTime" type="datetime-local" class="mui-input-clear" placeholder="请输入承包时间（年）">
+				<input name="leaseTime" type="date" class="mui-input-clear" placeholder="请输入承包时间（年）">
 			</div>
 			<div class="mui-input-row">
 				<label>价格（元）：</label>
@@ -242,8 +242,8 @@
 			</div>
 			<div class="mui-input-row">
 				<label>是否打过疫苗：</label>
-				<input name="vaccine" value="1" style="float: none; width: 5%;margin-top: 9px;" class="mui-input-clear" type="radio"><span style=" font-size: 14px;">是</span>
-				<input name="vaccine" value="2" style="float: none; width: 5%;" class="mui-input-clear" type="radio">
+				<input name="vaccine" value="是" style="float: none; width: 5%;margin-top: 9px;" class="mui-input-clear" type="radio"><span style=" font-size: 14px;">是</span>
+				<input name="vaccine" value="否" style="float: none; width: 5%;" class="mui-input-clear" type="radio">
 				<span style=" font-size: 14px;">否</span>
 			</div>
 			<div class="mui-input-row">
@@ -283,7 +283,7 @@
 			</div>
 			<div class="mui-input-row">
 				<label>承包时间（年）：</label>
-				<input name="leaseTime" type="datetime-local" class="mui-input-clear" placeholder="请输入承包时间（年）">
+				<input name="leaseTime" type="date" class="mui-input-clear" placeholder="请输入承包时间（年）">
 			</div>
 			<div class="mui-input-row">
 				<label>价格（元）：</label>
@@ -355,6 +355,8 @@
 
 <!-- 参数 -->
 <script>
+	var resourceid=null;
+	var type1=null;
 	$(function(){
 		$("#tree").hide();
 		$("#Animal").hide();
@@ -596,8 +598,9 @@
                                 }  
                             }  
                         );  
-            task.addData("id","2"); 
-			
+			type1="2_"+resourceid;
+            task.addData("type1",type1); 
+			 task.addData("resourceid",resourceid); 
            /* for(var i=0; i<imgArray.length;i++){    
                 var itemkey=id+"img-F_CKJLB";//+imgArray[i];  
                 if(plus.storage.getItem(itemkey)!=null){  
@@ -838,7 +841,8 @@
                                 }  
                             }  
                         );
-					task.addData("id","1");
+					type1="1_"+resourceid;
+					task.addData("type1",type1);
 		            task.addFile(file,{key:"file"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
 		            task.start();//开始上传
 		        }
@@ -969,7 +973,8 @@
 						}  
 					}  
 				);
-			task.addData("id","3");
+			type1="3_"+resourceid;
+			task.addData("type1",type1);
             task.addFile(photofile,{key:"photofile"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
             task.start();//开始上传
 		}	
@@ -983,44 +988,53 @@
 			var title=$("#title").val();
 			var reTypeCode=$("#typed option:selected").val();
 			if(reTypeCode=="fruiter"){
-				mui.ajax("http://192.168.32.144:8080/web/ceshi2?"+$("#tree1").serialize(),{
+				mui.ajax("http://192.168.32.144:8080/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
 				    dataType:"json",
 				    type:"post",
 				    data:{"title":title,"reTypeCode":reTypeCode},
 					timeout:10000,//超时时间设置为10秒；
 				    success:function(data) {
 						if(data){
+							resourceid=data;
 							//视频上传
-							uploadVideo(file);
+							uploadVideo();
+						}else{
+							alert("上传失败！");
 						}
 					}
 				})
 			}else if(reTypeCode=="livestock"){
 				/* alert(); */
-				mui.ajax("http://192.168.32.144:8080/web/ceshi2?title="+title+"&reTypeCode="+reTypeCode,{
+				mui.ajax("http://192.168.32.144:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode,{
 				    dataType:"json",
 				    type:"post",
 				    data:$("#Animal1").serialize(),
 					timeout:10000,//超时时间设置为10秒；
 				    success:function(data) {
-						if(data){
-								//视频上传
-								uploadVideo(file);
-							}
-						},error:function(data){
-							console.log(data);
+						if(data!=null){
+							resourceid=data;
+							//视频上传
+							uploadVideo();
+						}else{
+							alert("上传失败！");
+						}
+					},error:function(data){
+						console.log(data);
 					}
 				})
 			}else if(reTypeCode=="plot"){
-				mui.ajax("http://192.168.32.144:8080/web/ceshi2?title="+title+"&reTypeCode="+reTypeCode,{
+				mui.ajax("http://192.168.32.144:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode,{
 				    dataType:"json",
 				    type:"post",
 				    data:$("#land1").serialize(),
 					timeout:10000,//超时时间设置为10秒；
 				    success:function(data) {
-						if(data){
+						if(data!=null){
+							resourceid=data;
 							//视频上传
-							uploadVideo(file);
+							uploadVideo();
+						}else{
+							alert("上传失败！");
 						}
 					},error:function(data){
 						console.log(data);
