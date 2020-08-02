@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" href="../resource/layui/layui.css">
+		<link rel="stylesheet" href="../resource/layui/layui.mobile.css">
+		<script src="../resource/jquery-3.2.1.js"></script>
+		<script src="../resource/layui/layui.js"></script>
+		<script src="../resource/layui/layui.all.js"></script>
+		<link rel="stylesheet" href="./js/iconfont.css">
+		<script src="./js/iconfont.js"></script>
+		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
+		<script src="../resource/js/iconfont.js"></script>
+		<title></title>
+	</head>
+	<script>
+		var userid =  localStorage.getItem("userInfo");
+		var uid=userid.id;
+		var r;
+		//返回上一页
+		function toback(){
+			history.go(-1);
+		}
+		$(function(){
+			//查询养护人金钱
+			$.ajax('http://localhost:8080/money/findUserInfo',{
+				data:{
+					userId:uid
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					$("#recodeMoney").html(data.recodeMoney)
+				},
+				error:function(xhr,type,errorThrown){
+				},
+			}); 
+			//本月提现金额
+			zhangdan();
+		})
+		function zhangdan(){
+			$.ajax('http://localhost:8080/money/findRecordMoney',{
+				data:{
+					userId:uid,
+					s:n,
+					ri:r
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					$("#qqw").html("");
+					var d="";
+					    d +='<table class='+'"layui-table" lay-skin='+'"line"><thead><tr><th>时间</th><th>金钱</th><th>方式</th><tr></thead><tbody>';
+					for (var i = 0; i < data.length; i++) {
+						d += '<tr>';
+						d += '<td>'+data[i].time+'</td><td>￥'+ data[i].money+'</td><td>'  + data[i].info + '</td>';
+						d += '</tr>';
+					}
+					d += '</tbody></table>';
+					$("#qqw").append(d)
+				},
+				error:function(xhr,type,errorThrown){
+				}
+			}); 
+		}
+		function getUrlParam(name) {
+		
+		        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		
+		        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		
+		        if (r != null) return unescape(r[2]);
+		
+		        return null; //返回参数值
+		
+		    }
+		function tx(){
+			var cardNum= getUrlParam("cardNum");
+			var money=$("#money").val();
+			var rm=$("#recodeMoney").html();
+			$.ajax('http://localhost:8080/money/addMasterAccount',{
+				data:{
+					userId:uid,
+					cardNum:cardNum,
+					money:money,
+					rm:rm
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					if(data){
+						window.location.href='money.html';
+						}
+				},
+				error:function(xhr,type,errorThrown){
+					
+				}
+			});
+		}
+	</script>
+	<body>
+		<div>
+			<div style="font-size: 18px;margin-top: 10px;">
+				<!-- 返回 -->
+				<svg class="icon" id="arrow-lift" aria-hidden="true" style="width: 30px;height: 30px;float: left; " onclick="toback()">
+					<use xlink:href="#icon-arrow-lift"></use>
+				</svg>
+			<span style="margin-left: 38%;">提现</span>
+			</div>
+			<div style="margin-top: 20px;margin-left: 5%;background: linear-gradient(to right ,#000000,#ffffff);height: 200px;width: 90%;">
+				<div>1</div>
+				<div style="font-size: 20px;color: white;margin-top: 10px;">
+					￥<span id="recodeMoney"></span>
+				</div>
+				<div style="margin-top: 10px;margin-left: 2%;color: white;">收入余额</div>
+				<input type="text" name="money" id="money" required lay-verify="required" placeholder="请输入提现金额"  class="layui-input" style="margin-left:20px;margin-top: 20px;width: 89%;height: 40px;">
+				<button style="margin-left:50%;margin-top: 10px;width:30%;height: 35px;" type="button" class="layui-btn layui-btn-danger" onclick="tx()">提现</button>
+				
+			</div>
+			<div style="margin-top: 15px;">
+				<strong>本月账单</strong>
+			</div>
+			<div id="qqw"  style="height: 200px;">
+						 
+			</div>
+		</div>
+	</body>
+</html>
