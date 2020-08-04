@@ -1,8 +1,8 @@
-﻿/**
+/**
  * 返回数据交互的url路径
  */
 function getUrl(){
-	var url = "http://192.168.28.114:8000/web";
+	var url = "http://192.168.33.81:8080/Releaseresource/image_video";
 	return url;
 }
 /**
