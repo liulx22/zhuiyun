@@ -2,7 +2,7 @@
  * 返回数据交互的url路径
  */
 function getUrl(){
-	var url = "http://192.168.32.144:8080/Releaseresource/image_video";
+	var url = "http://192.168.33.81:8080/Releaseresource/image_video";
 	return url;
 }
 /**
