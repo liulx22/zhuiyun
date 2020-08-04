@@ -275,10 +275,10 @@
 				<label>土地类型：</label>
 				<select name="landType" style="font-size: 12px;">
 					<option value="">请选择</option>
-					<option value="1">耕地</option>
-					<option value="2">山地</option>
-					<option value="3">林地</option>
-					<option value="4">水田</option>
+					<option value="耕地">耕地</option>
+					<option value="山地">山地</option>
+					<option value="林地">林地</option>
+					<option value="水田">水田</option>
 				</select>
 			</div>
 			<div class="mui-input-row">
@@ -357,6 +357,9 @@
 <script>
 	var resourceid=null;
 	var type1=null;
+	var userInfo=localStorage.getItem(userInfo);
+	var uid=1;
+	var username="mdj";
 	$(function(){
 		$("#tree").hide();
 		$("#Animal").hide();
@@ -586,19 +589,21 @@
                             },  
                             function(t, status) {  
                                 if (status == 200) {  
-                                    console.log("上传成功");  
 										wa.close();  
-										$("#F_CKJLBS").html('<div class="image-item " id="F_CKJLB" onclick="showActionSheet(this);"></div>');
-                                       //封面图上传
-                                       up2();
-                                      
+										if(t.responseText){
+											$("#F_CKJLBS").html('<div class="image-item " id="F_CKJLB" onclick="showActionSheet(this);"></div>');
+											//封面图上传
+											up2();
+										}else{
+											alert("上传失败！")
+										}
                                 } else {  
                                     wa.close();  
                                     console.log("上传失败");   
                                 }  
                             }  
                         );  
-			type1="2_"+resourceid;
+			type1="2_"+resourceid+"/"+uid+"-"+username;
             task.addData("type1",type1); 
 			 task.addData("resourceid",resourceid); 
            /* for(var i=0; i<imgArray.length;i++){    
@@ -831,16 +836,20 @@
                             },  
                             function(t, status) {  
                                 if (status == 200) {  
-									flag=true;
-									cleanHistory();
-									//详情上传
-									uploadimge();
+									if(t.responseText){
+										flag=true;
+										cleanHistory();
+										//详情上传
+										uploadimge();
+									}else{
+										alert("上传失败！")
+									}
                                 } else {  
                                    mui.toast("上传失败了。sorry，请重新来一遍");  
                                 }  
                             }  
                         );
-					type1="1_"+resourceid;
+					type1="1_"+resourceid+"/"+uid+"-"+username;
 					task.addData("type1",type1);
 		            task.addFile(file,{key:"file"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
 		            task.start();//开始上传
@@ -964,15 +973,18 @@
 					},  
 					function(t, status) { 
 						if (status == 200) {  
-							alert("上传成功！");
-							$('#letter-photo').html('<div class="letter-photo-img"><img style="width: 6.5rem;height: 8.5rem;" src="./resource/css/images/iconfont-tianjia.png" data-preview-src="" data-preview-group="1" /></div>');
-							mui.back();
+							if(t.responseText){
+								$('#letter-photo').html('<div class="letter-photo-img"><img style="width: 6.5rem;height: 8.5rem;" src="./resource/css/images/iconfont-tianjia.png" data-preview-src="" data-preview-group="1" /></div>');
+								mui.back();
+							}else{
+								alert("上传失败！")
+							}
 						} else {
 						   mui.toast("上传失败了。sorry，请重新来一遍");  
 						}  
 					}  
 				);
-			type1="3_"+resourceid;
+			type1="3_"+resourceid+"/"+uid+"-"+username;
 			task.addData("type1",type1);
             task.addFile(photofile,{key:"photofile"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
             task.start();//开始上传
@@ -987,10 +999,10 @@
 			var title=$("#title").val();
 			var reTypeCode=$("#typed option:selected").val();
 			if(reTypeCode=="fruiter"){
-				mui.ajax("http://192.168.32.144:8080/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
+				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
 				    dataType:"json",
 				    type:"post",
-				    data:{"title":title,"reTypeCode":reTypeCode},
+				    data:{"title":title,"reTypeCode":reTypeCode,"uid":uid},
 					timeout:10000,//超时时间设置为10秒；
 				    success:function(data) {
 						if(data){
@@ -1003,8 +1015,7 @@
 					}
 				})
 			}else if(reTypeCode=="livestock"){
-				/* alert(); */
-				mui.ajax("http://192.168.32.144:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode,{
+				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
 				    dataType:"json",
 				    type:"post",
 				    data:$("#Animal1").serialize(),
@@ -1022,7 +1033,7 @@
 					}
 				})
 			}else if(reTypeCode=="plot"){
-				mui.ajax("http://192.168.32.144:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode,{
+				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
 				    dataType:"json",
 				    type:"post",
 				    data:$("#land1").serialize(),
@@ -1043,7 +1054,7 @@
 				alert("请选择描述！");
 				return;
 			}
-		})
+		}) 
 	</script> 
 
 </html>
