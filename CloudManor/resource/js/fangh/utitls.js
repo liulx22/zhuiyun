@@ -5,6 +5,10 @@ function getUrl(){
 	var url = "http://192.168.32.144:8080/Releaseresource/image_video";
 	return url;
 }
+function getUrl1(){
+	var url = "http://192.168.0.107:8080/AgricultureOperation/image_video";
+	return url;
+}
 /**
  * 返回系统环境
  * */
