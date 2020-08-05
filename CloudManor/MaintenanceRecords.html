@@ -219,6 +219,15 @@
 		
 		<!-- ---------------------------------------图片上传 ---------------------------------------------------->
 		<script>
+			//
+			var resourceid=2;
+			//用于区分图片或者视频
+			var type=null;
+			var userInfo=localStorage.getItem(userInfo);
+			var uid=1;
+			var username="mdj";
+			
+			
 		    var procinstid = 0;  
 		    //初始化页面执行操作  
 		    function plusReady() {  
@@ -445,14 +454,11 @@
 		                                             wa.close();  
 		                                             console.log("上传失败");   
 		                                         }  
-		                                     }  
-		                                } else {  
-		                                    wa.close();  
-		                                    console.log("上传失败");   
-		                                }  
 		                            }  
 		                        );  
-		            task.addData("id",id);  
+								type="2_"+resourceid+"/"+uid+"-"+username;
+								task.addData("type",type); 
+								 task.addData("resourceid",resourceid);
 		            for(var i=0; i<imgArray.length;i++){    
 		                var itemkey=id+"img-"+imgArray[i];  
 		                if(plus.storage.getItem(itemkey)!=null){  
@@ -461,7 +467,8 @@
 		                        var imgname=itemvalue[img].substr(0,itemvalue[img].indexOf(","));  
 		                        var imgurl=itemvalue[img].substring(itemvalue[img].indexOf(",")+1,itemvalue[img].lastIndexOf(","));  
 		                        task.addFile(imgurl,{key:imgurl});  
-		                    }  
+		                    } 
+							 plus.storage.removeItem(itemkey);
 		                }  
 		            }  
 		            task.start();  
@@ -704,8 +711,8 @@
 				                        }  
 				                    }  
 				                );
-							/* type1="1_"+resourceid;
-							task.addData("type1",type1); */
+							type="1_"+resourceid+"/"+uid+"-"+username;
+							task.addData("type",type);
 				            task.addFile(file,{key:"file"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
 				            task.start();//开始上传
 				        }
@@ -872,7 +879,6 @@
 											alert("上传失败！");
 										}
 									}
-							
 							})
 						})
 					</script> 
