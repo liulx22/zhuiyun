@@ -172,7 +172,7 @@
 				var userId=1//谁发布的
 				var resourceId=1//资源id
 				$.ajax({
-					url:"http://localhost:8080/resource/insAgriculture",
+					url:"https://localhost:8080/resource/insAgriculture",
 					type:"post",
 					dataType:"json",
 					data:{
@@ -219,7 +219,7 @@
 											if(imghouzhui=='jpg'){
 												mm+="<img src=\""+b.imgDir+"\"/><br> ";
 											}else if(imghouzhui=='mp4'){
-												mm+="<video width=\"145\" height=\"auto\" controls autoplay>\n"+
+												mm+="<video width=\"145\" height=\"auto\" controls>\n"+
 													"<source src=\""+b.imgDir+"\" type=\"video/mp4\">\n"+
 												"</video><br>";
 											}
