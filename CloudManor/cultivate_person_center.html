@@ -237,7 +237,7 @@
 												<div >
 													<div id="j_neirong" >
 														
-														<div  style="width: 96%;margin-left: 2%;margin-right: 2%; height: 3.2em;margin-top: 0em;margin-bottom: 0em;" class="mui-card"><div class="mui-card-header" style="padding-bottom: 0.1em; padding-top: 0.1em;padding:0 auto;">
+														<div id="kongbaitiao" style="width: 96%;margin-left: 2%;margin-right: 2%; height: 3.2em;margin-top: 0em;margin-bottom: 0em;" class="mui-card"><div class="mui-card-header" style="padding-bottom: 0.1em; padding-top: 0.1em;padding:0 auto;">
 														<!-- <span class="box-s" id="deleteButton2" style=" color:#FC605A ; z-index: 3;  text-align: right;width: 29%; font-size: 0.8em;" >
 															<svg style="width: 2.1em;" class="icon" aria-hidden="true">
 															    <use xlink:href="#icon-ashbin"></use>
@@ -480,6 +480,7 @@
 						success: function(data){
 								    var result=data;
 								     if(result.length==0||result==null||result==undefined){
+										$("#kongbaitiao").hide();
 								    	var  pp= '<div style="height: 3.2em;" class="mui-card"><div class="mui-card-header" style="padding-bottom: 0.1em; padding-top: 0.1em;padding:0 auto;"><p style="font-size:1.2rem;text-align:center;width:23em">暂无已售出资源</p></div></div>'
 								    	 jQuery(pp).insertBefore('#j_neirong');
 								    	}else{
@@ -522,7 +523,7 @@
 				  function getList2(){
 					  //取出用户信息
 					  var userInfo=JSON.parse(localStorage.getItem('userInfo'))
-					  console.log(userInfo.id);
+					  console.log('未售出用户id：',userInfo.id);
 					  $.ajax({
 					  	//请求方式为post
 					  	type:"post",
@@ -582,7 +583,7 @@
 										url:"http://localhost:8080/CultivatePersonCenterController/pullMaintenanceInformation",
 									    //返回数据格式为json
 									    dataType: "json",
-										data:{'userId':3},
+										data:{'userId':1},
 									    //请求成功完成后要执行的方法
 									    success: function(data){
 											//模仿存储用户信息
