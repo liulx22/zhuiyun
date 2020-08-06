@@ -581,7 +581,6 @@
 				    type: "GET",
 				    url: "http://123.56.254.245:8088/userLiker/addUserLike",
 				    dataType: "jsonp",
-					
 				    data: {"user_id":1,"resource_id":1},
 				    success: function (data) {
 						 console.log(data);
@@ -595,7 +594,7 @@
 	 	  if (flag1 == 1) {
 			$.ajax({
 				type: "GET",
-				url: "http://123.56.254.245:8088/userLiker/deleUserLike",
+				url: "http://123.56.254.245:8088/Lordzhuangdetails/deleUserLike",
 				dataType: "jsonp",
 				jsonpCallback:"success_jsonp5",
 				data: {"user_id":1,"resource_id":1},
@@ -604,7 +603,8 @@
 				},
 				error: function (data) {
 				console.log(data);
-				}
+				},
+			
 			});  
 	 	    num1.innerHTML--;
 	 	  }

@@ -97,7 +97,7 @@
 								alert("登陆成功")
 								var userInfo = JSON.stringify(data)
 								localStorage.setItem("userInfo",userInfo);
-								
+								history.back();
 							}
 						},error:function(){
 							alert("失败")

@@ -57,14 +57,16 @@
 		
 		
 		<script type="text/javascript">
-			 var uid=localStorage.getItem('userInfo');
-				alert(uid);
+			 
+			var storage=window.localStorage;
+				var json=storage.getItem("userInfo");
+				var userInfo=JSON.parse(json);
 		$(function(){					
 			 $.ajax({
 			 	url: "http://localhost:8080/attention/SelAttrntion",
 			 	dataType: "json",
 			 	type: "post",	
-				data:{"id":1},
+				data:{"id":userInfo},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
@@ -100,12 +102,12 @@
 		})			
 		
 			function AttentionPaid(userId){
-				var userId2=2; 
+				//var userId2=2; 
 				$.ajax({
 					url:"http://localhost:8080/attention/CancelTheAttention?userId="+userId,
 					dataType:"json",
-					data:{"userId":userId,//userId 被关注人id
-						  "userId2":userId2},//关注人id
+					data:{"userId":userId,//关注人id
+						  "userId2":userInfo},// 被关注人id
 					type:"post",
 					success:function(data){
 						if(data){
@@ -132,12 +134,12 @@
 			}
 			
 			function Attention(userId){
-				var userId2=1; 
+				//var userId2=1; 
 				$.ajax({
 					url:"http://localhost:8080/attention/Attrntion?userId="+userId,
 					dataType:"json",
 					type:"post",
-					data:{"userId":userId,"userId2":userId2},
+					data:{"userId":userId,"userId2":userInfo},
 					success:function(data){
 						if(data){
 							if (confirm("确认要关注？")) {
