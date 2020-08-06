@@ -135,8 +135,12 @@
 		});
 		//获取农事信息
 		function huoqunongshi(){
+			var storage=window.localStorage;//获取用户信息
+			var json=storage.getItem("userInfo");
+			var userInfo=JSON.parse(json);
+			
 			var rid=1//资源id
-			var mid=1//庄主用户id
+			var mid=userInfo.id//庄主用户id
 			$.ajax({
 				url:"http://localhost:8080/resource/getAgriculture",
 				type:"post",
@@ -167,9 +171,11 @@
 		$("#nongshi_tijiao").click(function(){
 			var nongshi=$("#nongshi").val();
 			if(!nongshi==""||!nongshi==null){
-				let user=localStorage.getItem("userInfo");//获取用户信息
+				var storage=window.localStorage;//获取用户信息
+				var json=storage.getItem("userInfo");
+				var userInfo=JSON.parse(json);//获取用户信息
 				
-				var userId=1//谁发布的
+				var userId=userInfo.id//谁发布的
 				var resourceId=1//资源id
 				$.ajax({
 					url:"https://localhost:8080/resource/insAgriculture",
@@ -196,9 +202,11 @@
 		//养护记录照片和视频
 		function yanghujilu(){
 			var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
-			let user=localStorage.getItem("userInfo");//获取用户信息
+			var storage=window.localStorage;//获取用户信息
+			var json=storage.getItem("userInfo");
+			var userInfo=JSON.parse(json);//获取用户信息
 			var rid=1//资源id
-			var mid=1//庄主用户id
+			var mid=userInfo.id//庄主用户id
 			$.ajax({
 				url:"http://localhost:8080/resource/getAgricultureOperation",
 				type:"post",
