@@ -357,9 +357,10 @@
 <script>
 	var resourceid=null;
 	var type1=null;
-	var userInfo=localStorage.getItem(userInfo);
-	var uid=1;
-	var username="mdj";
+	var userInfo=window.localStorage.getItem(userInfo);
+	var user=JSON.parse(userInfo);
+	var uid=user.id;
+	var username=user.userName;
 	$(function(){
 		$("#tree").hide();
 		$("#Animal").hide();
@@ -998,62 +999,67 @@
 		sub.addEventListener('tap', function() {
 			var title=$("#title").val();
 			var reTypeCode=$("#typed option:selected").val();
-			if(reTypeCode=="fruiter"){
-				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
-				    dataType:"json",
-				    type:"post",
-				    data:{"title":title,"reTypeCode":reTypeCode,"uid":uid},
-					timeout:10000,//超时时间设置为10秒；
-				    success:function(data) {
-						if(data){
-							resourceid=data;
-							//视频上传
-							uploadVideo();
-						}else{
-							alert("上传失败！");
+			if(username){
+				if(reTypeCode=="fruiter"){
+					mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
+					    dataType:"json",
+					    type:"post",
+					    data:{"title":title,"reTypeCode":reTypeCode,"uid":uid},
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								alert("上传失败！");
+							}
 						}
-					}
-				})
-			}else if(reTypeCode=="livestock"){
-				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
-				    dataType:"json",
-				    type:"post",
-				    data:$("#Animal1").serialize(),
-					timeout:10000,//超时时间设置为10秒；
-				    success:function(data) {
-						if(data!=null){
-							resourceid=data;
-							//视频上传
-							uploadVideo();
-						}else{
-							alert("上传失败！");
+					})
+				}else if(reTypeCode=="livestock"){
+					mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					    dataType:"json",
+					    type:"post",
+					    data:$("#Animal1").serialize(),
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data!=null){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								alert("上传失败！");
+							}
+						},error:function(data){
+							console.log(data);
 						}
-					},error:function(data){
-						console.log(data);
-					}
-				})
-			}else if(reTypeCode=="plot"){
-				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
-				    dataType:"json",
-				    type:"post",
-				    data:$("#land1").serialize(),
-					timeout:10000,//超时时间设置为10秒；
-				    success:function(data) {
-						if(data!=null){
-							resourceid=data;
-							//视频上传
-							uploadVideo();
-						}else{
-							alert("上传失败！");
-						}
-					},error:function(data){
-						console.log(data);
-					} 
-				})
+					})
+				}else if(reTypeCode=="plot"){
+					mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					    dataType:"json",
+					    type:"post",
+					    data:$("#land1").serialize(),
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data!=null){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								alert("上传失败！");
+							}
+						},error:function(data){
+							console.log(data);
+						} 
+					})
+				}else{
+					alert("请选择描述！");
+					return;
+				}
 			}else{
-				alert("请选择描述！");
-				return;
+				alert("未登录！")
 			}
+			
 		}) 
 	</script> 
 
