@@ -48,7 +48,7 @@
 				</div>
 				<div class="mui-content password_xiugaimima">
 		    		<div class="mui-content-padded">
-		        		<button id="login" type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined oacolor" style="margin-top: 40px;color: #00c4cb;">登陆</button>
+		        		<button id="login1" type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined oacolor" style="margin-top: 40px;color: #00c4cb;">登陆</button>
 		   			 </div>
 				</div>
 			
@@ -58,7 +58,9 @@
 <script src="js/classie.js"></script>
 		<script>
 			
-			$("#yzm").click(function(){
+			
+			
+			 $("#yzm").click(function(){
 				var phone=$("#input-4").val();
 				if(phone!=""){
 					$.ajax({
@@ -71,40 +73,43 @@
 								alert("验证码发送成功")
 							}
 						},error:function(){
-							alert(22222)
+							alert(222222)
 						}
 					})
 				}else{
 					alert("请输入手机号")
 				}
 				
-			}) 
-			$("#login").click(function(){
+			})
+			
+			$("#login1").click(function(){
 				var yzm=$("#input-7").val();
 				var phone=$("#input-4").val();
 				if(phone!=""&&yzm!=""){
 					$.ajax({
 						url:"http://localhost:8080/login/login",
-						data:{phone:phone,yzm:yzm}
-						type:"get",
+						data:{phone:phone,yzm:yzm},
+						type:"post",
 						dataType:"json",
 						success:function(data){
+							alert(11)
 							if(data!=""){
+								alert("登陆成功")
 								var userInfo = JSON.stringify(data.user)
 								localStorage.setItem("userInfo",userInfo);
 								
-								alert("登陆成功")
 							}
+						},error:function(){
+							alert("失败")
 						}
 					})
-				}else{
-					alert(1111)
 				}
-				
-					
-				
-				
 			})
+			 
+			
+			 
+			
+			 
 			(function() {
 				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
 				if (!String.prototype.trim) {

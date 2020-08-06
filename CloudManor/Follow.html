@@ -57,22 +57,19 @@
 		
 		
 		<script type="text/javascript">
-			
+			 var uid=localStorage.getItem('userInfo');
+				alert(uid);
 		$(function(){					
 			 $.ajax({
 			 	url: "http://localhost:8080/attention/SelAttrntion",
 			 	dataType: "json",
 			 	type: "post",	
+				data:{"id":1},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: function(data) {
-					//var lists=data.list;
-					// var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
-					
-					
 					 for(var i=0;i<data.length;i++){
-						
 						$("#boss").append(
 						"<div id=\"a1\">\n" +
 						"\t\t<img id="+data[i].userId+" src="+data[i].imgDir+" style=\"width:55px; height: 55px;border-radius: 100%;margin-top: 10px;margin-left: 7px;position:absolute;\">\n" +
@@ -103,10 +100,12 @@
 		})			
 		
 			function AttentionPaid(userId){
+				var userId2=2; 
 				$.ajax({
 					url:"http://localhost:8080/attention/CancelTheAttention?userId="+userId,
 					dataType:"json",
-					data:{"userId":userId},
+					data:{"userId":userId,//userId 被关注人id
+						  "userId2":userId2},//关注人id
 					type:"post",
 					success:function(data){
 						if(data){
@@ -133,11 +132,12 @@
 			}
 			
 			function Attention(userId){
+				var userId2=1; 
 				$.ajax({
 					url:"http://localhost:8080/attention/Attrntion?userId="+userId,
 					dataType:"json",
 					type:"post",
-					data:{"userId":userId},
+					data:{"userId":userId,"userId2":userId2},
 					success:function(data){
 						if(data){
 							if (confirm("确认要关注？")) {

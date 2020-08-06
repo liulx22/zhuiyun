@@ -86,10 +86,12 @@
 				            }
 			 
 			 }); */
+			 var userId2= localStorage.getItem("userInfo",userInfo);
 			 $.ajax({
 			 	url: "http://localhost:8080/attention/SelAttrntion",
 			 	dataType: "json",
 			 	type: "post",	
+				data:{userId2:1},
 			 	header: {
 			 		'content-type': 'application/x-www-form-urlencoded'
 			 	},

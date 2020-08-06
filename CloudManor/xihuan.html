@@ -6,7 +6,7 @@
 		<title></title>
 		<link rel="stylesheet" href="./resource/mui/css/mui.min.css" />
 		<script src="http://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
-		<script src="resource/jquery-3.2.1.js"></script>
+		<script src="/CloudManor/resource/jquery-3.2.1.js"></script>
 
 	
 		 <style>
@@ -119,18 +119,18 @@
 			 $(function(){
 				
 			 	var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
-				var userId=1;
+				var userId= localStorage.getItem("userInfo",userInfo);
 			 	   $.ajax({
 			 			//请求方式为get
 			 			type:"post",
 			 			//json文件位置   ./file/index.json
 			 			url:" http://localhost:8080/userLiker/selectUserLike",
-						data:{userId:userId},
+						data:{userId:1},
 			 	        //返回数据格式为json
 			 	        dataType: "json",
 			 	        //请求成功完成后要执行的方法
 			 	        success: function(data){
-							console.log(data)
+ 							console.log(data)
 			 			    //使用$.each方法遍历返回的数据date,插入到id为#result中
 			 				/* var str=""; */
 							for(var i=0;i<data.length;i++){ 
@@ -152,7 +152,7 @@
 							/* $("#main").append(str); */
 			 				
 			 		   },error:function(){
-						   alert(333)
+						   alert("加载出错了")
 					   }
 			 	  });
 			 	  
