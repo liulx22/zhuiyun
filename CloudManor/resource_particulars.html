@@ -5,9 +5,9 @@
 		<!-- 设置app适应页面 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link href="resource/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+		<link href="resource/css/bootstrap.css" rel="stylesheet"/>
 		<script src="resource/jquery-3.2.1.js"></script>
-		<script src="resource/bootstrap/js/bootstrap.js"></script>
+		<script src="resource/js/bootstrap.js"></script>
 		<script type="text/javascript" src="resource/js/waterfall.js"/></script>
 		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="resource/js/iconfont.js"></script>
@@ -66,7 +66,7 @@
 					&nbsp;<br/>&nbsp;
 					<!-- 流动展示农事 -->
 					<div id="nongshi_z" class="show" style="height: 34px; border-bottom: 1px solid #CCCCCC; border-top: 1px solid #CCCCCC;">
-						<marquee direction=left style="line-height: 2.5;">
+						<marquee direction=left style="line-height: 2.3;">
 							<svg class="icon" aria-hidden="true" style="width: 20px;height: 30px;float: left;">
 								<use xlink:href="#icon-xiaolaba"></use>
 							</svg>&nbsp;
@@ -119,22 +119,44 @@
 			huoqunongshi();
 			//获取养护记录照片和视频
 			yanghujilu();
-			//点击查看历史农事记录
-			$("#showHistory").click(function(){
-				window.location.href="./AgriculturalHistory.html";
-			});
-			//上传养护记录
-			$("#uploadMaintainRecords").click(function(){
-				window.location.href="./MaintenanceRecords.html";
-			});
+			
 		})
+		//点击查看历史农事记录
+		$("#showHistory").click(function(){
+			window.location.href="./AgriculturalHistory.html";
+		});
+		//上传养护记录
+		$("#uploadMaintainRecords").click(function(){
+			window.location.href="./MaintenanceRecords.html";
+		});
 		//返回
 		$("#arrow-lift").click(function(){
 			history.go(-1);
 		});
 		//获取农事信息
 		function huoqunongshi(){
-			$("#nongshi_zhanshi").html("今天可以除草打虫了！！");
+			var rid=1//资源id
+			var mid=1//庄主用户id
+			$.ajax({
+				url:"http://localhost:8080/resource/getAgriculture",
+				type:"post",
+				dataType:"json",
+				data:{
+					rid:rid,
+					mid:mid
+				},
+				success:function(data){
+					if(data!=null){
+						$("#nongshi_zhanshi").html(data.content);
+					}else{
+						$("#nongshi_zhanshi").html("您还没有提交农事！");
+					}
+				},error:function(){
+					$("#nongshi_zhanshi").html("数据跑丢啦！");
+				}
+			})
+				
+			
 		}
 		/* 农事展示 */
 		$("#nongshi_z").bind("click",function(){
@@ -145,7 +167,28 @@
 		$("#nongshi_tijiao").click(function(){
 			var nongshi=$("#nongshi").val();
 			if(!nongshi==""||!nongshi==null){
-				$("#nongshi_zhanshi").html(nongshi);
+				let user=localStorage.getItem("userInfo");//获取用户信息
+				
+				var userId=1//谁发布的
+				var resourceId=1//资源id
+				$.ajax({
+					url:"https://localhost:8080/resource/insAgriculture",
+					type:"post",
+					dataType:"json",
+					data:{
+						userId:userId,
+						content:nongshi,
+						resourceId:resourceId
+					},
+					success:function(data){
+						if(data==true){
+							//alert("提交成功！");
+							huoqunongshi();//获取农事信息
+						}else{
+							alert("提交失败！");
+						}
+					}
+				})
 			}
 			$("#nongshi_z").attr("class","show");
 			$("#nongshi_b").attr("class","hide");
@@ -153,31 +196,38 @@
 		//养护记录照片和视频
 		function yanghujilu(){
 			var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
+			let user=localStorage.getItem("userInfo");//获取用户信息
+			var rid=1//资源id
+			var mid=1//庄主用户id
 			$.ajax({
-				url:"file/record_list.json",
-				type:"get",
+				url:"http://localhost:8080/resource/getAgricultureOperation",
+				type:"post",
 				dataType:"json",
+				data:{
+					rid:rid,
+					mid:mid
+				},
 				success:function(data){
 					var mm="";
-					if(data!=null||data!=""){
-						$(data.list).each(function(a,b){
-							var imglen=b.img;
+					if(data!=null && data!=""){
+						$(data).each(function(a,b){
+							var imglen=b.imgName;
 							var imghouzhui=imglen.substring(imglen.length-3);
 								mm+="<div class=\"pin\"> \n"+
 									 "<div class=\"box\"> \n"+
 										"<div style=\"width: 145px;background-color: #FFFFFF;\">";
 											if(imghouzhui=='jpg'){
-												mm+="<img src=\""+globaPicUrl+"/resource/record/"+imglen+"\"/><br> ";
+												mm+="<img src=\""+b.imgDir+"\"/><br> ";
 											}else if(imghouzhui=='mp4'){
-												mm+="<video width=\"145\" height=\"auto\" controls autoplay>\n"+
-													"<source src=\""+globaPicUrl+"/resource/record/"+imglen+"\" type=\"video/mp4\">\n"+
+												mm+="<video width=\"145\" height=\"auto\" controls>\n"+
+													"<source src=\""+b.imgDir+"\" type=\"video/mp4\">\n"+
 												"</video><br>";
 											}
 											mm+="<div style=\"width: 145px;padding: 8px; font-size: 11px;\"> \n"+
-											"	"+b.remark+"\n"+
+											"	"+b.title+"\n"+
 											"</div>\n"+
-											"<div style=\"width: 145px;color: #C0C0C0; font-size: 11px; text-indent: 1em;height: 25px;margin: 0px 80px;\">\n"+
-												"	"+b.time+"\n"+
+											"<div style=\"width: 145px;color: #C0C0C0; font-size: 11px; text-indent: 1em;height: 25px;margin: 0px 70px;\">\n"+
+												"	"+b.operTime+"\n"+
 											"</div> \n"+
 										"</div>\n"+
 									 "</div>\n"+

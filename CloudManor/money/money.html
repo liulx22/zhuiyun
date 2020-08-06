@@ -4,12 +4,15 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 		<title></title>
-		<link rel="stylesheet" href="../resource/layui/layui.css">
-		<link rel="stylesheet" href="../resource/layui/layui.mobile.css">
+		<link rel="stylesheet" href="../resource/js/layui/layui.css">
+		<link rel="stylesheet" href="../resource/js/layui/layui.mobile.css">
+		<link rel="stylesheet" href="../css/bootstrap.css">
 		<script src="../resource/jquery-3.2.1.js"></script>
-		<script src="../resource/layui/layui.js"></script>
-		<script src="../resource/layui/layui.all.js"></script>
-		<link rel="stylesheet" href="./js/iconfont.css">
+		<script src="../resource/js/layui/layui.js"></script>
+		<script src="../resource/js/layui/layer.js"></script>
+		<script src="../resource/js/layui/layui.all.js"></script>
+		<link rel="stylesheet" href="../resource/layui/iconfont.css">
+		<script src="../resource/layui/iconfont.js"></script>
 		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="../resource/js/iconfont.js"></script>
 		
@@ -41,38 +44,101 @@
 		
 	</head>
 	<script>
+		var userid =  localStorage.getItem("userInfo");
+		var uid=userid.id;
 			$(function(){
-				
-				var id = $.getUrlParam('id');
-				
-				$.ajax('',{
+				//查询养护人金钱
+				$.ajax('http://localhost:8080/money/findUserInfo',{
 					data:{
-						id:id
+						userId:uid
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						console.log(data);
+						$("#recodeMoney").html(data.recodeMoney)
+						$("#noneRecodeMoney").html(data.noneRecodeMoney)
+					},
+					error:function(xhr,type,errorThrown){
+					}
+				}); 
+				
+				//本月已入账金额
+				$.ajax('http://localhost:8080/money/findMoney1',{
+					data:{
+						userId:uid
 					},
 					dataType:'json',//服务器返回json格式数据
 					type:'post',//HTTP请求类型
 					timeout:10000,//超时时间设置为10秒；
 					success:function(data){
 						
+						$("#yiru").html(data)
 					},
 					error:function(xhr,type,errorThrown){
+					}
+				}); 
+				//本月未入账金额
+				$.ajax('http://localhost:8080/money/findMoney0',{
+					data:{
+						userId:uid
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
 						
+						$("#weiru").html(data)
+					},
+					error:function(xhr,type,errorThrown){
+					}
+				}); 
+				//本月提现金额
+				$.ajax('http://localhost:8080/money/findMasterAccount',{
+					data:{
+						userId:uid
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						
+						$("#tixian").html(data)
+					},
+					error:function(xhr,type,errorThrown){
 					}
 				}); 
 			})
+			
 			//返回上一页
 			function toback(){
 				history.go(-1);
 			}
 			//前往银行卡
-			function yhk(){
-				window.location.href='yihangka.html';
+			function tixian(){
+				$.ajax('http://localhost:8080/money/findBankCard',{
+					data:{
+						userId:uid
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						alert(data);
+						if(data==''){
+							window.location.href='yihangka.html';
+						}else{
+							window.location.href='yibangding.html';
+						}
+					},
+					error:function(xhr,type,errorThrown){
+					}
+				}); 
 			}
 			//前往订单详情
 			function xq(n){
-				 if(n){
-					window.location.href='xiangqing.html';
-				} 
+				window.location.href='xiangqing.html?n='+n;
 			}
 		</script>
 	<body>
@@ -90,14 +156,14 @@
 					<tr>
 						<td >
 							<div class="jin" >已入账</div>
-							<div class="jin1" ><span>￥2000000.00</span><a style="text-decoration:none;color: #fff01d;" href="yihangka.html">提现</a></div>
+							<div class="jin1" >￥<span id="recodeMoney">0</span><a style="text-decoration:none;color: #fff01d;" href="javascript:tixian()">提现</a></div>
 						</td>
 						<td style="width：100px">
 							<div style='border:1px solid #5e5e5e;float:left;height:40px;'>
 						</td>
 						<td style="width：100px">
 							<div class="jin">未入账</div>
-							<div class="jin1">￥20000000</div>
+							<div class="jin1">￥<span id="noneRecodeMoney">0</span></div>
 						</td>
 					</tr>
 				</table>
@@ -114,7 +180,7 @@
 						          <td align="left" style="padding-top: 10px;">已入账</td>
 						        </tr>
 						        <tr >
-						          <td align="left" style="padding-top: 10px;font-size: 15px;"><span>￥0.00</span></td>
+						          <td align="left" style="padding-top: 10px;font-size: 15px;">￥<span id="yiru">0</span></td>
 						        </tr>
 						      </tbody>
 						    </table>
@@ -130,13 +196,13 @@
 						          <td align="left" style="padding-top: 10px;">未入账</td>
 						        </tr>
 						        <tr >
-						          <td align="left" style="padding-top: 10px;font-size: 15px;"><span>￥0.00</span></td>
+						          <td align="left" style="padding-top: 10px;font-size: 15px;">￥<span id="weiru">0</span></td>
 						        </tr>
 						      </tbody>
 						    </table>
 					</div>
 					<div >
-						<button style="margin-left:75%;margin-top: -70px;" type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary" onclick="xq(1)">详情</button>
+						<button style="margin-left:75%;margin-top: -70px;" type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary" onclick="xq(2)">详情</button>
 					</div>
 					<hr>
 					
@@ -147,13 +213,13 @@
 						          <td align="left" style="padding-top: 10px;">提现</td>
 						        </tr>
 						        <tr >
-						          <td align="left" style="padding-top: 10px;font-size: 15px;"><span>￥0.00</span></td>
+						          <td align="left" style="padding-top: 10px;font-size: 15px;">￥<span id="tixian">0</span></td>
 						        </tr>
 						      </tbody>
 						    </table>
 					</div>
 					<div >
-						<button style="margin-left:75%;margin-top: -70px;" type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary" onclick="xq(1)">详情</button>
+						<button style="margin-left:75%;margin-top: -70px;" type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary" onclick="xq(3)">详情</button>
 					</div>
 				 </div>
 			 </div>

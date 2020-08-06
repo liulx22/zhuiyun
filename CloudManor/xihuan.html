@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<link rel="stylesheet" href="css/mui.min.css" /> 
+		<link rel="stylesheet" href="./resource/mui/css/mui.min.css" />
 		<script src="http://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
-		<script src="./resource/jquery-3.2.1.js"></script>
-		
+		<script src="/CloudManor/resource/jquery-3.2.1.js"></script>
+
 	
 		 <style>
 		 	#user_search{
@@ -117,16 +117,20 @@
 		 
 		 <script>
 			 $(function(){
+				
 			 	var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
+				var userId= localStorage.getItem("userInfo",userInfo);
 			 	   $.ajax({
 			 			//请求方式为get
-			 			type:"GET",
-			 			//json文件位置
-			 			url:"./file/index.json",
+			 			type:"post",
+			 			//json文件位置   ./file/index.json
+			 			url:" http://localhost:8080/userLiker/selectUserLike",
+						data:{userId:1},
 			 	        //返回数据格式为json
 			 	        dataType: "json",
 			 	        //请求成功完成后要执行的方法
 			 	        success: function(data){
+ 							console.log(data)
 			 			    //使用$.each方法遍历返回的数据date,插入到id为#result中
 			 				/* var str=""; */
 							for(var i=0;i<data.length;i++){ 
@@ -134,7 +138,11 @@
 									
 								}
 								 */
-								 var chtml ="<li><p class='product_picture'><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]+"')\"></p><p class='product_np'><a style='font-size:13px;'><svg id='dingwei' class='icon' aria-hidden='true'><use xlink:href='#icon-dingwei-1'></use></svg>石家庄</a><a><img src='./images/iconfont-tianjia.png' /></a></p><p class='product_ie'>标题行</p></li>"
+								  var chtml ="<li><p class='product_picture'><img src=\""+data[i].imgDir+"resource/"+data[i].imgName+"\" onclick=\"gotodetail('"+data[i].imgName+"')\"></p><p class='product_np'><a style='font-size:13px;'><svg id='dingwei' class='icon' aria-hidden='true'><use xlink:href='#icon-dingwei-1'></use></svg>"+
+								  data[i].addressName +
+								  "</a><a><img src='./resource/css/images/iconfont-tianjia.png' /></a></p><p class='product_ie'>"
+								  +data[i].title+
+								  "</p></li>"
 								 if($('.BoxLeft').height() < $('.BoxRight').height()){ 
 								     $('.BoxLeft').append(chtml); 
 								 }else{ 
@@ -143,7 +151,9 @@
 			 				}
 							/* $("#main").append(str); */
 			 				
-			 		   }
+			 		   },error:function(){
+						   alert("加载出错了")
+					   }
 			 	  });
 			 	  
 			  });
@@ -160,7 +170,7 @@
 			<!-------------头部返回------------>
 			<div class="col-md-3 column" style="height: 50px; width: 89.75px; float:left; margin-top: 8px;">
 				<a href="my_manor.html">
-					<img src="/CloudManor/Picture/GlobalPicture/fanhui.png" / width="30px" height="30px">
+					<img src="/CloudManor/resource/images/fanhui.png" / width="30px" height="30px">
 				</a>
 			</div>
 			<h1 class="mui-title">我的喜欢</h1>
