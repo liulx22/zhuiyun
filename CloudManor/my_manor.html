@@ -19,6 +19,9 @@
 			.mui-bar .mui-tab-item.mui-active .mui-tab-label{
 				color: #77ce36;
 			}
+			video{
+				object-fit: fill;
+			}
 		</style> 
 	</head>
 	<body>
@@ -31,9 +34,9 @@
 							<img id="user_pic" src="Picture/my_manor_pic/user.png" alt="">
 						</div>
 						<div class="jq22-flex-box">
-							<h2 id="nickname">马东建</h2>
+							<h2 id="nickname"></h2>
 							<span style="font-size: 9px;">
-								ID:<span id="id">54222222</span>
+								ID:<span id="user_id"></span>
 							</span>
 						</div>
 						<div class="jq22-take-button">
@@ -61,7 +64,7 @@
 								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-yiguanzhugongyingshang"></use>
 								</svg>	
-								<span >11</span>
+								<span id="attentionNum">0</span>
 								
 							</div>
 						</a>
@@ -72,7 +75,7 @@
 								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-icon-test11"></use>
 								</svg>	
-								<span >45</span>
+								<span id="myLikeNum" >0</span>
 							</div>
 						</a>
 						<a href="PingLunWo.html" id="pingluBtn1" class="jq22-palace-grid">
@@ -81,7 +84,7 @@
 								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-pinglun"></use>
 								</svg>	
-								<span >28</span>	
+								<span id="commentNum" >0</span>	
 							</div>
 							
 						</a>
@@ -92,58 +95,23 @@
 								<svg class="icon" aria-hidden="true" >
 									<use xlink:href="#icon-shenqingjilu"></use>
 								</svg>	
-									<span >15</span>
+									<span id="orderNum">0</span>
 							</div>
 						</a>
 					</div>
 				</div>
 				<div class="biaoti">
-					<span>
-						马东建的庄园
+					<span id="biaoti">
+						
 					</span>
 					
 				</div>
 				<div class="jq22-flex jq22-flex-fore">
 					
 					<div class="swiper-container">
-					    <div class="swiper-wrapper">
-					        <div class="swiper-slide">
-								<div style="width: 72%;">
-									<div style="width:35%;float: left;">当前农事：</div>
-									<div style="width:65%;float: left;">
-										<marquee  direction="left">
-											<span id="farming_info1" ></span>
-										</marquee> 
-										
-									</div>
-									
-								</div>
-								<a href="AgriculturalHistory.html" style="float: right;color: #6D6D72;">历史农事</a>
-								
-								<br/>
-								<br/>
-								<video id="video_1" src="Picture/resource-vido/linux_01_001.mp4" controls width="100%" 
-								 preload="none" poster="Picture/my_manor_pic/bj.jpg" >	
-								</video>
-							</div>
-					        <div class="swiper-slide">
-					        	<div style="width: 72%;">
-					        		<div style="width:35%;float: left;">当前农事：</div>
-					        		<div style="width:65%;float: left;">
-					        			<marquee  direction="left">
-					        				<span id="farming_info2" ></span>
-					        			</marquee> 
-					        			
-					        		</div>
-					        		
-					        	</div>
-								<a href="AgriculturalHistory.html" style="float: right;color: #6D6D72;">历史农事</a>
-					        	<br/>
-					        	<br/>
-					        	<video src="Picture/resource-vido/linux_01_001.mp4" controls width="100%" 
-					        	 preload="none" poster="Picture/my_manor_pic/bj.jpg" >	
-					        	</video>
-					        </div>
+					    <div class="swiper-wrapper" id="swiperBox">
+					       <!-- 
+					       
 					        <div class="swiper-slide">
 								
 									<div style="width: 72%;">
@@ -163,7 +131,7 @@
 					        	<video src="Picture/resource-vido/linux_01_001.mp4" controls width="100%" 
 					        	 preload="none"  poster="Picture/my_manor_pic/bj.jpg" >	
 					        	</video>
-					        </div>
+					        </div> -->
 					    </div>
 					</div>					
 				</div>
@@ -187,14 +155,60 @@
 	<script src="resource/js/swiper.js"></script>
 	<script src="./resource/mui/js/mui.min.js"></script>
 	<script>
+		var storage=window.localStorage;
+		var json=storage.getItem("userInfo");
+		var userInfo=JSON.parse(json); 
+		$(function(){
+			if(userInfo!=null){
+				
+				if(userInfo.imgName!=null&&userInfo.imgDir!=null){
+						document.getElementById("user_pic").src = userInfo.imgDir;			
+				}else{
+					var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
+					document.getElementById("user_pic").src = globaPicUrl+"userHead/shaoyf_4.jpg";
+				}
+				if(userInfo.userName!=null){
+					$("#nickname").html(userInfo.userName)
+					$("#biaoti").html(userInfo.userName+"的庄园");
+				}else{
+					$("#nickname").html(userInfo.phone);
+					
+					$("#biaoti").html(userInfo.phone+"的庄园");
+				}
+				$("#user_id").html(userInfo.id);
+			}else{
+				location.href="./login.html"
+			}
+			 //获取我的关注数量
+			getAttentionNum();
+			//获取我的喜欢数量
+			getMyLikeNum();
+			//获取我的评论数量
+			getMyCommentNum();
+			//获取我的订单数量
+			getMyOrderNum();
+			//获取农事记录-
+			getOrderAgriculture();
+			
 		 var swiper = new Swiper('.swiper-container', {
-		      navigation: {
-		        nextEl: '.swiper-button-next',
-		        prevEl: '.swiper-button-prev',
-		      },
-		    });
-		var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
-		document.getElementById("user_pic").src = globaPicUrl+"userHead/shaoyf_4.jpg";
+			 observer:true,
+			 observeParents:true,
+			 navigation: {
+			   nextEl: '.swiper-button-next',
+			   prevEl: '.swiper-button-prev',
+			 },
+		  });
+		  $("#foot-tab a").click(function(){
+			window.location.href=$(this).attr("href");
+		  });
+		  
+		})
+		
+		
+		
+		
+		/* var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
+		document.getElementById("user_pic").src = globaPicUrl+"userHead/shaoyf_4.jpg"; */
 				
 		function upInfo(){//编辑资料
 			location.href="./jz_information.html"
@@ -202,19 +216,127 @@
 		function becomeMaintenancePeople(){//成为养护人
 			location.href="./Nurse_verification.html"
 		}
-		$(function(){
-			$("#foot-tab a").click(function(){
-				window.location.href=$(this).attr("href");
-			});
-		});
-		$(function(){
+		
+		function getAttentionNum(){ //获取我的关注数量
+			$.ajax({
+				url:"http://123.56.254.245:8088/myManor/getAttentionNum",
+				data:{userId:userInfo.id},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data!=null){
+						$("#attentionNum").html(data);
+					}
+				},error:function(){
+					console.log("失败")
+				}
+			})
+		}
+		
+		function getMyLikeNum(){ //获取我的喜欢数量
+			$.ajax({
+				url:"http://123.56.254.245:8088/myManor/getMyLikeNum",
+				data:{userId:userInfo.id},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data!=null){
+						$("#myLikeNum").html(data);
+					}
+				},error:function(){
+					console.log("失败")
+				}
+			})
+		}
+		
+		function getMyCommentNum(){ //获取我的评论数量
+			$.ajax({
+				url:"http://123.56.254.245:8088/myManor/getMyCommentNum",
+				data:{userId:userInfo.id},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data!=null){
+						$("#commentNum").html(data);
+					}	
+				},error:function(){
+					console.log("失败")
+				}
+			})
+		}
+		
+		function getMyOrderNum(){ //获取我的订单数量
+			$.ajax({
+				url:"http://123.56.254.245:8088/myManor/getMyOrderNum",
+				data:{userId:userInfo.id},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data!=null){
+						$("#orderNum").html(data);
+					}
+				},error:function(){
+					console.log("失败")
+				}
+			})
+		}
+		
+		function getOrderAgriculture(){ //获取我的庄园 当前农事和视频
+			$.ajax({
+				url:"http://localhost:8088/myManor/getOrderAgriculture",
+				data:{userId:userInfo.id},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					
+					if(data!=null){
+						
+						var list = data;
+						var str = '';
+						for (var i = 0;i < list.length; i ++) {
+							
+							var item = list[i];
+							
+							var temp1 =  '<div class="swiper-slide">'+
+											'<div style="width: 72%;">'+
+												'<div style="width:35%;float: left;">当前农事：</div>'+
+													'<div style="width:65%;float: left;">'+
+														'<marquee  direction="left">'+
+														'<span  >'+item.content+'</span>'+
+														'</marquee>'+
+													'</div>'+
+											'</div>'+
+											'<a href="AgriculturalHistory.html" style="float: right;color: #6D6D72;">历史农事</a>'+
+											'<br/><br/>';
+											var item2=item.orderAgricultureImgVO;
+											for (var j = 0;j < item2.length; j ++) {
+												if(item2[j].typeCode == 'agri_vedio'){
+													var temp2 = '<video  src="'+item2[j].imgDir+'" controls width="100%;height:250px;" ';
+												}
+												if(item2[j].typeCode == 'agri_img'){
+													
+													var temp3 = 'preload="none" poster="'+item2[j].imgDir+'" >'+'</video></div>';
+												}
+											}
+											
+							str = str + temp1+temp2+temp3;
+							
+						}
+						$("#swiperBox").html(str);
+					}
+				},error:function(){
+					console.log("失败")
+				}
+			})
+		}
+		
+		/* $(function(){
 			$("#farming_info1").html("杂草变多了，今天在除草");
 			$("#farming_info2").html("枝丫变多了，今天在剪枝");
 			$("#farming_info3").html("终于成熟了，可以收获了");
-		})
-		function pinglunShow(){
-			alert(1)
-			//$("#pingluBtn2").attr("dispaly","block");
-		}
+		}) */
+		
+		
+		
 	</script>
 </html>
