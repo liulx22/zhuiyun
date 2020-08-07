@@ -217,15 +217,10 @@
 							for(var i=0;i<data.length;i++){ 
 								 str+="<div class=\"pin\"><div class=\"box\"><img src=\""+globaPicUrl+"resource/"+data[i].videoPath+"\" onclick=\"gotodetail('"+data[i].videoPath+"')\"/></div>";
 								 str+="<div class=\"text-under-img\">";
-								 if(data[i].reTypeCode=="fruiter"){
-									str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>"+data[i].fruiterAddress+"</span><span class=\"col-xs-4\">"+data[i].title+"</span>";
-								}
-								 if(data[i].reTypeCode=="livestock"){
-								 	str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>"+data[i].livestockAddress+"</span><span class=\"col-xs-4\">"+data[i].title+"</span>";
-								 }
-								 if(data[i].reTypeCode=="plot"){
-								 	str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>"+data[i].plotAddress+"</span><span class=\"col-xs-4\">"+data[i].title+"</span>";
-								 }
+								 
+								 str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>"+data[i].address+"</span><span class=\"col-xs-4\">"+data[i].title+"</span>";
+								
+								 
 								 str+="<img src='./images/heart.png' />";
 								 str+="</div></div>"; 
 								 

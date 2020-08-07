@@ -119,6 +119,7 @@
 			huoqunongshi();
 			//获取养护记录照片和视频
 			yanghujilu();
+			
 		})
 		//点击查看历史农事记录
 		$("#showHistory").click(function(){
@@ -132,13 +133,28 @@
 		$("#arrow-lift").click(function(){
 			history.go(-1);
 		});
+		// 获取url中的参数的函数
+		function getUrlParam (name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r!= null) {
+				return unescape(r[2]);
+			}else{
+				return null;
+			}
+		}
 		//获取农事信息
 		function huoqunongshi(){
-			var rid=1//资源id
-			var mid=1//庄主用户id
+			var storage=window.localStorage;//获取用户信息
+			var json=storage.getItem("userInfo");
+			var userInfo=JSON.parse(json);
+			//获取url中的resourceid参数
+			var rid = getUrlParam('resourceid');
+			//资源id
+			var mid=userInfo.id//庄主用户id
 			$.ajax({
 				url:"http://localhost:8080/resource/getAgriculture",
-				type:"GET",
+				type:"post",
 				dataType:"json",
 				data:{
 					rid:rid,
@@ -166,11 +182,16 @@
 		$("#nongshi_tijiao").click(function(){
 			var nongshi=$("#nongshi").val();
 			if(!nongshi==""||!nongshi==null){
-				var userId=1//谁发布的
-				var resourceId=1//资源id
+				var storage=window.localStorage;//获取用户信息
+				var json=storage.getItem("userInfo");
+				var userInfo=JSON.parse(json);//获取用户信息
+				
+				var userId=userInfo.id//谁发布的
+				//获取url中的resourceid参数
+				var resourceId = getUrlParam('resourceid');//资源id
 				$.ajax({
-					url:"http://localhost:8080/resource/insAgricultureresource",
-					type:"get",
+					url:"https://localhost:8080/resource/insAgriculture",
+					type:"post",
 					dataType:"json",
 					data:{
 						userId:userId,
@@ -193,11 +214,15 @@
 		//养护记录照片和视频
 		function yanghujilu(){
 			var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
-			var rid=1//资源id
-			var mid=1//庄主用户id
+			var storage=window.localStorage;//获取用户信息
+			var json=storage.getItem("userInfo");
+			var userInfo=JSON.parse(json);//获取用户信息
+			//获取url中的resourceid参数
+			var rid = getUrlParam('resourceid');//资源id
+			var mid=userInfo.id//庄主用户id
 			$.ajax({
 				url:"http://localhost:8080/resource/getAgricultureOperation",
-				type:"get",
+				type:"post",
 				dataType:"json",
 				data:{
 					rid:rid,
@@ -213,10 +238,10 @@
 									 "<div class=\"box\"> \n"+
 										"<div style=\"width: 145px;background-color: #FFFFFF;\">";
 											if(imghouzhui=='jpg'){
-												mm+="<img src=\""+globaPicUrl+b.imgDir+imglen+"\"/><br> ";
+												mm+="<img src=\""+b.imgDir+"\"/><br> ";
 											}else if(imghouzhui=='mp4'){
-												mm+="<video width=\"145\" height=\"auto\" controls autoplay>\n"+
-													"<source src=\""+globaPicUrl+"/resource/record/"+imglen+"\" type=\"video/mp4\">\n"+
+												mm+="<video width=\"145\" height=\"auto\" controls>\n"+
+													"<source src=\""+b.imgDir+"\" type=\"video/mp4\">\n"+
 												"</video><br>";
 											}
 											mm+="<div style=\"width: 145px;padding: 8px; font-size: 11px;\"> \n"+
