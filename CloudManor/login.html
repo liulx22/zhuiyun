@@ -73,7 +73,7 @@
 								alert("验证码发送成功")
 							}
 						},error:function(){
-							alert(222222)
+							alert("发送失败")
 						}
 					})
 				}else{
@@ -92,10 +92,10 @@
 						type:"post",
 						dataType:"json",
 						success:function(data){
-							alert(11)
 							if(data!=""){
+								console.log(data)
 								alert("登陆成功")
-								var userInfo = JSON.stringify(data.user)
+								var userInfo = JSON.stringify(data)
 								localStorage.setItem("userInfo",userInfo);
 								
 							}
