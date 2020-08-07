@@ -11,9 +11,14 @@
 		<link rel="stylesheet" type="text/css" href="resource/css/zbw/base.css" />
 		<link rel="stylesheet" type="text/css" href="resource/css/zbw/style.css" />
 		<script src="resource/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
-		<!-- 引入外部json文件 -->
-	
+		<script src='resource/js/common.js'></script>
 		<script type="text/javascript">
+			function GetQueryString(name){
+			    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			    var r = window.location.search.substr(1).match(reg);
+			    if(r!=null)return  unescape(r[2]); return null;
+			}
+			
 			$(function() {
 				//拿到当前的资源id  去数据库查找所属养护人id，拿到养护人头像和名称，进行显示
 				//图片服务器地址
@@ -29,11 +34,18 @@
 				//产品图（假数据 修改的部分） 
 				var product_picture = "zbw_2_2";
 				document.getElementById("head_pictrue1").src = globaPicUrl + "resource/pictrue/" + product_picture + ".jpg";
+				
+				var resourceId =  GetQueryString("resourceId");
+				if(resourceId==null){
+					resourceId = 2;
+				}
+				
 				$.ajax({
 					//请求方式为post
 					type: "post", 
 					//json文件位置
-					url: "http://localhost:8080/obtainMaintenancePeopleMessage?resourceId=2",
+					url: commonJavaUrl+"obtainMaintenancePeopleMessage",
+					data:{"resourceId":resourceId},
 					//返回数据格式为json
 					dataType: "json",
 					//请求成功完成后要执行的方法
@@ -45,17 +57,17 @@
 							document.getElementById("conserve_head1").src =data.imgDir
 						}
 					}  
-				}); 
+				});  
 				$.ajax({
 					//请求方式为post
 					type: "post",
 					//json文件位置
-					url: "http://localhost:8080/resourceMessage?resourceId=1",
+					url: commonJavaUrl+"resourceMessage",
+					data:{"resourceId":resourceId},
 					//返回数据格式为json
 					dataType: "json",
 					//请求成功完成后要执行的方法
 					success: function(data) {
-						console.log(data)
 						if (data.reTypeCode == 'fruiter') {
 							$("#describe_k1").text("树木品种");
 							$("#describe_k2").text("树龄");
@@ -132,7 +144,7 @@
 				//请求方式为post
 				type: "post", 
 				//json文件位置
-				url: "http://localhost:8080/addOrder",
+				url: commonJavaUrl+"addOrder",
 				data:{
 					"userId":userId,
 					"resourceId":1,
