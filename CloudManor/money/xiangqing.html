@@ -7,9 +7,9 @@
 		<link rel="stylesheet" href="../resource/js/layui/layui.css">
 		<link rel="stylesheet" href="../resource/js/layui/layui.mobile.css">
 		<link rel="stylesheet" href="../css/bootstrap.css">
+		<script src="../resource/js/common.js"></script>
 		<script src="../resource/jquery-3.2.1.js"></script>
 		<script src="../resource/js/layui/layui.js"></script>
-		<script src="../resource/js/layui/layer.js"></script>
 		<script src="../resource/js/layui/layui.all.js"></script>
 		<link rel="stylesheet" href="../resource/layui/iconfont.css">
 		<script src="../resource/layui/iconfont.js"></script>
@@ -47,7 +47,7 @@
 			zhangdan(n);
 		})
 		function zhangdan(n){
-			$.ajax('http://localhost:8080/money/findRecordMoney',{
+			$.ajax(commonJavaUrl+'money/findRecordMoney',{
 				data:{
 					userId:uid,
 					//订单类型

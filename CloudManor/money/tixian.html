@@ -6,9 +6,9 @@
 		<title></title>
 		<link rel="stylesheet" href="../resource/js/layui/layui.css">
 		<link rel="stylesheet" href="../resource/js/layui/layui.mobile.css">
+		<script src="../resource/js/common.js"></script>
 		<script src="../resource/jquery-3.2.1.js"></script>
 		<script src="../resource/js/layui/layui.js"></script>
-		<script src="../resource/js/layui/layer.js"></script>
 		<script src="../resource/js/layui/layui.all.js"></script>
 		<link rel="stylesheet" href="../resource/layui/iconfont.css">
 		<script src="../resource/layui/iconfont.js"></script>
@@ -26,7 +26,7 @@
 		}
 		$(function(){
 			//查询养护人金钱
-			$.ajax('http://localhost:8080/money/findUserInfo',{
+			$.ajax(commonJavaUrl+'money/findUserInfo',{
 				data:{
 					userId:uid
 				},
@@ -43,7 +43,7 @@
 			zhangdan();
 		})
 		function zhangdan(){
-			$.ajax('http://localhost:8080/money/findRecordMoney',{
+			$.ajax(commonJavaUrl+'money/findRecordMoney',{
 				data:{
 					userId:uid,
 					s:n,
@@ -83,7 +83,7 @@
 			var cardNum= getUrlParam("cardNum");
 			var money=$("#money").val();
 			var rm=$("#recodeMoney").html();
-			$.ajax('http://localhost:8080/money/addMasterAccount',{
+			$.ajax(commonJavaUrl+'money/addMasterAccount',{
 				data:{
 					userId:uid,
 					cardNum:cardNum,

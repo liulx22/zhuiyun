@@ -7,9 +7,10 @@
 		<link rel="stylesheet" href="../resource/js/layui/layui.css">
 		<link rel="stylesheet" href="../resource/js/layui/layui.mobile.css">
 		<link rel="stylesheet" href="../css/bootstrap.css">
+		
+		<script src="../resource/js/common.js"></script>
 		<script src="../resource/jquery-3.2.1.js"></script>
 		<script src="../resource/js/layui/layui.js"></script>
-		<script src="../resource/js/layui/layer.js"></script>
 		<script src="../resource/js/layui/layui.all.js"></script>
 		<link rel="stylesheet" href="../resource/layui/iconfont.css">
 		<script src="../resource/layui/iconfont.js"></script>
@@ -87,7 +88,7 @@
 				alert("银行类别不能为空！！！");
 			    return false;
 			}
-			$.ajax('http://localhost:8080/money/addBankCard?userId='+uid,{
+			$.ajax(commonJavaUrl+'money/addBankCard?userId='+uid,{
 				data:$('#addbankcard').serialize(),
 				dataType:'json',//服务器返回json格式数据
 				type:'post',//HTTP请求类型
