@@ -10,7 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="./resource/css/fangh/iconfont.css" />  
 	<link rel="stylesheet" type="text/css" href="./resource/css/fangh/feedback-page.css" />  
 	<link rel="stylesheet" href="./resource/css/fangh/font-awesome.min.css">  
-	<script type="text/javascript" src="./resource/js/fangh/common.js"></script>  
+	<script type="text/javascript" src="./resource/js/fangh/common.js"></script>
+	<script type="text/javascript" src="./resource/js/common.js"></script>  
 	<script type="text/javascript" src="./resource/js/fangh/utitls.js"></script>  
 	
 	<!-- 图片css -->
@@ -357,9 +358,10 @@
 <script>
 	var resourceid=null;
 	var type1=null;
-	var userInfo=localStorage.getItem(userInfo);
-	var uid=1;
-	var username="mdj";
+	var userInfo=window.localStorage.getItem(userInfo);
+	var user=JSON.parse(userInfo);
+	var uid=user.id;
+	var username=user.userName;
 	$(function(){
 		$("#tree").hide();
 		$("#Animal").hide();
@@ -584,7 +586,7 @@
          var length=id.toString().length;   
          var idnmae=id.toString();  
          var numKeys=plus.storage.getLength();  
-         var task = plus.uploader.createUpload(getUrl(), {  
+         var task = plus.uploader.createUpload(commonJavaUrl+"Releaseresource/image_video", {  
                                 method: "POST"  
                             },  
                             function(t, status) {  
@@ -595,7 +597,7 @@
 											//封面图上传
 											up2();
 										}else{
-											alert("上传失败！")
+											mui.toast('上传失败了！sorry，请重新来一遍',{ duration:"35000ms", type:'div' })
 										}
                                 } else {  
                                     wa.close();  
@@ -831,7 +833,7 @@
 		        
 		        function uploadVideo(){ 
 		            //第二个参数一定要有，然后把文件路径扔进来
-		            var task=plus.uploader.createUpload(getUrl(), {  
+		            var task=plus.uploader.createUpload(commonJavaUrl+"Releaseresource/image_video", {  
                                 method: "POST"  
                             },  
                             function(t, status) {  
@@ -842,7 +844,7 @@
 										//详情上传
 										uploadimge();
 									}else{
-										alert("上传失败！")
+										mui.toast('上传失败了！sorry，请重新来一遍',{ duration:"35000ms", type:'div' })
 									}
                                 } else {  
                                    mui.toast("上传失败了。sorry，请重新来一遍");  
@@ -968,7 +970,7 @@
 		}
 		function up2(){
 			//第二个参数一定要有，然后把文件路径扔进来
-            var task=plus.uploader.createUpload(getUrl(), {  
+            var task=plus.uploader.createUpload(commonJavaUrl+"Releaseresource/image_video", {  
 						method: "POST" 
 					},  
 					function(t, status) { 
@@ -977,7 +979,7 @@
 								$('#letter-photo').html('<div class="letter-photo-img"><img style="width: 6.5rem;height: 8.5rem;" src="./resource/css/images/iconfont-tianjia.png" data-preview-src="" data-preview-group="1" /></div>');
 								mui.back();
 							}else{
-								alert("上传失败！")
+								mui.toast('上传失败了！sorry，请重新来一遍',{ duration:"35000ms", type:'div' })
 							}
 						} else {
 						   mui.toast("上传失败了。sorry，请重新来一遍");  
@@ -998,62 +1000,67 @@
 		sub.addEventListener('tap', function() {
 			var title=$("#title").val();
 			var reTypeCode=$("#typed option:selected").val();
-			if(reTypeCode=="fruiter"){
-				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
-				    dataType:"json",
-				    type:"post",
-				    data:{"title":title,"reTypeCode":reTypeCode,"uid":uid},
-					timeout:10000,//超时时间设置为10秒；
-				    success:function(data) {
-						if(data){
-							resourceid=data;
-							//视频上传
-							uploadVideo();
-						}else{
-							alert("上传失败！");
+			if(username){
+				if(reTypeCode=="fruiter"){
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?"+$("#tree1").serialize(),{
+					    dataType:"json",
+					    type:"post",
+					    data:{"title":title,"reTypeCode":reTypeCode,"uid":uid},
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								mui.toast('上传失败',{ duration:"35000ms", type:'div' })
+							}
 						}
-					}
-				})
-			}else if(reTypeCode=="livestock"){
-				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
-				    dataType:"json",
-				    type:"post",
-				    data:$("#Animal1").serialize(),
-					timeout:10000,//超时时间设置为10秒；
-				    success:function(data) {
-						if(data!=null){
-							resourceid=data;
-							//视频上传
-							uploadVideo();
-						}else{
-							alert("上传失败！");
+					})
+				}else if(reTypeCode=="livestock"){
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					    dataType:"json",
+					    type:"post",
+					    data:$("#Animal1").serialize(),
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data!=null){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								mui.toast('上传失败',{ duration:"35000ms", type:'div' })
+							}
+						},error:function(data){
+							console.log(data);
 						}
-					},error:function(data){
-						console.log(data);
-					}
-				})
-			}else if(reTypeCode=="plot"){
-				mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
-				    dataType:"json",
-				    type:"post",
-				    data:$("#land1").serialize(),
-					timeout:10000,//超时时间设置为10秒；
-				    success:function(data) {
-						if(data!=null){
-							resourceid=data;
-							//视频上传
-							uploadVideo();
-						}else{
-							alert("上传失败！");
-						}
-					},error:function(data){
-						console.log(data);
-					} 
-				})
+					})
+				}else if(reTypeCode=="plot"){
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					    dataType:"json",
+					    type:"post",
+					    data:$("#land1").serialize(),
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data!=null){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								mui.toast('上传失败',{ duration:"35000ms", type:'div' })
+							}
+						},error:function(data){
+							console.log(data);
+						} 
+					})
+				}else{
+					mui.toast('请选择描述！',{ duration:"35000ms", type:'div' })
+					return;
+				}
 			}else{
-				alert("请选择描述！");
-				return;
+				mui.toast('未登录！',{ duration:"35000ms", type:'div' })
 			}
+			
 		}) 
 	</script> 
 

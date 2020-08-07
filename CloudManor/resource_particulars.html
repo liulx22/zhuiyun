@@ -8,6 +8,7 @@
 		<link href="resource/css/bootstrap.css" rel="stylesheet"/>
 		<script src="resource/jquery-3.2.1.js"></script>
 		<script src="resource/js/bootstrap.js"></script>
+		<script src="resource/js/common.js"></script>
 		<script type="text/javascript" src="resource/js/waterfall.js"/></script>
 		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="resource/js/iconfont.js"></script>
@@ -133,12 +134,27 @@
 		$("#arrow-lift").click(function(){
 			history.go(-1);
 		});
+		// 获取url中的参数的函数
+		function getUrlParam (name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r!= null) {
+				return unescape(r[2]);
+			}else{
+				return null;
+			}
+		}
 		//获取农事信息
 		function huoqunongshi(){
-			var rid=1//资源id
-			var mid=1//庄主用户id
+			var storage=window.localStorage;//获取用户信息
+			var json=storage.getItem("userInfo");
+			var userInfo=JSON.parse(json);
+			//获取url中的resourceid参数
+			var rid = getUrlParam('resourceid');
+			//资源id
+			var mid=userInfo.id//庄主用户id
 			$.ajax({
-				url:"http://localhost:8080/resource/getAgriculture",
+				url:commonJavaUrl+"resource/getAgriculture",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -167,12 +183,15 @@
 		$("#nongshi_tijiao").click(function(){
 			var nongshi=$("#nongshi").val();
 			if(!nongshi==""||!nongshi==null){
-				let user=localStorage.getItem("userInfo");//获取用户信息
+				var storage=window.localStorage;//获取用户信息
+				var json=storage.getItem("userInfo");
+				var userInfo=JSON.parse(json);//获取用户信息
 				
-				var userId=1//谁发布的
-				var resourceId=1//资源id
+				var userId=userInfo.id//谁发布的
+				//获取url中的resourceid参数
+				var resourceId = getUrlParam('resourceid');//资源id
 				$.ajax({
-					url:"https://localhost:8080/resource/insAgriculture",
+					url:commonJavaUrl+"resource/insAgriculture",
 					type:"post",
 					dataType:"json",
 					data:{
@@ -195,12 +214,15 @@
 		})
 		//养护记录照片和视频
 		function yanghujilu(){
-			var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
-			let user=localStorage.getItem("userInfo");//获取用户信息
-			var rid=1//资源id
-			var mid=1//庄主用户id
+			//var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
+			var storage=window.localStorage;//获取用户信息
+			var json=storage.getItem("userInfo");
+			var userInfo=JSON.parse(json);//获取用户信息
+			//获取url中的resourceid参数
+			var rid = getUrlParam('resourceid');//资源id
+			var mid=userInfo.id//庄主用户id
 			$.ajax({
-				url:"http://localhost:8080/resource/getAgricultureOperation",
+				url:commonJavaUrl+"resource/getAgricultureOperation",
 				type:"post",
 				dataType:"json",
 				data:{

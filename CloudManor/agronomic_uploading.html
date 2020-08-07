@@ -24,6 +24,7 @@
 		  <link rel="stylesheet" type="text/css" href="resource/css/zbw/zbw_mui.css"/>
 		  <!-- 引入外部json文件 -->
 		  <script type="text/javascript" src="file/zbw/cultivate.json"></script>
+		  <script src="./resource/js/common.js"></script>
 		  <!-- 阿里图标样式 -->
 		<style type="text/css">
 		    .icon {
@@ -93,7 +94,7 @@
 						var celectId = $(this).attr('id');
 						var idd = parseInt(celectId)
 						arrr.push(idd);
-					
+						aarr.push(idd);
 					}
 				});
 				if(arrr.length==0){
@@ -145,15 +146,15 @@
 								<div class="mui-popover-arrow"></div>
 								<div><!-- 我是自定义位置弹出层 -->
 								<div style="margin-top: 0em;" class="contaniner fixed-conta">
-									<form style="margin: 1% 0;" action="" method="post" enctype="multipart/form-data" class="change-address" id="save">
+									<form style="margin: 1% 0;" action="" method="post"  class="change-address" id="save">
 										<ul>
 											<li>
 												<label style=" width: 24%;font-size: 0.35em;" class="addd">标题：</label>
-												<input style="width: 60%;font-size: 0.45em;" type="text" value="" required="required"/>
+												<input id="biaoti" style="width: 60%;font-size: 0.45em;" type="text" value="" required="required"/>
 											</li>
 											<li style="height: 5em;">
-												<label style=" width: 24%;font-size: 0.25em;" class="addd">详细内容：</label>
-												<textarea  style="width: 60%;font-size: 0.45em;" required="required"></textarea>
+												<label style=" width: 24%;font-size: 0.25em;" class="addd">描述：</label>
+												<textarea id="miaoshu" style="width: 60%;font-size: 0.45em;" required="required"></textarea>
 											</li>
 										</ul>
 										
@@ -180,160 +181,18 @@
 										<!-- 列表 start-->
 										
 										<div id="neirong1" class="contaniner fixed-contb" style="margin-bottom: 0em;">
-											<section class="shopcar" style=" height: 9em; width: 96%;margin-left: 2%; margin-right: 2%;margin-top: 0.6em;">
-												<div class="shopcar-checkbox" id="checkButton_1" >
-													<label for="shopcar" onselectstart="return false"  id="1" onclick="checkHiddenBox(1)"></label>
-													<input type="checkbox" name="shopcar" />
-													<input type="hidden" id="id_1" />
-												</div>
-												<figure style="height: 9em;">
-													<img  src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg" />
-												</figure>
-												<dl>
-													<dt>一棵苹果树，现在购买只要998</dt>
-													<dd><svg style="width: 1.3em; vertical-align: -0.75em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-dianzan1"></use>
-														</svg>  点赞：22</dd>
-													<dd><svg style="width: 1.3em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-shoucang"></use>
-														</svg>  收藏：22</dd>
-													<dd><svg style="width: 1.3em;vertical-align: -0.88em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-pinglun2"></use>
-														</svg>  评论：22</dd>
-													<h3 style="font-size: 1.4em; top: 73%;right: 51%;">￥998.00</h3>
-												</dl>
-											</section>
-											<section class="shopcar" style="height: 9em; width: 96%;margin-left: 2%; margin-right: 2%;">
-												<div class="shopcar-checkbox" id="checkButton_2" style="display: none;">
-													<label for="shopcar" onselectstart="return false" id="2" onclick="checkHiddenBox(2)"></label>
-													<input type="checkbox" name="shopcar" />
-													<input type="hidden" id="id_2" />
-												</div>
-												<figure><img src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg" /></figure>
-												<dl>
-													<dt>一棵苹果树，现在购买只要998</dt>
-													<dd><svg style="width: 1.3em; vertical-align: -0.75em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-dianzan1"></use>
-														</svg>  点赞：22</dd>
-													<dd><svg style="width: 1.3em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-shoucang"></use>
-														</svg>  收藏：22</dd>
-													<dd><svg style="width: 1.3em;vertical-align: -0.88em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-pinglun2"></use>
-														</svg>  评论：22</dd>
-													<h3 style="font-size: 1.4em; top: 73%;right: 51%;">￥998.00</h3>
-												</dl>
-											</section>
-											<section class="shopcar" style="height: 9em; width: 96%;margin-left: 2%; margin-right: 2%;">
-												<div class="shopcar-checkbox" id="checkButton_3" style="display: none;">
-													<label for="shopcar" onselectstart="return false"  id="3"onclick="checkHiddenBox(3)"></label>
-													<input type="checkbox" name="shopcar" />
-													<input type="hidden" id="id_3" />
-												</div>
-												<figure><img src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg" /></figure>
-												<dl>
-													<dt>一棵苹果树，现在购买只要998</dt>
-													<dd><svg style="width: 1.3em; vertical-align: -0.75em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-dianzan1"></use>
-														</svg>  点赞：22</dd>
-													<dd><svg style="width: 1.3em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-shoucang"></use>
-														</svg>  收藏：22</dd>
-													<dd><svg style="width: 1.3em;vertical-align: -0.88em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-pinglun2"></use>
-														</svg>  评论：22</dd>
-													<h3 style="font-size: 1.4em; top: 73%;right: 51%;">￥998.00</h3>
-												</dl>
-											</section>
+											
+											
+											
 										
 										
-											<section class="shopcar" style="height: 9em; width: 96%;margin-left: 2%; margin-right: 2%;">
-												<div class="shopcar-checkbox" id="checkButton_4" style="display: none;">
-													<label for="shopcar" onselectstart="return false" id="4" onclick="checkHiddenBox(4)"></label>
-													<input type="checkbox" name="shopcar" />
-													<input type="hidden" id="id_4" />
-												</div>
-												<figure><img src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg" /></figure>
-												<dl>
-													<dt>一棵苹果树，现在购买只要998</dt>
-													<dd><svg style="width: 1.3em; vertical-align: -0.75em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-dianzan1"></use>
-														</svg>  点赞：22</dd>
-													<dd><svg style="width: 1.3em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-shoucang"></use>
-														</svg>  收藏：22</dd>
-													<dd><svg style="width: 1.3em;vertical-align: -0.88em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-pinglun2"></use>
-														</svg>  评论：22</dd>
-													<h3 style="font-size: 1.4em; top: 73%;right: 51%;">￥998.00</h3>
-												</dl>
-											</section>
-											<section class="shopcar" style="height: 9em; width: 96%;margin-left: 2%; margin-right: 2%;">
-												<div class="shopcar-checkbox" id="checkButton_5" style="display: none;">
-													<label for="shopcar" onselectstart="return false" id="5" onclick="checkHiddenBox(5)"></label>
-													<input type="checkbox" name="shopcar" />
-													<input type="hidden" id="id_5" />
-												</div>
-												<figure><img src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg" /></figure>
-												<dl>
-													<dt>一棵苹果树，现在购买只要998</dt>
-													<dd><svg style="width: 1.3em; vertical-align: -0.75em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-dianzan1"></use>
-														</svg>  点赞：22</dd>
-													<dd><svg style="width: 1.3em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-shoucang"></use>
-														</svg>  收藏：22</dd>
-													<dd><svg style="width: 1.3em;vertical-align: -0.88em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-pinglun2"></use>
-														</svg>  评论：22</dd>
-													<h3 style="font-size: 1.4em; top: 73%;right: 51%;">￥998.00</h3>
-												</dl>
-											</section>
+											
+											
 										
 										
 										
-											<section class="shopcar" style="height: 9em; width: 96%;margin-left: 2%; margin-right: 2%;">
-												<div class="shopcar-checkbox" id="checkButton_6" style="display: none;">
-													<label for="shopcar" onselectstart="return false" id="6" onclick="checkHiddenBox(6)"></label>
-													<input type="checkbox" name="shopcar" />
-													<input type="hidden" id="id_6" />
-												</div>
-												<figure><img src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg" /></figure>
-												<dl>
-													<dt>一棵苹果树，现在购买只要998</dt>
-													<dd><svg style="width: 1.3em; vertical-align: -0.75em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-dianzan1"></use>
-														</svg>  点赞：22</dd>
-													<dd><svg style="width: 1.3em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-shoucang"></use>
-														</svg>  收藏：22</dd>
-													<dd><svg style="width: 1.3em;vertical-align: -0.88em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-pinglun2"></use>
-														</svg>  评论：22</dd>
-													<h3 style="font-size: 1.4em; top: 73%;right: 51%;">￥998.00</h3>
-												</dl>
-											</section>
-											<section id="resource_" class="shopcar" style="height: 9em; width: 96%;margin-left: 2%; margin-right: 2%;">
-												<div class="shopcar-checkbox" id="checkButton_7" style="display: none;">
-													<label for="shopcar" onselectstart="return false" id="7" onclick="checkHiddenBox(7)"></label>
-													<input type="checkbox" name="shopcar" />
-													<input type="hidden" id="id_7" />
-												</div>
-												<figure><img src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg" /></figure>
-												<dl>
-													<dt>一棵苹果树，现在购买只要998</dt>
-													<dd><svg style="width: 1.3em; vertical-align: -0.75em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-dianzan1"></use>
-														</svg>  点赞：22</dd>
-													<dd><svg style="width: 1.3em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-shoucang"></use>
-														</svg>  收藏：22</dd>
-													<dd><svg style="width: 1.3em;vertical-align: -0.88em;" class="icon" aria-hidden="true">
-														<use xlink:href="#icon-pinglun2"></use>
-														</svg>  评论：22</dd>
-													<h3 style="font-size: 1.4em; top: 73%;right: 51%;">￥998.00</h3>
-												</dl>
-											</section>
+											
+											
 										</div>
 										<!-- 列表 end -->
 										</div>
@@ -357,6 +216,7 @@
 </html>
 
 <script>
+	var  aarr=[];
 	mui.init()
 		var lastPage=1;  //总共页数
 	　　　var currPage=1; //当前页码
@@ -384,41 +244,63 @@
 					
 				  //已售出获取数据
 				  function getList(){
-				  	/* var uid=localStorage.getItem("uuid"); */
-				         　　var result="";
-							/* if(result.length==0||result==null||result==undefined){
-								var  pp= '<div style="height: 3.2em;" class="mui-card"><div class="mui-card-header" style="padding-bottom: 0.1em; padding-top: 0.1em;padding:0 auto;"><p style="font-size:1.2rem;text-align:center;width:23em">暂无已售出资源</p></div></div>'
-								
-								 jQuery(pp).insertBefore('#j_neirong');
-							} */
-								$("#neirong1").html("")
-				  　　　　　		$.each(resourceList,function(i,value){
-									console.log(value)
-			　　　　　　　　　　　　 var oo="<section id=\"resource_"+value.id+"\" class=\"shopcar\" style=\"height: 9em; width: 96%;margin-left: 2%; margin-right: 2%; margin-top: 0px;\">\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"shopcar-checkbox\" id=\"checkButton_"+value.id+"\" style=\"display: none;\">\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"shopcar\" onselectstart=\"return false\" id=\""+value.id+"\" onclick=\"checkHiddenBox("+value.id+")\"></label>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" name=\"shopcar\" />\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" id=\"id_"+value.id+"\" />\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<figure  id=\""+value.id+"\" ><img src=\"https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/"+value.cover+".jpg\" /></figure>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dl id=\""+value.id+"\"  onclick=\"ziyuanxq("+value.id+")\">\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dt>"+value.title+"</dt>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dd><svg style=\"width: 1.3em; vertical-align: -0.75em;\" class=\"icon\" aria-hidden=\"true\">\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<use xlink:href=\"#icon-dianzan1\"></use>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>  点赞："+value.like+"</dd>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dd><svg style=\"width: 1.3em;\" class=\"icon\" aria-hidden=\"true\">\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<use xlink:href=\"#icon-shoucang\"></use>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>  收藏："+value.favorite+"</dd>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dd><svg style=\"width: 1.3em;vertical-align: -0.88em;\" class=\"icon\" aria-hidden=\"true\">\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<use xlink:href=\"#icon-pinglun2\"></use>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>  评论："+value.comment+"</dd>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h3 style=\"font-size: 1.4em; top: 73%;right: 51%;\">￥"+value.money+"</h3>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</dl>\n" +
-      "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</section>";
-														$("#neirong1").append(oo)
-														   /* jQuery(oo).insertBefore('#neirong1'); */
-				
-			                        })
+					  //取出用户信息
+					  var userInfo=JSON.parse(localStorage.getItem('userInfo'))
+					  console.log(userInfo.id);
+					  $.ajax({
+					  	//请求方式为post
+					  	type:"post",
+					  	//json文件位置
+					  	url:commonJavaUrl+"CultivatePersonCenterController/pullConservationResources",
+					  	data:{'userId':userInfo.id,'type':1},
+					  	//返回数据格式为json
+					  	dataType: "json",
+					  	//请求成功完成后要执行的方法
+					  	success: function(data){
+					  			    var result=data;
+					  			     if(result.length==0||result==null||result==undefined){
+										 $("#neirong1").html("")
+					  			    	var  pp= '<div style="height: 3.2em;" class="mui-card"><div class="mui-card-header" style="padding-bottom: 0.1em; padding-top: 0.1em;padding:0 auto;"><p style="font-size:1.2rem;text-align:center;width:23em">暂无已售出资源</p></div></div>'
+					  			    	
+					  			    	 jQuery(pp).insertBefore('#j_neirong');
+					  			    	}else{
+					  						
+					  													/* if(result.length==0||result==null||result==undefined){
+					  														
+					  													} */
+					  														$("#neirong1").html("")
+					  										  　　　　　		$.each(result,function(i,value){
+					  															console.log(value)
+					  									　　　　　　　　　　　　 var oo="<section id=\"resource_"+value.id+"\" class=\"shopcar\" style=\"height: 9em; width: 96%;margin-left: 2%; margin-right: 2%; margin-top: 0px;\">\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"shopcar-checkbox\" id=\"checkButton_"+value.id+"\" style=\"display: none;\">\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"shopcar\" onselectstart=\"return false\" id=\""+value.id+"\" onclick=\"checkHiddenBox("+value.id+")\"></label>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" name=\"shopcar\" />\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" id=\"id_"+value.id+"\" />\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<figure  id=\""+value.id+"\" ><img src=\"https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/"+value.imgName+"\" /></figure>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dl id=\""+value.id+"\"  onclick=\"ziyuanxq("+value.id+")\">\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dt>"+value.title+"</dt>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dd><svg style=\"width: 1.3em; vertical-align: -0.75em;\" class=\"icon\" aria-hidden=\"true\">\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<use xlink:href=\"#icon-dianzan1\"></use>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>  点赞："+value.dianzan+"</dd>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dd><svg style=\"width: 1.3em;\" class=\"icon\" aria-hidden=\"true\">\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<use xlink:href=\"#icon-shoucang\"></use>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>  收藏："+value.shoucang+"</dd>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<dd><svg style=\"width: 1.3em;vertical-align: -0.88em;\" class=\"icon\" aria-hidden=\"true\">\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<use xlink:href=\"#icon-pinglun2\"></use>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>  评论："+value.pinglun+"</dd>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h3 style=\"font-size: 1.4em; top: 73%;right: 51%;\">￥"+value.money+"</h3>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</dl>\n" +
+					  						"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</section>";
+					  																				$("#neirong1").append(oo)
+					  																				   /* jQuery(oo).insertBefore('#neirong1'); */
+					  										
+					  									                        })					
+					  					} 
+					  					   }
+					  });
+					  
+				         　
 				  
 				  				}
 				 
@@ -434,22 +316,51 @@
 									$("#deleteButton").hide();
 									$("#deleteButton2").hide();
 								}
+								function tijiao(){
+									//取出用户信息
+									var userInfo=JSON.parse(localStorage.getItem('userInfo'))
+									console.log(userInfo.id);
+									var pp=$("#biaoti").val();
+									console.log(pp)
+									var oo=$("#miaoshu").val();
+									console.log(oo)
+									if(pp==""||pp==null||oo==""||oo==null){
+										mui.alert('信息不能为空！', '提示', function() {
+										   mui.toast('重新填写');
+										});
+									}
+									$.ajax({
+										//请求方式为post
+										type:"post",
+										//json文件位置
+										url:commonJavaUrl+"CultivatePersonCenterController/batchCommitResources",
+										data:{'userId':userInfo.id,"resouceId":aarr,"content":oo},
+										//返回数据格式为json
+										dataType: "json",
+										traditional:true,
+										//请求成功完成后要执行的方法
+										success: function(data){
+											mui.alert('提交成功！', '提示', function() {
+											   mui.toast('提交成功');
+											});	    
+														   }
+									});
+								}
 								
 								/* mui的页面预加载 */
 								(function($) {
 									
 									
 									 //点击弹出框的确认上传农事按钮。进行上传，触发隐藏弹出框
-									mui("form").on('tap','#baocun',function(){
+									mui("#popover").on('tap','#baocun',function(){
 									 //console.log("点击事件");
-									 mui.openWindow({
+									/* mui.openWindow({
 									 url : 'agronomic_uploading.html',
 									 id : 'agronomic_uploading.html'
-									 });
+									 }); */
+										tijiao();
 										mui('.mui-popover').popover('hide');//隐藏
-										mui.alert('提交成功！', '提示', function() {
-										   mui.toast('提交成功');
-										});
+										
 									}) 
 									
 									 //点击弹出框的取消上传农事按钮。触发隐藏弹出框
@@ -458,7 +369,7 @@
 										mui('.mui-popover').popover('hide');//隐藏
 									}) 
 									
-									mui("section").on('tap','label',function(){
+									mui("#neirong1").on('tap','label',function(){
 									 //console.log("点击事件");
 									 chakan(this.id)
 									})  

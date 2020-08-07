@@ -12,8 +12,7 @@
 		<link rel="stylesheet" href="resource/dist/css/share.min.css">
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="resource/css/mui.min.css">
-		<!--App自定义的css-->
-		<!-- <link rel="stylesheet" type="text/css" href="resource/zbw/app.css"/> -->
+	
 		<!-- 点击发表评论表情包css -->
 		<link  rel="stylesheet" href="resource/css/main.css" />
 		<link rel="stylesheet" type="text/css" href="resource/css/sinaFaceAndEffec.css" />
@@ -29,13 +28,15 @@
 	
 		<!--图标js-->
 		<script src="https://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
+		<!--获取共享地址 -->
+		<script src="resource/js/common.js"></script>
         
 		 <script src="resource/js/jquery-1.8.0.min.js"></script>
 		<script>
 			$(function(){
 				$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/resorceloader",
+				    url: commonJavaUrl+"/Lordzhuangdetails/resorceloader",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp",
 				    data: {"resourceId":1},
@@ -77,7 +78,7 @@
 				/*头像回显 */
 				$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8080/Lordzhuangdetails/findheadphoto",
+					    url: commonJavaUrl+"/Lordzhuangdetails/findheadphoto",
 					    dataType: "jsonp",
 						jsonpCallback:"success_jsonp2",
 					    data: {"userid":1},
@@ -96,10 +97,10 @@
 				/* 点赞num1赋值 查询点赞数 */
 			    $.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/selectDianZan",
+				    url: commonJavaUrl+"/Lordzhuangdetails/selectresourcelik",
 				    dataType: "jsonp",
-					jsonpCallback:"success_jsonp4",
-				    data: {"userid":1},
+					jsonpCallback:"success_jsonpResourceLik",
+				    data: {"resourceId":1},
 				    success: function (data) {
 						//点赞数
 						 console.log(data);
@@ -107,9 +108,7 @@
 							 $("#num1").text(0);
 						 }else{
 							  $("#num1").text(data);
-						 }
-						
-						
+						 }	
 				    },
 				    error: function (data) {
 						console.log(data);
@@ -121,7 +120,7 @@
 			/* 回显评论数量 */
 			$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/huiXianComment",
+				    url: commonJavaUrl+"/Lordzhuangdetails/huiXianComment",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp6",
 				    data: {"resourceId":resourceId},
@@ -142,9 +141,36 @@
 				yulan();
 				/* 预览数 */
 				yulancount();
+				/*购买数量 */
+				buyCount();
 				
 				
 			});	
+			
+			
+			/* 购买数量 */
+			function buyCount(){
+					$.ajax({
+					    type: "GET",
+					    url: commonJavaUrl+"/Lordzhuangdetails/findBuyCount",
+					    dataType: "jsonp",
+						jsonpCallback:"success_jsonpOrdersCount",
+					    data: {},
+					    success: function (data) {
+						//购买数量
+						 console.log("购买数量"+data.length);
+						 if(data==null){
+							 $("#buycount").text(0);
+						 }else{
+							  $("#buycount").text(data.length);
+						 }
+					    },
+					    error: function (data) {
+							console.log(data);
+					    }
+					});
+					
+			}
 			
 			
 			/* 预览+ */
@@ -152,7 +178,7 @@
 				var num = document.getElementById('yuLAN');
 					$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8080/Lordzhuangdetails/yuLan",
+					    url: commonJavaUrl+"/Lordzhuangdetails/yuLan",
 					    dataType: "jsonp",
 						jsonpCallback:"success_jsonpYuLan",
 					    data: {"yuLan":num.innerHTML,"userid":1},
@@ -172,7 +198,7 @@
 			function yulancount(){
 				$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/selectYuLan",
+				    url: commonJavaUrl+"/Lordzhuangdetails/selectYuLan",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonpSelectYuLan",
 				    data: {"userid":1},
@@ -198,7 +224,7 @@
 			function huixianlightherder(){
 				$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8080/Lordzhuangdetails/findheadphoto",
+					    url: commonJavaUrl+"/Lordzhuangdetails/findheadphoto",
 					    dataType: "jsonp",
 						jsonpCallback:"success_jsonp2",
 					    data: {"userid":1},
@@ -380,7 +406,7 @@
 						   <svg class="icon" aria-hidden="true" style="width: 2rem;height: 2rem;">
 						   		<use xlink:href="#icon-icon-test3" onclick="tobuy()"> </use>
 						   </svg>
-						     <span style="vertical-align: super;">100人购买</span>
+						     <span  style="vertical-align: super;"><span id="buycount">100</span>人购买</span>
 						   </div>
 						   
 						   <!-- 信息-->
@@ -407,7 +433,7 @@
 					 </div>
 					  <!--赞数-->
 					  <div id="num" class="round_icon" style="text-align: center;margin: 0 auto 1rem auto;height:1.5rem;" >
-						<span id='num1'></span>
+						<span id='num1'>0</span>
 					  </div>
 					</div>
 					
@@ -493,8 +519,9 @@
 	                                			    //添加评论
 	                                			    addComment(inputText);
 	                                			 }
-	                                	
+	                     
 	                                }
+									
 	                                
 	                                
 	                                //添加评论
@@ -503,10 +530,10 @@
 									var resourceId=1;
 	                                	$.ajax({
 	                                		 type: "GET",
-	                                		 url: "http://localhost:8080/Lordzhuangdetails/addComment",
+	                                		 url: commonJavaUrl+"/Lordzhuangdetails/addComment",
 	                                		 dataType: "jsonp",
 	                                		 jsonpCallback:"success_jsonp7",
-	                                		 data: {"userid":userid,"content":inputText,"resourceId":resourceId,"pid":2},
+	                                		 data: {"userid":userid,"content":inputText,"resourceId":resourceId,"pid":0},
 	                                		 success: function (data) {
 	                                		 console.log(data);
 	                                		 console.log("评论已发送");
@@ -525,7 +552,7 @@
 	                                function huixiancomment(resourceId){
 	                                	$.ajax({
 	                                		 type: "GET",
-	                                		 url: "http://localhost:8080/Lordzhuangdetails/huiXianComment",
+	                                		 url: commonJavaUrl+"/Lordzhuangdetails/huiXianComment",
 	                                		 dataType: "jsonp",
 	                                		 jsonpCallback:"success_jsonp6",
 	                                		 data: {"resourceId":resourceId},
@@ -579,10 +606,9 @@
 	 	  if (flag1 == 0) {
 			  $.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/dianzan",
+				    url: "http://123.56.254.245:8088/userLiker/addUserLike",
 				    dataType: "jsonp",
-					jsonpCallback:"success_jsonp3",
-				    data: {"dianzan":num1.innerHTML,"userid":1},
+				    data: {"user_id":1,"resource_id":1},
 				    success: function (data) {
 						 console.log(data);
 				    },
@@ -595,16 +621,17 @@
 	 	  if (flag1 == 1) {
 			$.ajax({
 				type: "GET",
-				url: "http://localhost:8080/Lordzhuangdetails/dcrdianzan",
+				url: "http://123.56.254.245:8088/Lordzhuangdetails/deleUserLike",
 				dataType: "jsonp",
 				jsonpCallback:"success_jsonp5",
-				data: {"dianzan":num1.innerHTML,"userid":1},
+				data: {"user_id":1,"resource_id":1},
 				success: function (data) {
 				console.log(data);
 				},
 				error: function (data) {
 				console.log(data);
-				}
+				},
+			
 			});  
 	 	    num1.innerHTML--;
 	 	  }
@@ -623,7 +650,7 @@
 		}
 		//跳转到购买页面
 		function tobuy(){
-			window.location.href="./buy.html";
+			window.location.href="./buy.html?resourceId=1";
 		}
 	</script>
 	
