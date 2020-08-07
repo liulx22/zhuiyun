@@ -1001,7 +1001,7 @@
 			var reTypeCode=$("#typed option:selected").val();
 			if(username){
 				if(reTypeCode=="fruiter"){
-					mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
+					mui.ajax("http://123.56.254.245:8088/Releaseresource/resourceadd?"+$("#tree1").serialize(),{
 					    dataType:"json",
 					    type:"post",
 					    data:{"title":title,"reTypeCode":reTypeCode,"uid":uid},
@@ -1017,7 +1017,7 @@
 						}
 					})
 				}else if(reTypeCode=="livestock"){
-					mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					mui.ajax("http://123.56.254.245:8088/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
 					    dataType:"json",
 					    type:"post",
 					    data:$("#Animal1").serialize(),
@@ -1035,7 +1035,7 @@
 						}
 					})
 				}else if(reTypeCode=="plot"){
-					mui.ajax("http://192.168.33.81:8080/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					mui.ajax("http://123.56.254.245:8088/Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
 					    dataType:"json",
 					    type:"post",
 					    data:$("#land1").serialize(),
