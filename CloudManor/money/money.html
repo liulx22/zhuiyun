@@ -7,9 +7,9 @@
 		<link rel="stylesheet" href="../resource/js/layui/layui.css">
 		<link rel="stylesheet" href="../resource/js/layui/layui.mobile.css">
 		<link rel="stylesheet" href="../css/bootstrap.css">
+		<script src="../resource/js/common.js"></script>
 		<script src="../resource/jquery-3.2.1.js"></script>
 		<script src="../resource/js/layui/layui.js"></script>
-		<script src="../resource/js/layui/layer.js"></script>
 		<script src="../resource/js/layui/layui.all.js"></script>
 		<link rel="stylesheet" href="../resource/layui/iconfont.css">
 		<script src="../resource/layui/iconfont.js"></script>
@@ -48,7 +48,7 @@
 		var uid=userid.id;
 			$(function(){
 				//查询养护人金钱
-				$.ajax('http://localhost:8080/money/findUserInfo',{
+				$.ajax(commonJavaUrl+'money/findUserInfo',{
 					data:{
 						userId:uid
 					},
@@ -65,7 +65,7 @@
 				}); 
 				
 				//本月已入账金额
-				$.ajax('http://localhost:8080/money/findMoney1',{
+				$.ajax(commonJavaUrl+'money/findMoney1',{
 					data:{
 						userId:uid
 					},
@@ -80,7 +80,7 @@
 					}
 				}); 
 				//本月未入账金额
-				$.ajax('http://localhost:8080/money/findMoney0',{
+				$.ajax(commonJavaUrl+'money/findMoney0',{
 					data:{
 						userId:uid
 					},
@@ -95,7 +95,7 @@
 					}
 				}); 
 				//本月提现金额
-				$.ajax('http://localhost:8080/money/findMasterAccount',{
+				$.ajax(commonJavaUrl+'money/findMasterAccount',{
 					data:{
 						userId:uid
 					},
@@ -117,7 +117,7 @@
 			}
 			//前往银行卡
 			function tixian(){
-				$.ajax('http://localhost:8080/money/findBankCard',{
+				$.ajax(commonJavaUrl+'money/findBankCard',{
 					data:{
 						userId:uid
 					},
@@ -125,7 +125,6 @@
 					type:'post',//HTTP请求类型
 					timeout:10000,//超时时间设置为10秒；
 					success:function(data){
-						alert(data);
 						if(data==''){
 							window.location.href='yihangka.html';
 						}else{

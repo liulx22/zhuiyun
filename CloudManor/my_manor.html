@@ -154,6 +154,7 @@
 	</body>
 	<script src="resource/js/swiper.js"></script>
 	<script src="./resource/mui/js/mui.min.js"></script>
+	<script src="./resource/js/common.js"></script>
 	<script>
 		var storage=window.localStorage;
 		var json=storage.getItem("userInfo");
@@ -219,12 +220,13 @@
 		
 		function getAttentionNum(){ //获取我的关注数量
 			$.ajax({
-				url:"http://123.56.254.245:8088/myManor/getAttentionNum",
+				url:commonJavaUrl+"myManor/getAttentionNum",
 				data:{userId:userInfo.id},
 				type:"post",
 				dataType:"json",
 				success:function(data){
 					if(data!=null){
+						
 						$("#attentionNum").html(data);
 					}
 				},error:function(){
@@ -235,7 +237,7 @@
 		
 		function getMyLikeNum(){ //获取我的喜欢数量
 			$.ajax({
-				url:"http://123.56.254.245:8088/myManor/getMyLikeNum",
+				url:commonJavaUrl+"myManor/getMyLikeNum",
 				data:{userId:userInfo.id},
 				type:"post",
 				dataType:"json",
@@ -251,7 +253,7 @@
 		
 		function getMyCommentNum(){ //获取我的评论数量
 			$.ajax({
-				url:"http://123.56.254.245:8088/myManor/getMyCommentNum",
+				url:commonJavaUrl+"myManor/getMyCommentNum",
 				data:{userId:userInfo.id},
 				type:"post",
 				dataType:"json",
@@ -267,7 +269,7 @@
 		
 		function getMyOrderNum(){ //获取我的订单数量
 			$.ajax({
-				url:"http://123.56.254.245:8088/myManor/getMyOrderNum",
+				url:commonJavaUrl+"myManor/getMyOrderNum",
 				data:{userId:userInfo.id},
 				type:"post",
 				dataType:"json",
@@ -283,7 +285,7 @@
 		
 		function getOrderAgriculture(){ //获取我的庄园 当前农事和视频
 			$.ajax({
-				url:"http://localhost:8088/myManor/getOrderAgriculture",
+				url:commonJavaUrl+"myManor/getOrderAgriculture",
 				data:{userId:userInfo.id},
 				type:"post",
 				dataType:"json",
@@ -330,11 +332,7 @@
 			})
 		}
 		
-		/* $(function(){
-			$("#farming_info1").html("杂草变多了，今天在除草");
-			$("#farming_info2").html("枝丫变多了，今天在剪枝");
-			$("#farming_info3").html("终于成熟了，可以收获了");
-		}) */
+		
 		
 		
 		

@@ -63,7 +63,7 @@
 				var userInfo=JSON.parse(json);
 		$(function(){					
 			 $.ajax({
-			 	url: "http://localhost:8080/attention/SelAttrntion",
+			 	url: commonJavaUrl+"attention/SelAttrntion?id="+userInfo,
 			 	dataType: "json",
 			 	type: "post",	
 				data:{"id":userInfo},
@@ -104,7 +104,7 @@
 			function AttentionPaid(userId){
 				//var userId2=2; 
 				$.ajax({
-					url:"http://localhost:8080/attention/CancelTheAttention?userId="+userId,
+					url:commonJavaUrl+"attention/CancelTheAttention?userId="+userId+"&userId2="+userInfo,
 					dataType:"json",
 					data:{"userId":userId,//关注人id
 						  "userId2":userInfo},// 被关注人id
@@ -136,7 +136,7 @@
 			function Attention(userId){
 				//var userId2=1; 
 				$.ajax({
-					url:"http://localhost:8080/attention/Attrntion?userId="+userId,
+					url:commonJavaUrl+"attention/Attrntion?userId="+userId+"&userId2="+userInfo,
 					dataType:"json",
 					type:"post",
 					data:{"userId":userId,"userId2":userInfo},
