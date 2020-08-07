@@ -577,6 +577,12 @@
 								}
 								//显示用户数据
 								function load_user(){
+									var uId=1;
+									//取出用户信息
+									var userInfo2=JSON.parse(localStorage.getItem('userInfo'));
+									if(userInfo2!=undefined && userInfo2!=null){
+										uId=userInfo2.id;
+									}
 									$.ajax({
 										//请求方式为post
 										type:"post",
@@ -584,7 +590,7 @@
 										url:commonJavaUrl+"CultivatePersonCenterController/pullMaintenanceInformation",
 									    //返回数据格式为json
 									    dataType: "json",
-										data:{'userId':1},
+										data:{'userId':uId},
 									    //请求成功完成后要执行的方法
 									    success: function(data){
 											//模仿存储用户信息
