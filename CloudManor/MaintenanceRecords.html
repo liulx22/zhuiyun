@@ -14,7 +14,8 @@
 		<link rel="stylesheet" type="text/css" href="resource/css/fangh/feedback-page.css" />  
 		<link rel="stylesheet" href="resource/css/fangh/font-awesome.min.css">  
 		<script type="text/javascript" src="resource/css/fangh/js/common.js"></script>  
-		<script type="text/javascript" src="resource/css/fangh/js/utitls.js"></script>  
+		<script type="text/javascript" src="resource/css/fangh/js/utitls.js"></script>
+		  <script type="text/javascript" src="resource/js/common.js"></script>
 		<style>
 			#fileBox{margin:1rem 0;}
 			#fileBox label{display:block;float:left;height:50px;width:50px;background:url(images/++.png) no-repeat center;}
@@ -866,7 +867,7 @@
 						sub.addEventListener('tap', function() {
 							var textarea=$("#textarea").val();
 							var dateSelect=$("#dateSelect").val();
-								mui.ajax("http://192.168.0.107:8080/AgricultureOperation/addAgricultureOperation",{
+								mui.ajax(commonJavaUrl+"AgricultureOperation/addAgricultureOperation",{
 								    dataType:"json",
 								    type:"post",
 								    data:{"title":textarea,"operTime":dateSelect},
