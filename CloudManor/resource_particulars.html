@@ -8,6 +8,7 @@
 		<link href="resource/css/bootstrap.css" rel="stylesheet"/>
 		<script src="resource/jquery-3.2.1.js"></script>
 		<script src="resource/js/bootstrap.js"></script>
+		<script src="resource/js/common.js"></script>
 		<script type="text/javascript" src="resource/js/waterfall.js"/></script>
 		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="resource/js/iconfont.js"></script>
@@ -153,7 +154,7 @@
 			//资源id
 			var mid=userInfo.id//庄主用户id
 			$.ajax({
-				url:"http://localhost:8080/resource/getAgriculture",
+				url:commonJavaUrl+"resource/getAgriculture",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -190,7 +191,7 @@
 				//获取url中的resourceid参数
 				var resourceId = getUrlParam('resourceid');//资源id
 				$.ajax({
-					url:"https://localhost:8080/resource/insAgriculture",
+					url:commonJavaUrl+"resource/insAgriculture",
 					type:"post",
 					dataType:"json",
 					data:{
@@ -213,7 +214,7 @@
 		})
 		//养护记录照片和视频
 		function yanghujilu(){
-			var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
+			//var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic";
 			var storage=window.localStorage;//获取用户信息
 			var json=storage.getItem("userInfo");
 			var userInfo=JSON.parse(json);//获取用户信息
@@ -221,7 +222,7 @@
 			var rid = getUrlParam('resourceid');//资源id
 			var mid=userInfo.id//庄主用户id
 			$.ajax({
-				url:"http://localhost:8080/resource/getAgricultureOperation",
+				url:commonJavaUrl+"resource/getAgricultureOperation",
 				type:"post",
 				dataType:"json",
 				data:{
