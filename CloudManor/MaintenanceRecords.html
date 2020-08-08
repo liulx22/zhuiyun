@@ -4,15 +4,15 @@
 		<meta charset="utf-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<script src="./resource/jquery-3.2.1.js"></script>
-		<link href="./resource/mui/css/mui.min.css" rel="stylesheet"/>
-		<link rel="stylesheet" type="text/css" href="./resource/css/fangh/app.css" />
-		<link rel="stylesheet" type="text/css" href="./resource/css/fangh/iconfont.css" />  
-		<link rel="stylesheet" type="text/css" href="./resource/css/fangh/feedback-page.css" />  
-		<link rel="stylesheet" href="./resource/css/fangh/font-awesome.min.css">  
-		<script type="text/javascript" src="./resource/js/fangh/common.js"></script>
-		<!-- <script type="text/javascript" src="./resource/js/common.js"></script>  -->
-		<script type="text/javascript" src="./resource/js/fangh/utitls.js"></script>  
+		<link href="./resource/mui/css/mui.css" rel="stylesheet" />			<link rel="stylesheet" type="text/css" href="./resource/css/fangh/iconfont.css" />  
+				<link href="./resource/mui/css/mui.picker.min.css" rel="stylesheet" /> 			<link rel="stylesheet" type="text/css" href="./resource/css/fangh/feedback-page.css" />  
+				<link rel="stylesheet" type="text/css" href="resource/css/fangh/app.css" />			<link rel="stylesheet" href="./resource/css/fangh/font-awesome.min.css">  
+				<link rel="stylesheet" type="text/css" href="resource/css/fangh/iconfont.css" />  			<script type="text/javascript" src="./resource/js/fangh/common.js"></script>
+				<link rel="stylesheet" type="text/css" href="resource/css/fangh/feedback-page.css" />  			<!-- <script type="text/javascript" src="./resource/js/common.js"></script>  -->
+				<link rel="stylesheet" href="resource/css/fangh/font-awesome.min.css">  			<script type="text/javascript" src="./resource/js/fangh/utitls.js"></script>  
+				<script type="text/javascript" src="resource/css/fangh/js/common.js"></script>  	
+				<script type="text/javascript" src="resource/css/fangh/js/utitls.js"></script>
+				<script type="text/javascript" src="resource/js/common.js"></script>
 		<style>
 			#fileBox{margin:1rem 0;}
 			#fileBox label{display:block;float:left;height:50px;width:50px;background:url(images/++.png) no-repeat center;}
@@ -174,6 +174,8 @@
 			</div> -->
 		</div>
 		<script src="./resource/mui.min.js"></script>
+		<script src="resource/jquery-3.2.1.js"></script>  	
+		<script src="resource/mui/js/mui.picker.min.js"></script>
 		<script type="text/javascript">
 			mui.init();
 		</script>
@@ -184,6 +186,8 @@
 			var user=JSON.parse(userInfo);
 			var uid=1;
 			var username="mdj";
+			// var uid=user.id;
+			// var username=user.userName;
 			$(function(){
 				$("#output").hide();
 			})
@@ -695,21 +699,24 @@
 						sub.addEventListener('tap', function() {
 							var textarea=$("#textarea").val();
 							var dateSelect=$("#dateSelect").val();
-							uploadVideo();
-								/* mui.ajax(commonJavaUrl+"AgricultureOperation/addAgricultureOperation",{
-								    dataType:"json",
-								    type:"post",
-								    data:{"title":textarea,"operTime":dateSelect},
-									timeout:10000,//超时时间设置为10秒；
-								    success:function(data) {
-										if(data){
-											//视频上传
-											uploadVideo();
-										}else{
-											alert("上传失败！");
+							if(username){
+								mui.ajax(commonJavaUrl+"AgricultureOperation/addAgricultureOperation",{
+									    dataType:"json",
+									    type:"post",
+									    data:{"title":textarea,"operTime":dateSelect},
+										timeout:10000,//超时时间设置为10秒；
+									    success:function(data) {
+											if(data){
+												//视频上传
+												uploadVideo();
+											}else{
+												alert("上传失败！");
+											}
 										}
-									}
-							}) */
+								}) 
+							}else{
+								mui.toast('未登录！',{ duration:"35000ms", type:'div' })
+							}	 
 						})
 					</script> 
 		
