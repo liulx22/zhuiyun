@@ -415,7 +415,7 @@
 		         var length=id.toString().length;   
 		         var idnmae=id.toString();  
 		         var numKeys=plus.storage.getLength();  
-		         var task = plus.uploader.createUpload(getUrl1()/* + 'url' */, {  
+		         var task = plus.uploader.createUpload(commonJavaUrl+"AgricultureOperation/image_video"/* + 'url' */, {  
 		                                method: "POST"  
 		                            },  
 		                            function(t, status) {  
@@ -696,9 +696,8 @@
 				        
 				
 					function uploadVideo(){
-						alert(9999999999999)
 				            //第二个参数一定要有，然后把文件路径扔进来
-				            var task=plus.uploader.createUpload(getUrl1(), {  
+				            var task=plus.uploader.createUpload(commonJavaUrl+"AgricultureOperation/image_video", {  
 				                        method: "POST"  
 				                    },  
 				                    function(t, status) {  
@@ -840,7 +839,7 @@
 						}
 						function up2(){
 							//第二个参数一定要有，然后把文件路径扔进来
-				            var task=plus.uploader.createUpload(getUrl(), {  
+				            var task=plus.uploader.createUpload(commonJavaUrl+"AgricultureOperation/image_video", {  
 										method: "POST" 
 									},  
 									function(t, status) { 
