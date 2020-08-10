@@ -7,11 +7,13 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title>销售系统</title>
 		<script src="resource/jquery-3.2.1.js"></script>
+		<script src="resource/js/common.js"></script>
 		<link href="login/css/mui.min.css" rel="stylesheet" />
 		<link href="login/css/style.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="login/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="login/css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="login/css/component.css" />
+		
 		<style type="text/css">
 			.mui-content>.mui-table-view:first-child {
 				margin-top: -1px;
@@ -27,7 +29,7 @@
 			<a href="" class="back mui-pull-left"></a>
 			<h1 class="mui-title xiaoshoubar_title">用户登陆</h1>
 		</header>
-		<img src="login/images/微信图片_20200718103906.jpg" style="width: 230px;margin-top: 80px;margin-left: 70px;"></img>
+		<img src="login/images/login.jpg" style="width: 230px;margin-top: 80px;margin-left: 70px;"></img>
 		<section class="content" style="margin-left: 35px; margin-top: -80px;"> 
 				<span id="phone" class="input input--hoshi">
 					<input class="input__field input__field--hoshi" style="border:none;background-color: #fff0;" type="text" id="input-4" placeholder="请输入手机号"/>
@@ -64,7 +66,7 @@
 				var phone=$("#input-4").val();
 				if(phone!=""){
 					$.ajax({
-						url:"http://localhost:8080/login/yzm",
+						url:commonJavaUrl+"login/yzm",
 						data:{phone:phone},
 						type:"post",
 						dataType:"json",
@@ -73,7 +75,7 @@
 								alert("验证码发送成功")
 							}
 						},error:function(){
-							alert(222222)
+							alert("发送失败")
 						}
 					})
 				}else{
@@ -87,12 +89,11 @@
 				var phone=$("#input-4").val();
 				if(phone!=""&&yzm!=""){
 					$.ajax({
-						url:"http://localhost:8080/login/login",
+						url:commonJavaUrl+"login/login",
 						data:{phone:phone,yzm:yzm},
 						type:"post",
 						dataType:"json",
 						success:function(data){
-							alert(11)
 							if(data!=""){
 								alert("登陆成功")
 								var userInfo = JSON.stringify(data)
@@ -100,9 +101,11 @@
 								history.back();
 							}
 						},error:function(){
-							alert("失败")
+							alert("登陆失败")
 						}
 					})
+				}else{
+					alert("请输入手机号验证码才可登陆")
 				}
 			})
 			 

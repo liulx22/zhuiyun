@@ -5,6 +5,7 @@
 		
 	<link href="resource/css/zz_index.css" rel="stylesheet" style=""/>
 	<script src="resource/jquery-3.2.1.js"></script>
+	<script src="resource/js/common.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
@@ -122,9 +123,8 @@
 		}
 		
 		function bbb(id){
-			alert("55")
 			$.ajax({
-				url: "http://localhost:8080/CommentController/delete",
+				url: commonJavaUrl+"CommentController/delete",
 				dataType: "json",
 				type: "post",
 				data:{"id":id},
@@ -167,7 +167,7 @@
 	$(function(){	
 		var id=1;
 		 $.ajax({
-		 	url: "http://localhost:8080/CommentController/getAllWo",
+		 	url: commonJavaUrl+"CommentController/getAllWo",
 		 	dataType: "json",
 		 	type: "post",	
 			data:{

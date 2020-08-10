@@ -6,7 +6,7 @@ function getUrl(){
 	return url;
 }
 function getUrl1(){
-	var url = "http://123.56.254.245:8088/AgricultureOperation/image_video";
+	var url = commonJavaUrl+"AgricultureOperation/image_video";
 	return url;
 }
 /**

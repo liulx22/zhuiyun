@@ -197,6 +197,19 @@
 		 	.BoxRight{
 		 		padding-top: 0.625rem;
 		 	}
+			.box {
+				padding: 2%;
+				border: 2% solid #ccc;
+				box-shadow: 0 0 10px #ccc;
+				border-radius: 5px;
+			}
+					 
+			.box img {
+				width: 100%;
+				height:auto;
+				margin-bottom: 20px;
+			}
+				
 		 </style>
 		 
 		 
@@ -207,20 +220,20 @@
 			 			//请求方式为get
 			 			type:"GET",
 			 			//json文件位置
-			 			url:"./file/index.json",
+			 			url:"http://123.56.254.245:8088/myManor/getIndex",
+						/* http://123.56.254.245:8088/myManor/getIndex   59.110.139.4*/
 			 	        //返回数据格式为json
 			 	        dataType: "json",
 			 	        //请求成功完成后要执行的方法
 			 	        success: function(data){
 			 			    //使用$.each方法遍历返回的数据date,插入到id为#result中
-			 				/* var str=""; */
+			 				var str="";
 							for(var i=0;i<data.length;i++){ 
-								 str+="<div class=\"pin\"><div class=\"box\"><img src=\""+globaPicUrl+"resource/"+data[i].videoPath+"\" onclick=\"gotodetail('"+data[i].videoPath+"')\"/></div>";
+								 str+="<div class=\"pin\"><div class=\"box\"><img src=\""+data[i].videoPath+"\" onclick=\"gotodetail('"+data[i].videoPath+"')\"/></div>";
 								 str+="<div class=\"text-under-img\">";
 								 
 								 str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>"+data[i].address+"</span><span class=\"col-xs-4\">"+data[i].title+"</span>";
-								
-								 
+									
 								 str+="<img src='./images/heart.png' />";
 								 str+="</div></div>"; 
 								 
@@ -298,10 +311,28 @@
 				<span class="mui-tab-label">首页</span>
 			</a>
 			
-			<a class="mui-tab-item" href="./my_manor.html">
+			<a class="mui-tab-item" id="xiangqing">
 				<span class="mui-icon mui-icon-contact"></span>
 				<span class="mui-tab-label">我的</span>
 			</a>
+			<script>
+				$("#defaultTab").click(function(){
+					var a=localStorage.getItem("userInfo")
+					if(a==null){
+						location.href="./login.html" 
+					}else{
+						location.href="./my_manor.html" 
+					}
+				})
+				$("#xiangqing").click(function(){
+					var a=localStorage.getItem("userInfo")
+					if(a==null){
+						location.href="./login.html" 
+					}else{
+						location.href="./my_manor.html" 
+					}
+				})
+			</script>
 		</nav>
 		
 		<script type="text/javascript" charset="utf-8">
@@ -311,7 +342,13 @@
 		<!-- 搜索-->
 		<script type="text/javascript">
 			$("#search1").click(function(){
-				alert($("#user_search").val())
+				var a=localStorage.getItem("userInfo")
+				if(a==null){
+					location.href="./login.html" 
+				}else{
+					alert($("#user_search").val())
+				}
+				
 			})
 			$("#user_search").on('keypress',function(e) {
 			                var keycode = e.keyCode;
