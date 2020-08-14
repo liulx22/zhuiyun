@@ -47,16 +47,26 @@
 	</div>
 	
 	<script type="text/javascript">
+		
+		var storage = window.localStorage;
+			var json = storage.getItem("userInfo");
+			var userInfo = JSON.parse(json);
+			
+			
+		var userId=userInfo.id;
 		function bbb(id){
 			alert("55")
 			$.ajax({
 				url: "http://localhost:8080/CommentController/delete",
 				dataType: "json",
 				type: "post",
-				data:{"id":id},
-				 success: function(dat) {
-				                    console.log(dat);
-				                    if(dat){
+				data:{"id":id,
+					"userId":userId
+				},
+				 success: function(data) {
+					 alert(userId+"qq");
+				                    console.log(data);
+				                    if(data){
 				                        alert("删除成功");
 										 window.location.reload();
 				                    }else{
@@ -71,7 +81,7 @@
 		}
 		
 	$(function(){					
-		var id=1;
+		var id=userInfo.id;
 		 $.ajax({
 		 	url: "http://localhost:8080/CommentController/getAll",
 		 	dataType: "json",
@@ -110,7 +120,8 @@
 		 
 		 });
 		
-	})			
+	})		
+		/*5  */
 	 </script>
 </body>
 	
