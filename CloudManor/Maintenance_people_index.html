@@ -7,6 +7,8 @@
 		<link href="./resource/mui/css/mui.css" rel="stylesheet" />
 		<link href="./resource/css/fangh/app.css" rel="stylesheet" />
 		<link href="./resource/mui/css/icons-extra.css" rel="stylesheet" />
+		
+		<script src="./resource/js/common.js"></script>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<style>
@@ -30,11 +32,11 @@
 			<div style="margin: 5%;">
 				<img id="userHead" src="Picture/my_manor_pic/user.png" style="vertical-align:middle">
 				<label style="font-size: 30px;margin-left: 5%;">The Shy</label>
-				<div style="margin-top: 5%;">
+				<div style="margin-top: 5%;" id="yewubody">
 					<p style="font-size: 14px;color: #000000;">主营业务：</p>
-					<p style="font-size: 14px;color: #000000;">果树：核桃树、苹果树、梨树、石榴树
+<!-- 					<p style="font-size: 14px;color: #000000;">果树：核桃树、苹果树、梨树、石榴树
 					<p style="font-size: 14px;color: #000000;">畜牧：绵羊、山羊、奶牛、鸡、鸭
-					<p style="font-size: 14px;color: #000000;">农田：玉米、花生、西瓜、番薯
+					<p style="font-size: 14px;color: #000000;">农田：玉米、花生、西瓜、番薯 -->
 				</div>
 				<p style="font-size: 13px;color: #808080;">
 					<i class="mui-icon mui-icon-map"></i>北京市昌平区
@@ -101,7 +103,49 @@
 			function toMoney(){
 				window.location.href="./money/money.html";
 			}
-			
+			//加载主营业务
+			function zhuyingyewu(){
+					var uId=1;
+					//取出用户信息
+					var userInfo2=JSON.parse(localStorage.getItem('userInfo'));
+					if(userInfo2!=undefined && userInfo2!=null){
+						uId=userInfo2.id;
+					}
+					$.ajax({
+						//请求方式为post
+						type:"post",
+						//json文件位置
+						url:commonJavaUrl+"CultivatePersonCenterController/selectBusinessResourceUser",
+					    //返回数据格式为json
+					    dataType: "json",
+						data:{'userId':uId},
+					    //请求成功完成后要执行的方法
+					    success: function(data){
+						
+													$.each(data,function(i,value){
+													console.log(value)
+													var oo='<p style="font-size: 14px;color: #000000;">'+value.resourceTypeName+'：<span name="'+value.resourceTypeName+'" id="'+value.resourceTypeId+'"></span>\n' +
+						        '\t\t\t\t\t';
+															$("#yewubody").append(oo)
+															console.log(value.details)
+															if(value.details!=null&&value.details!=undefined){
+																var lll=document.getElementById(value.resourceTypeId)
+																console.log(lll)
+																$("span[name='"+value.resourceTypeName+"']").text(value.details);
+															}
+															/* jQuery(oo).insertBefore('#neirong1'); */
+																
+															                        })	
+														
+										
+										
+										   },
+						   error : function() {
+							   console.log("异常！")
+						   }
+					});
+					
+			 }
 			// 作品展示
 			$(function(){
 				var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
@@ -134,7 +178,10 @@
 					   }
 				  });
 				  
+				  //加载主营业务
+				  zhuyingyewu();
 			 });
+			 
 		</script>
 	</body>
 

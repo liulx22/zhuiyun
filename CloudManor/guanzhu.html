@@ -2,6 +2,7 @@
 <html>
 	<link href="./resource/css/zz_index.css" rel="stylesheet" style=""/>
 	<script src="./resource/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="./resource/js/common.js"></script>  
 	<meta charset="utf-8">
 	<!--图标js-->
 	<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
@@ -86,10 +87,15 @@
 				            }
 			 
 			 }); */
+			 
+						var storage=window.localStorage;
+							var json=storage.getItem("userInfo");
+							var userInfo=JSON.parse(json);
 			 $.ajax({
-			 	url: "http://localhost:8080/attention/SelAttrntion",
+			 	url: commonJavaUrl+"attention/SelAttrntion?userId2="+userInfo,
 			 	dataType: "json",
 			 	type: "post",	
+				data:{"userId2":userInfo},
 			 	header: {
 			 		'content-type': 'application/x-www-form-urlencoded'
 			 	},

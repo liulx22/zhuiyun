@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" href="../resource/js/layui/layui.css">
+		<link rel="stylesheet" href="../resource/js/layui/layui.mobile.css">
+		<link rel="stylesheet" href="../css/bootstrap.css">
+		<script src="../resource/js/common.js"></script>
+		<script src="../resource/jquery-3.2.1.js"></script>
+		<script src="../resource/js/layui/layui.js"></script>
+		<script src="../resource/js/layui/layer.js"></script>
+		<script src="../resource/js/layui/layui.all.js"></script>
+		<link rel="stylesheet" href="../resource/layui/iconfont.css">
+		<script src="../resource/layui/iconfont.js"></script>
+		<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
+		<script src="../resource/js/iconfont.js"></script>
+	</head>
+	<script>
+		var userid =  localStorage.getItem("userInfo");
+		var uid=userid.id;
+		function addyhk(){
+			window.location.href='addyihangka.html';
+		}
+		//返回上一页
+		function toback(){
+			history.go(-1);
+		}
+	</script>
+	<body >
+		<div>
+			<div style="font-size: 18px;margin-top: 10px;">
+				<!-- 返回 -->
+				<svg class="icon" id="arrow-lift" aria-hidden="true" style="width: 30px;height: 30px;float: left; " onclick="toback()">
+					<use xlink:href="#icon-arrow-lift"></use>
+				</svg>
+			<span style="margin-left: 110px;">银行卡管理</span>
+			</div>
+			
+			<div style="background-color: #7f7f7f;margin-top: 20px;width: 100%;height: 150px;">
+				<div style="color: #7f7f7f;">
+					1
+				</div>
+				<div class="iconfont icon-jia" style="font-size: 40px; color: white;margin-left: 44%;margin-top: 10px;" onclick="addyhk()"></div>
+				<div style="color: white;margin-left:40%;margin-top: 20px;">添加银行卡</div>
+			</div>
+			<div style="color: #545a6c;margin-top: 20px;">
+				提示：<br/><br/>
+				首次绑定银行卡时即完成实名认证，后续只能绑定同一
+				自然人的银行卡。
+
+			</div>
+		</div>
+	</body>
+</html>

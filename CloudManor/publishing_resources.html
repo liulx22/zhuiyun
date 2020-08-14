@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
-	<script src="resource/jquery-3.2.1.js"></script>
-    <link href="resource/mui/css/mui.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" type="text/css" href="resource/css/fangh/app.css" />
-	<link rel="stylesheet" type="text/css" href="resource/css/fangh/iconfont.css" />  
-	<link rel="stylesheet" type="text/css" href="resource/css/fangh/feedback-page.css" />  
-	<link rel="stylesheet" href="resource/css/fangh/font-awesome.min.css">  
-	<script type="text/javascript" src="resource/css/js/common.js"></script>  
-	<script type="text/javascript" src="resource/css/js/utitls.js"></script>  
+	<script src="./resource/jquery-3.2.1.js"></script>
+    <link href="./resource/mui/css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="./resource/css/fangh/app.css" />
+	<link rel="stylesheet" type="text/css" href="./resource/css/fangh/iconfont.css" />  
+	<link rel="stylesheet" type="text/css" href="./resource/css/fangh/feedback-page.css" />  
+	<link rel="stylesheet" href="./resource/css/fangh/font-awesome.min.css">  
+	<script type="text/javascript" src="./resource/js/fangh/common.js"></script>
+	<script type="text/javascript" src="./resource/js/common.js"></script>  
+	<script type="text/javascript" src="./resource/js/fangh/utitls.js"></script>  
+	
 	<!-- 图片css -->
 	<style type="text/css">  
 	    .del {  
@@ -115,6 +117,9 @@
 		.mui-input-row{
 			font-size: 12px;
 		}
+		.mui-input-row input{
+			font-size: 12px;
+		}
 		input::-webkit-input-placeholder{
 			font-size:12px;
 		}
@@ -140,8 +145,8 @@
 		<!-- 封面单图片css -->
 		<style>
 			 .load-img{
-				 width: 3.75rem;
-				 height:3.75rem;
+				 width: 60;
+				 height:60;
 			 }
 			 .letter-photo{
 				 width: 100%;
@@ -168,122 +173,122 @@
 		<form class="mui-input-group">
 			<div class="mui-input-row">
 				<label>标题：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入标题">
+				<input name="title" id="title" type="text" class="mui-input-clear" placeholder="请输入标题">
 			</div>
 			<div class="mui-input-row">
 				<label>描述：</label>
-				<select id="typed" style="font-size: 12px;">
+				<select name="reTypeCode" id="typed" style="font-size: 12px;">
 					<option value="">请选择</option>
-					<option value="1">果树</option>
-					<option value="2">畜牧业</option>
-					<option value="3">地块</option>
+					<option value="fruiter">果树</option>
+					<option value="livestock">畜牧业</option>
+					<option value="plot">地块</option>
 				</select>
 			</div>
 		</form>
 			<!-- 果树 -->
 			<div id="tree">
-			<form class="mui-input-group">
+			<form id="tree1" class="mui-input-group">
 			<div class="mui-input-row">
 				<label>地理位置：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入地理位置">
+				<input name="geographicPosition" type="text" class="mui-input-clear" placeholder="请输入地理位置">
 			</div>
 			<div class="mui-input-row">
 				<label>品种名称：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入品种名称">
+				<input name="breedName" type="text" class="mui-input-clear" placeholder="请输入品种名称">
 			</div>
 			<div class="mui-input-row">
 				<label>树龄（年）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入树龄（年）">
+				<input name="treeAge" type="text" class="mui-input-clear" placeholder="请输入树龄（年）" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
 			</div>
 			<div class="mui-input-row">
 				<label>年产量：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入年产量">
+				<input name="yearlyOutput" type="number" class="mui-input-clear" placeholder="请输入年产量">
 			</div>
 			<div class="mui-input-row">
 				<label>果树直径（cm）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入果树直径（cm）">
+				<input name="diameter" type="text" class="mui-input-clear" placeholder="请输入果树直径（cm）" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
 			</div>
 			<div class="mui-input-row">
 				<label>承包时间（年）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入承包时间（年）">
+				<input name="leaseTime" type="date" class="mui-input-clear" placeholder="请输入承包时间（年）">
 			</div>
 			<div class="mui-input-row">
 				<label>价格（元）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入价格（元）">
+				<input name="money" type="number" class="mui-input-clear" placeholder="请输入价格（元）">
 			</div>
 			</form>
 			</div>
 			<!-- 畜牧业 -->
 			<div id="Animal">
-			<form class="mui-input-group">
+			<form id="Animal1" class="mui-input-group">
 			<div class="mui-input-row">
 				<label>地理位置：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入地理位置">
+				<input name="geographicPosition" type="text" class="mui-input-clear" placeholder="请输入地理位置">
 			</div>
 			<div class="mui-input-row">
 				<label>品种名称：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入品种名称">
+				<input name="breedName" type="text" class="mui-input-clear" placeholder="请输入品种名称">
 			</div>
 			<div class="mui-input-row">
 				<label>重量（斤）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入重量（斤）">
+				<input name="weight" type="number" class="mui-input-clear" placeholder="请输入重量（斤）">
 			</div>
 			<div class="mui-input-row">
 				<label>颜色：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入颜色">
+				<input name="colour" type="text" class="mui-input-clear" placeholder="请输入颜色">
 			</div>
 			<div class="mui-input-row">
 				<label>年龄（天）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入年龄（天）">
+				<input name="age" type="text" class="mui-input-clear" placeholder="请输入年龄（天）" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
 			</div>
 			<div class="mui-input-row">
 				<label>是否打过疫苗：</label>
-				<input name="radio1" value="1" style="float: none; width: 5%;margin-top: 9px;" class="mui-input-clear" type="radio"><span style=" font-size: 14px;">是</span>
-				<input name="radio1" value="2" style="float: none; width: 5%;" class="mui-input-clear" type="radio">
+				<input name="vaccine" value="是" style="float: none; width: 5%;margin-top: 9px;" class="mui-input-clear" type="radio"><span style=" font-size: 14px;">是</span>
+				<input name="vaccine" value="否" style="float: none; width: 5%;" class="mui-input-clear" type="radio">
 				<span style=" font-size: 14px;">否</span>
 			</div>
 			<div class="mui-input-row">
 				<label>价格（元）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入价格（元）">
+				<input name="money" type="number" class="mui-input-clear" placeholder="请输入价格（元）">
 			</div>
 			</form>
 			</div>
 			<!-- 地块 -->
 			<div id="land">
-			<form class="mui-input-group">
+			<form id="land1" class="mui-input-group">
 			<div class="mui-input-row">
 				<label>地理位置：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入地理位置">
+				<input name="geographicPosition" type="text" class="mui-input-clear" placeholder="请输入地理位置">
 			</div>
 			<div class="mui-input-row">
 				<label>去年种植什么：</label>
-				<input type="text" class="mui-input-clear" placeholder="请输入去年种植什么">
+				<input name="plantType" type="text" class="mui-input-clear" placeholder="请输入去年种植什么">
 			</div>
 			<div class="mui-input-row">
 				<label>产量（斤）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入产量（斤）">
+				<input name="yield" type="number" class="mui-input-clear" placeholder="请输入产量（斤）">
 			</div>
 			<div class="mui-input-row">
 				<label>面积（平方米）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入面积（平方米）">
+				<input name="proportion" type="number" class="mui-input-clear" placeholder="请输入面积（平方米）">
 			</div>
 			<div class="mui-input-row">
 				<label>土地类型：</label>
-				<select style="font-size: 12px;">
+				<select name="landType" style="font-size: 12px;">
 					<option value="">请选择</option>
-					<option value="1">耕地</option>
-					<option value="2">山地</option>
-					<option value="3">林地</option>
-					<option value="4">水田</option>
+					<option value="耕地">耕地</option>
+					<option value="山地">山地</option>
+					<option value="林地">林地</option>
+					<option value="水田">水田</option>
 				</select>
 			</div>
 			<div class="mui-input-row">
 				<label>承包时间（年）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入承包时间（年）">
+				<input name="leaseTime" type="date" class="mui-input-clear" placeholder="请输入承包时间（年）">
 			</div>
 			<div class="mui-input-row">
 				<label>价格（元）：</label>
-				<input type="number" class="mui-input-clear" placeholder="请输入价格（元）">
+				<input name="money" type="number" class="mui-input-clear" placeholder="请输入价格（元）">
 			</div>
 			</form>
 			</div>
@@ -298,7 +303,7 @@
 						<li id="empty" class="ditem-empty">无视频</li>
 					</ul>
 				</div>
-				<div id="outpos"/>
+				<!-- <div id="outpos"/> -->
 				<div id="output">
 				</div>
 			</form>
@@ -314,8 +319,6 @@
 					<div class="letter-photo" id="letter-photo">
 						<div class="letter-photo-img">
 							<img style="width: 6.5rem;height: 8.5rem;" src="./resource/css/images/iconfont-tianjia.png" data-preview-src="" data-preview-group="1" />
-							<!--<img src="images/test.jpg" data-preview-src="" data-preview-group="1" />
-							<img src="images/test.jpg" data-preview-src="" data-preview-group="1" />-->
 						</div>
 					</div>
 				</div>
@@ -337,12 +340,12 @@
 				</div>
 			 </form>
 			 <!-- 封面的提交 不完善，不可点击-->
-			 <div class="sub-btn-recommend">
-			 	<button id="sub" disabled="disabled" class="btn-recommend" style="margin-left: 45%;">提交</button>
+			 <div>
+			 	<button id="sub" class="btn-recommend" style="margin-left: 45%;">提交</button>
 			 </div>
 	</div>
 </body>
- <script src="resource/mui/js/mui.min.js"></script>
+ <script src="./resource/mui.min.js"></script>
  <script type="text/javascript" charset="utf-8">
    	mui.init();
  </script>
@@ -353,6 +356,10 @@
 
 <!-- 参数 -->
 <script>
+	var resourceid=null;
+	var type1=null;
+	var userInfo=window.localStorage.getItem(userInfo);
+	var user=JSON.parse(userInfo);
 	$(function(){
 		$("#tree").hide();
 		$("#Animal").hide();
@@ -361,25 +368,28 @@
 	})
 	$("#typed").change(function(){
 		var typed=$("#typed option:selected").val();
-		if(typed=="1"){
+		if(typed=="fruiter"){
 			$("#tree").show();
 			$("#Animal").hide();
 			$("#land").hide();
-		}else if(typed=="2"){
+		}else if(typed=="livestock"){
 			$("#Animal").show();
 			$("#tree").hide();
 			$("#land").hide();
-		}else if(typed=="3"){
+		}else if(typed=="plot"){
 			$("#land").show();
 			$("#tree").hide();
 			$("#Animal").hide();
 		}else{
 			$("#land").hide();
 			$("#tree").hide();
-			$("#Animal").hide();
+			$("#Animal").hide(); 
 		}
 	});
 </script>
+
+
+
 
 
 <!--  ==============================分割线================================================ -->
@@ -512,7 +522,7 @@
                 });  
             }, function(e) {  
             }, {  
-                filename: "_doc/camera/",  
+                filename: "_doc/camera/", 
                 index: 1  
             });  
         }  
@@ -566,53 +576,42 @@
               
         }  
         //上传图片，实例中没有添加上传按钮  
-        function uploadimge(agree,back) {  
+        function uploadimge(/* agree,back */) {  
         //plus.storage.clear();  
          var wa = plus.nativeUI.showWaiting();  
-         var DkeyNames=[];  
+         var imgArray=[];  
          var id = document.getElementById("ckjl.id").value;   
          var length=id.toString().length;   
          var idnmae=id.toString();  
          var numKeys=plus.storage.getLength();  
-         var task = plus.uploader.createUpload(getUrl() + 'url', {  
+         var task = plus.uploader.createUpload(commonJavaUrl+"Releaseresource/image_video", {  
                                 method: "POST"  
                             },  
                             function(t, status) {  
                                 if (status == 200) {  
-                                    console.log("上传成功");  
-                                     $.ajax({  
-                                        type: "post",  
-                                        url: getUrl() + 'url',  
-                                        data: {  
-                                            taskId: taskId,  
-                                            voteAgree: agree,  
-                                            back: back,  
-                                            voteContent: $("#assign").val(),  
-                                        },  
-                                        async: true,  
-                                        dataType: "text",  
-                                        success: function(data) {  
-                                            wa.close();  
-                                            goList(data);  
-                                          
-                                              
-                                        },  
-                                        error: function() {  
-                                            wa.close();  
-                                            myAlert("网络错误，提交审批失败，请稍候再试");  
-                                        }  
-                                    });  
-                                       
-                                      
+										wa.close();  
+										if(t.responseText){
+											$("#F_CKJLBS").html('<div class="image-item " id="F_CKJLB" onclick="showActionSheet(this);"></div>');
+											//封面图上传
+											up2();
+										}else{
+											mui.toast('上传失败了！sorry，请重新来一遍',{ duration:"35000ms", type:'div' })
+										}
                                 } else {  
                                     wa.close();  
                                     console.log("上传失败");   
                                 }  
                             }  
                         );  
-            task.addData("id",id);  
-            for(var i=0; i<imgArray.length;i++){    
-                var itemkey=id+"img-"+imgArray[i];  
+			if(user.userName){
+				type1="2_"+resourceid+"/"+user.id+"-"+user.userName;
+				task.addData("type1",type1); 
+			}else {  
+                mui.toast("上传失败了。sorry，请重新来一遍");  
+            } 
+			 
+           /* for(var i=0; i<imgArray.length;i++){    
+                var itemkey=id+"img-F_CKJLB";//+imgArray[i];  
                 if(plus.storage.getItem(itemkey)!=null){  
                     var itemvalue=plus.storage.getItem(itemkey).split("{");  
                     for(var img=1;img<itemvalue.length;img++){  
@@ -621,157 +620,165 @@
                         task.addFile(imgurl,{key:imgurl});  
                     }  
                 }  
-            }  
+            } */ 
+			 var itemkey=id+"img-F_CKJLB";//+imgArray[i];  
+			 if(plus.storage.getItem(itemkey)!=null){
+			     var itemvalue=plus.storage.getItem(itemkey).split("{"); 
+			     for(var img=1;img<itemvalue.length;img++){  
+			         var imgname=itemvalue[img].substr(0,itemvalue[img].indexOf(","));  
+			         var imgurl=itemvalue[img].substring(itemvalue[img].indexOf(",")+1,itemvalue[img].lastIndexOf(","));
+			         task.addFile(imgurl,{key:imgurl});
+			     } 
+				plus.storage.removeItem(itemkey); 
+			 }
             task.start();  
-              
-        }  
+        }
 </script>  
 
 <!--  ==============================分割线================================================ -->
 
 <!-- 上传视频 -->
 <script type="text/javascript">
-				mui.init();
-	var i=1,gentry=null,w=null;
-	var hl=null,le=null,de=null,ie=null;
-	var unv=true;
-	var bUpdated=false; //用于兼容可能提前注入导致DOM未解析完更新的问题
-	// H5 plus事件处理
-	function plusReady(){
-		// 获取摄像头目录对象
-		plus.io.resolveLocalFileSystemURL('_doc/', function(entry){
-			entry.getDirectory('camera', {create:true}, function(dir){
-				gentry = dir;
-				updateHistory();
+		mui.init();
+		var i=1,gentry=null,w=null;
+		var hl=null,le=null,de=null,ie=null;
+		var unv=true;
+		var bUpdated=false; //用于兼容可能提前注入导致DOM未解析完更新的问题
+		// H5 plus事件处理
+		function plusReady(){
+			// 获取摄像头目录对象
+			plus.io.resolveLocalFileSystemURL('_doc/', function(entry){
+				entry.getDirectory('camera', {create:true}, function(dir){
+					gentry = dir;
+					updateHistory();
+				}, function(e){
+					outSet('Get directory "camera" failed: '+e.message);
+				} );
 			}, function(e){
-				outSet('Get directory "camera" failed: '+e.message);
-			} );
-		}, function(e){
-			outSet('Resolve "_doc/" failed: '+e.message);
-		});
-	}
-	if(window.plus){
-		plusReady();
-	}else{
-		document.addEventListener('plusready', plusReady, false);
-	}
-	// 监听DOMContentLoaded事件
-	document.addEventListener('DOMContentLoaded', function(){
-		// 获取DOM元素对象
-		hl=document.getElementById('history');
-		le=document.getElementById('empty');
-		de=document.getElementById('display');
-		if(ie=document.getElementById('index')){
-			ie.onchange=indexChanged;
-		}
-		// 判断是否支持video标签
-		unv=!document.createElement('video').canPlayType;
-		updateHistory();
-	},false );
-	function changeIndex(){
-		outSet('选择摄像头：');
-		ie.focus();
-	}
-	function indexChanged(){
-		de.innerText = ie.options[ie.selectedIndex].innerText;
-		i = parseInt(ie.value);
-		outLine(de.innerText);
-	}
-	
-	// 显示文件
-	function displayFile(li){
-		if(w){
-			outLine('重复点击！');
-			return;
-		}
-		if(!li || !li.entry){
-			ouSet('无效的媒体文件');
-			return;
-		}
-		var name = li.entry.name;
-		var suffix = name.substr(name.lastIndexOf('.'));
-		var url = '';
-		if(suffix=='.mov' || suffix=='.3gp' || suffix=='.mp4' || suffix=='.avi'){
-			//if(unv){plus.runtime.openFile('_doc/camera/'+name);return;}
-			url = '/camera_video.html';
-		} else {
-			url = '/camera_image.html';
-		}
-		w=plus.webview.create(url,url,{hardwareAccelerated:true,scrollIndicator:'none',scalable:true,bounce:'all'});
-		w.addEventListener('loaded', function(){
-			w.evalJS('loadMedia("'+li.entry.toLocalURL()+'")');
-			//w.evalJS('loadMedia("'+'http://localhost:13131/_doc/camera/'+name+'")');
-		}, false );
-		w.addEventListener('close', function(){
-			w = null;
-		}, false);
-		w.show('pop-in');
-	}
-	
-	// 添加播放项
-	function createItem(entry){
-		cleanHistory();
-		var li = document.createElement('li');
-		li.className = 'ditem';
-		li.innerHTML = '<span class="iplay"><font class="aname"></font><br/><font class="ainf"></font></span>';
-		li.setAttribute('onclick', 'displayFile(this)' );
-		hl.insertBefore( li, le.nextSibling );
-		li.querySelector('.aname').innerText = entry.name;
-		li.querySelector('.ainf').innerText = '...';
-		li.entry = entry;
-		updateInformation(li);
-		// 设置空项不可见
-		le.style.display = 'none';
-	}
-	// 获取录音文件信息
-	function updateInformation(li){
-		if(!li || !li.entry){
-			return;
-		}
-		var entry = li.entry;
-		entry.getMetadata(function(metadata){
-			li.querySelector('.ainf').innerText = dateToStr(metadata.modificationTime);
-		}, function(e){
-			outLine('获取文件"'+entry.name+'"信息失败：'+e.message);
-		} );
-	}
-	// 获取录音历史列表
-	function updateHistory(){
-		if(bUpdated||!gentry||!document.body){//兼容可能提前注入导致DOM未解析完更新的问题
-			return;
-		}
-	  	var reader = gentry.createReader();
-	  	reader.readEntries(function(entries){
-	  		for(var i in entries){
-	  			if(entries[i].isFile){
-	  				createItem(entries[i]);
-	  			}
-	  		}
-	  	}, function(e){
-	  		outLine('读取录音列表失败：'+e.message);
-	  	});
-	  	bUpdated = true;
-	}
-	// 清除历史记录
-	function cleanHistory(){
-		if(flag){
-			hl.innerHTML = '<li id="empty" class="ditem-empty">无历史记录</li>';
-			le = document.getElementById('empty');
-			// 删除音频文件
-			outSet('清空拍照录像历史记录：');
-			gentry.removeRecursively(function(){
-				// Success
-				outLine('成功！');
-			}, function(e){
-				outLine('失败：'+e.message);
+				outSet('Resolve "_doc/" failed: '+e.message);
 			});
-			file=null;
 		}
-	}
-	
-	 
-	
-			</script>
+		if(window.plus){
+			plusReady();
+		}else{
+			document.addEventListener('plusready', plusReady, false);
+		}
+		// 监听DOMContentLoaded事件
+		document.addEventListener('DOMContentLoaded', function(){
+			// 获取DOM元素对象
+			hl=document.getElementById('history');
+			le=document.getElementById('empty');
+			de=document.getElementById('display');
+			if(ie=document.getElementById('index')){
+				ie.onchange=indexChanged;
+			}
+			// 判断是否支持video标签
+			unv=!document.createElement('video').canPlayType;
+			updateHistory();
+		},false );
+		function changeIndex(){
+			outSet('选择摄像头：');
+			ie.focus();
+		}
+		function indexChanged(){
+			de.innerText = ie.options[ie.selectedIndex].innerText;
+			i = parseInt(ie.value);
+			outLine(de.innerText);
+		}
+		
+		// 显示文件
+		function displayFile(li){
+			if(w){
+				outLine('重复点击！');
+				return;
+			}
+			if(!li || !li.entry){
+				ouSet('无效的媒体文件');
+				return;
+			}
+			var name = li.entry.name;
+			var suffix = name.substr(name.lastIndexOf('.'));
+			var url = '';
+			if(suffix=='.mov' || suffix=='.3gp' || suffix=='.mp4' || suffix=='.avi'){
+				//if(unv){plus.runtime.openFile('_doc/camera/'+name);return;}
+				url = '/camera_video.html';
+			} else {
+				url = '/camera_image.html';
+			}
+			w=plus.webview.create(url,url,{hardwareAccelerated:true,scrollIndicator:'none',scalable:true,bounce:'all'});
+			w.addEventListener('loaded', function(){
+				w.evalJS('loadMedia("'+li.entry.toLocalURL()+'")');
+				//w.evalJS('loadMedia("'+'http://localhost:13131/_doc/camera/'+name+'")');
+			}, false );
+			w.addEventListener('close', function(){
+				w = null;
+			}, false);
+			w.show('pop-in');
+		}
+		
+		// 添加播放项
+		function createItem(entry){
+			cleanHistory();
+			var li = document.createElement('li');
+			li.className = 'ditem';
+			li.innerHTML = '<span class="iplay"><font class="aname"></font><br/><font class="ainf"></font></span>';
+			li.setAttribute('onclick', 'displayFile(this)' );
+			hl.insertBefore( li, le.nextSibling );
+			li.querySelector('.aname').innerText = entry.name;
+			li.querySelector('.ainf').innerText = '...';
+			li.entry = entry;
+			updateInformation(li);
+			// 设置空项不可见
+			le.style.display = 'none';
+		}
+		// 获取录音文件信息
+		function updateInformation(li){
+			if(!li || !li.entry){
+				return;
+			}
+			var entry = li.entry;
+			entry.getMetadata(function(metadata){
+				li.querySelector('.ainf').innerText = dateToStr(metadata.modificationTime);
+			}, function(e){
+				outLine('获取文件"'+entry.name+'"信息失败：'+e.message);
+			} );
+		}
+		// 获取录音历史列表
+		function updateHistory(){
+			if(bUpdated||!gentry||!document.body){//兼容可能提前注入导致DOM未解析完更新的问题
+				return;
+			}
+		  	var reader = gentry.createReader();
+		  	reader.readEntries(function(entries){
+		  		for(var i in entries){
+		  			if(entries[i].isFile){
+		  				/* createItem(entries[i]); */
+		  			}
+		  		}
+		  	}, function(e){
+		  		outLine('读取录音列表失败：'+e.message);
+		  	});
+		  	bUpdated = true;
+		}
+		// 清除历史记录
+		function cleanHistory(){
+			if(flag){
+				hl.innerHTML = '<li id="empty" class="ditem-empty">无历史记录</li>';
+				le = document.getElementById('empty');
+				// 删除音频文件
+				outSet('清空拍照录像历史记录：');
+				gentry.removeRecursively(function(){
+					// Success
+					outLine('成功！');
+				}, function(e){
+					outLine('失败：'+e.message);
+				});
+				file=null;
+			}
+		}
+				</script>
+				
+				
 <script>
 		mui.init();
 		var file=null;
@@ -826,22 +833,34 @@
 			}
 		
 		        
-		        function uploadVideo(file){ 
+		        function uploadVideo(){ 
 		            //第二个参数一定要有，然后把文件路径扔进来
-		            var task=plus.uploader.createUpload(basePath+"/weChatEventController.do?upload", {processData: false, contentType: "multipart/form-data"}, function (t, status){
-		                if(status==200){
-		//                    alert( "Upload success: " + t.url );
-		//                    alert(t.responseText);
-		                    var responseText = $.parseJSON(t.responseText);
-		                    alert(responseText.obj);
-		                    var filePath = "<input type=\"hidden\" name=\"filePath\" value=\""+responseText.obj+"\">";//文件地址
-		                    jQuery("#videos").append(filePath);
-		                } else {
-		                    mui.toast("上传失败了。sorry，请重新来一遍");
-		                }
-		            });
-		            task.addFile( file, {key:"file"} );//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
-		            task.addData( "type", saveType );//这里是其他参数
+		            var task=plus.uploader.createUpload(commonJavaUrl+"Releaseresource/image_video", {  
+                                method: "POST"  
+                            },  
+                            function(t, status) {  
+                                if (status == 200) {  
+									if(t.responseText){
+										flag=true;
+										cleanHistory();
+										//详情上传
+										uploadimge();
+									}else{
+										mui.toast('上传失败了！sorry，请重新来一遍',{ duration:"35000ms", type:'div' })
+									}
+                                } else {  
+                                   mui.toast("上传失败了。sorry，请重新来一遍");  
+                                }  
+                            }  
+                        );
+						if(user.userName){
+							type1="1_"+resourceid+"/"+user.id+"-"+user.userName;
+							task.addData("type1",type1);
+				            task.addFile(file,{key:"file"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
+						}else {  
+                            mui.toast("上传失败了。sorry，请重新来一遍");  
+                         }  
+					
 		            task.start();//开始上传
 		        }
 		        
@@ -864,19 +883,13 @@
 		                system: false//不用系统自带的打开相册功能
 		            });
 		        }
-		function ti(){
-			//上传
-			uploadVideo(file);
-		}
 	</script>
 	
 	<!--   =======================================上传封面图 ======================== ======-->
 	<!-- 上传封面图 -->
 	<script type="text/javascript">
-		mui.init()
-	 
-		var sub = document.getElementById('sub')
-		var url = localStorage.getItem('url')
+		mui.init();
+		var photofile=null;
 		var photo = document.getElementById('loadphoto')
 	 
 		//点击相机长传图片
@@ -905,51 +918,6 @@
 						}
 					})
 		})
-		sub.addEventListener('tap', function() {
-			var imgArray = new Array()
-			var img = document.getElementsByClassName('load-img')
-			//				img[i].onload = function() {
-			var data = getBase64Image(img[0]); //base64编码
-			var newImgbase = data.split(",")[1]; //通过逗号分割到新的编码
-			imgArray.push(newImgbase); //放到imgArray数组里面
-			//}
-			var imgJson = JSON.stringify(imgArray);
-			mui.post(url + 'insletter.do', {
-				'pic': imgJson
-			}, function(data) {
-				mui.toast('发送成功', {
-					duration: 'long',
-					type: 'div'
-				})
-	 
-				var loginx = {
-					LogOut: function(callback) {
-						//do something
-						//callback
-						callback && callback()
-					}
-				}
-	            //关闭所有页面
-				loginx.LogOut(function() {
-					if(mui.os.ios || mui.os.ipad || mui.os.iphone) {
-						// 获取所有Webview窗口
-						var curr = plus.webview.currentWebview();
-						var wvs = plus.webview.all();
-						for(var i = 0, len = wvs.length; i < len; i++) {
-							//关闭除setting页面外的其他页面
-							if(wvs[i].getURL() == curr.getURL())
-								continue;
-							plus.webview.close(wvs[i]);
-						}
-						//打开login页面后再关闭setting页面
-						plus.webview.open('tab_footer.html');
-						curr.close();
-					} else
-						plus.runtime.quit();
-				})
-	 
-			}, 'json');
-		})
 	    
 	    //调用相机
 		function camera() {
@@ -961,6 +929,7 @@
 					img_src = entry.toLocalURL(); //获得图片路径
 					//var url1=document.getElementById('img');
 					//url1.src=img_path;
+					photofile=p;
 	                //将图片渲染到页面
 					var temp = '<div class="letter-photo-img">' +
 						'<img src="' + img_src + '" class="load-img" data-preview-src="" data-preview-group="1">' +
@@ -983,7 +952,8 @@
 		function xiangce() {
 			plus.gallery.pick(function(path) {
 				for(var i in path.files) {
-					var fileSrc = path.files[i]
+					var fileSrc = path.files[i];
+					photofile=path.files[i];
 					var temp = ''
 	                //渲染到页面
 					temp = '<div class="letter-photo-img">' +
@@ -1005,18 +975,102 @@
 				}
 			});
 		}
-	 
-		//base64编码  
-		function getBase64Image(img) {
-			var canvas = document.createElement("canvas"); //创建canvas DOM元素，并设置其宽高和图片一样
-			canvas.width = img.width;
-			canvas.height = img.height;
-			var ctx = canvas.getContext("2d");
-			ctx.drawImage(img, 0, 0, img.width, img.height); //使用画布画图
-			var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase(); //动态截取图片的格式
-			var dataURL = canvas.toDataURL("image/" + ext); //返回的是一串Base64编码的URL并指定格式
-			return dataURL;
-		}
+		function up2(){
+			//第二个参数一定要有，然后把文件路径扔进来
+            var task=plus.uploader.createUpload(commonJavaUrl+"Releaseresource/image_video", {  
+						method: "POST" 
+					},  
+					function(t, status) { 
+						if (status == 200) {  
+							if(t.responseText){
+								$('#letter-photo').html('<div class="letter-photo-img"><img style="width: 6.5rem;height: 8.5rem;" src="./resource/css/images/iconfont-tianjia.png" data-preview-src="" data-preview-group="1" /></div>');
+								mui.back();
+							}else{
+								mui.toast('上传失败了！sorry，请重新来一遍',{ duration:"35000ms", type:'div' })
+							}
+						} else {
+						   mui.toast("上传失败了。sorry，请重新来一遍");  
+						}  
+					}  
+				);
+			if(user.userName){
+				type1="3_"+resourceid+"/"+user.id+"-"+user.userName;
+				task.addData("type1",type1);
+	            task.addFile(photofile,{key:"photofile"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
+			}
+            task.start();//开始上传
+		}	
 	</script>
-	 
+	
+	
+	<!-- 上传 -->
+	<script>
+		var sub = document.getElementById('sub')
+		sub.addEventListener('tap', function() {
+			var title=$("#title").val();
+			var reTypeCode=$("#typed option:selected").val();
+			if(user.id){
+				if(reTypeCode=="fruiter"){
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?"+$("#tree1").serialize(),{
+					    dataType:"json",
+					    type:"post",
+					    data:{"title":title,"reTypeCode":reTypeCode,"uid":user.id},
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								mui.toast('上传失败',{ duration:"35000ms", type:'div' })
+							}
+						}
+					})
+				}else if(reTypeCode=="livestock"){
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+user.id,{
+					    dataType:"json",
+					    type:"post",
+					    data:$("#Animal1").serialize(),
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data!=null){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								mui.toast('上传失败',{ duration:"35000ms", type:'div' })
+							}
+						},error:function(data){
+							console.log(data);
+						}
+					})
+				}else if(reTypeCode=="plot"){
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+user.id,{
+					    dataType:"json",
+					    type:"post",
+					    data:$("#land1").serialize(),
+						timeout:10000,//超时时间设置为10秒；
+					    success:function(data) {
+							if(data!=null){
+								resourceid=data;
+								//视频上传
+								uploadVideo();
+							}else{
+								mui.toast('上传失败',{ duration:"35000ms", type:'div' })
+							}
+						},error:function(data){
+							console.log(data);
+						} 
+					})
+				}else{
+					mui.toast('请选择描述！',{ duration:"35000ms", type:'div' })
+					return;
+				}
+			}else{
+				mui.toast('未登录！',{ duration:"35000ms", type:'div' })
+			}
+			
+		}) 
+	</script> 
+
 </html>

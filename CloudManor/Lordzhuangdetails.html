@@ -12,8 +12,7 @@
 		<link rel="stylesheet" href="resource/dist/css/share.min.css">
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="resource/css/mui.min.css">
-		<!--App自定义的css-->
-		<!-- <link rel="stylesheet" type="text/css" href="resource/zbw/app.css"/> -->
+	
 		<!-- 点击发表评论表情包css -->
 		<link  rel="stylesheet" href="resource/css/main.css" />
 		<link rel="stylesheet" type="text/css" href="resource/css/sinaFaceAndEffec.css" />
@@ -29,39 +28,51 @@
 	
 		<!--图标js-->
 		<script src="https://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
+		<!--获取共享地址 -->
+		<script src="resource/js/common.js"></script>
         
 		 <script src="resource/js/jquery-1.8.0.min.js"></script>
 		<script>
+			
 			$(function(){
+				//获取上一个页面点击的resourceId
+				var resourceId=GetRequest().resourseid;
+				
+				
 				$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/resorceloader",
+				    url: commonJavaUrl+"/Lordzhuangdetails/resorceloader",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp",
-				    data: {"resourceId":1},
+				    data: {"resourceId":resourceId},
 				    success: function (data) {
 						 console.log(data);
 						 var video="<source src="+data.imgDir+" type='video/mp4' />";
 						 /* 回显视频*/
 						 $(video).appendTo("#mv4");
-						 /* 回显地址*/
-						 $("#weizhi").text(data.resourceTreeDetail.geographicPosition);
+						
 						 /* 回显信息*/
 						 if(data.reTypeCode=="fruiter"){
-							  var messagefriut="<span>数目品种:"+data.resourceTreeDetail.breedName+"&nbsp;树龄:"+data.resourceTreeDetail.treeAge+"&nbsp;年产量:"+data.resourceTreeDetail.yearlyOutput+"&nbsp;树木直径:"+data.resourceTreeDetail.diameter+"&nbsp;承包时间:"+data.resourceTreeDetail.leaseTime+"<span>";
+							  var messagefriut="<span>数目品种:"+data.resourceTreeDetail.breedName+"&nbsp;<br>树龄:"+data.resourceTreeDetail.treeAge+"&nbsp;<br>年产量:"+data.resourceTreeDetail.yearlyOutput+"&nbsp;<br>树木直径:"+data.resourceTreeDetail.diameter+"&nbsp;<br>承包时间:"+timestampToTime(data.resourceTreeDetail.leaseTime)+"<span>";
 							   $(messagefriut).appendTo("#xinxi");
+							   /* 回显地址*/
+							   $("#weizhi").text(data.resourceTreeDetail.geographicPosition);
 						 }else if(data.reTypeCode=="livestock"){
-							  var messageanimal="<span>牲畜品种:"+data.resourceTreeDetail.breedName+"&nbsp;重量："+data.resourceTreeDetail.weight+
-							  "&nbsp;颜色："+data.resourceTreeDetail.colour+"&nbsp;年龄:"+data.resourceTreeDetail.age+
-							  "&nbsp;是否打过疫苗:"+data.resourceTreeDetail.vaccine+
+							  var messageanimal="<span>牲畜品种:"+data.resourceAnimalDetail.breedName+"&nbsp;<br>重量："+data.resourceAnimalDetail.weight+
+							  "&nbsp;<br>颜色："+data.resourceAnimalDetail.colour+"&nbsp;<br>年龄:"+data.resourceAnimalDetail.age+
+							  "&nbsp;<br>是否打过疫苗:"+data.resourceAnimalDetail.vaccine+
 							   "<span>";
 							   $(messageanimal).appendTo("#xinxi");
+							   /* 回显地址*/
+							   $("#weizhi").text(data.resourceAnimalDetail.geographicPosition);
 						 }else if(data.reTypeCode=="plot"){
-							 var messageplot="<span>去年种植:"+data.resourceTreeDetail.plantType+"&nbsp;产量："+data.resourceTreeDetail.yield+
-							  "&nbsp;面积:"+data.resourceTreeDetail.proportion+"&nbsp;土地类型:"+data.resourceTreeDetail.landType+
-							  "&nbsp;承包时间:"+data.resourceTreeDetail.leaseTime+
+							 var messageplot="<span>去年种植:"+data.resourceGroundDetail.plantType+"&nbsp;<br>产量："+data.resourceGroundDetail.yield+
+							  "&nbsp;<br>面积:"+data.resourceGroundDetail.proportion+"&nbsp;<br>土地类型:"+data.resourceGroundDetail.landType+
+							  "&nbsp;<br>承包时间:"+timestampToTime(data.resourceGroundDetail.leaseTime)+
 							   "<span>";
 							   $(messageplot).appendTo("#xinxi");
+							    /* 回显地址*/
+							    $("#weizhi").text(data.resourceGroundDetail.geographicPosition);
 						 }	
 				    },
 				    error: function (data) {
@@ -69,13 +80,13 @@
 				    }
 				});
 				
-				/*头像回显 */
+				/*资源头像回显 */
 				$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8080/Lordzhuangdetails/findheadphoto",
+					    url: commonJavaUrl+"/Lordzhuangdetails/findResoursePhoto",
 					    dataType: "jsonp",
-						jsonpCallback:"success_jsonp2",
-					    data: {"userid":1},
+						jsonpCallback:"success_jsonpResoursePhoto",
+					    data: {"resourceId":resourceId},//资源id 回显是资源详情页头像
 					    success: function (data) {
 							 console.log(data);
 							 var headerphoto="<img  src="+data.imgDir+" class='round_icon' alt='头像' onclick='toManterPage()'> ";
@@ -91,10 +102,10 @@
 				/* 点赞num1赋值 查询点赞数 */
 			    $.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/selectDianZan",
+				    url: commonJavaUrl+"/Lordzhuangdetails/selectresourcelik",
 				    dataType: "jsonp",
-					jsonpCallback:"success_jsonp4",
-				    data: {"userid":1},
+					jsonpCallback:"success_jsonpResourceLik",
+				    data: {"resourceId":resourceId},
 				    success: function (data) {
 						//点赞数
 						 console.log(data);
@@ -102,9 +113,7 @@
 							 $("#num1").text(0);
 						 }else{
 							  $("#num1").text(data);
-						 }
-						
-						
+						 }	
 				    },
 				    error: function (data) {
 						console.log(data);
@@ -112,11 +121,11 @@
 				});
 				
 				
-			var resourceId=1;
+
 			/* 回显评论数量 */
 			$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/huiXianComment",
+				    url: commonJavaUrl+"/Lordzhuangdetails/huiXianComment",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonp6",
 				    data: {"resourceId":resourceId},
@@ -137,20 +146,66 @@
 				yulan();
 				/* 预览数 */
 				yulancount();
+				/*购买数量 */
+				buyCount();
 				
 				
 			});	
 			
 			
+			/*获取上一个页面传来的参数 */
+			function GetRequest() {
+			   var url = location.search;//获取页面所在路径
+			    //获取url中"?"符后的字串  
+			   var theRequest = new Object();  
+			   if (url.indexOf("?") != -1) {  
+			      var str = url.substr(1);  //获取到路径携带的信息
+			      strs = str.split("&"); //将携带信息分成一个数组(未知多少信息) 
+			      for(var i = 0; i < strs.length; i ++) {  
+			                                  //theRequest[属性名]==值  组装成对象
+			         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  //unescape()对通过 escape() 编码的字符串进行解码
+			      }  
+			   }  
+			   return theRequest;  
+			}  
+			
+			
+			
+			/* 购买数量 */
+			function buyCount(){
+					$.ajax({
+					    type: "GET",
+					    url: commonJavaUrl+"/Lordzhuangdetails/findBuyCount",
+					    dataType: "jsonp",
+						jsonpCallback:"success_jsonpOrdersCount",
+					    data: {},
+					    success: function (data) {
+						//购买数量
+						 console.log("购买数量"+data.length);
+						 if(data==null){
+							 $("#buycount").text(0);
+						 }else{
+							  $("#buycount").text(data.length);
+						 }
+					    },
+					    error: function (data) {
+							console.log(data);
+					    }
+					});
+					
+			}
+			
+			
 			/* 预览+ */
 			function yulan(){
 				var num = document.getElementById('yuLAN');
+				var resourceId=GetRequest().resourseid;
 					$.ajax({
 					    type: "GET",
-					    url: "http://localhost:8080/Lordzhuangdetails/yuLan",
+					    url: commonJavaUrl+"/Lordzhuangdetails/yuLan",
 					    dataType: "jsonp",
 						jsonpCallback:"success_jsonpYuLan",
-					    data: {"yuLan":num.innerHTML,"userid":1},
+					    data: {"yuLan":num.innerHTML,"resourceId":resourceId},//资源id
 					    success: function (data) {
 							 console.log(data);
 							 console.log("预览+");
@@ -165,12 +220,13 @@
 			
 			/* 预览数 */
 			function yulancount(){
+				var resourceId=GetRequest().resourseid;
 				$.ajax({
 				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/selectYuLan",
+				    url: commonJavaUrl+"/Lordzhuangdetails/selectYuLan",
 				    dataType: "jsonp",
 					jsonpCallback:"success_jsonpSelectYuLan",
-				    data: {"userid":1},
+				    data: {"resourceId":resourceId},
 				    success: function (data) {
 						//预览数
 						 console.log(data);
@@ -191,24 +247,33 @@
 			
 			//点击评论图标回显图片头像
 			function huixianlightherder(){
-				$.ajax({
-					    type: "GET",
-					    url: "http://localhost:8080/Lordzhuangdetails/findheadphoto",
-					    dataType: "jsonp",
-						jsonpCallback:"success_jsonp2",
-					    data: {"userid":1},
-					    success: function (data) {
-							 console.log(data);
-				
-							 var headerphoto="<img src="+data.imgDir+" / ><p>"+data.userName+"</p>";
-							  /* 回显头像*/
-								$(headerphoto).appendTo("#lightheader");
-					    },
-					    error: function (data) {
-							console.log(data);
-					    }
-					});
-				
+				var a=localStorage.getItem("userInfo");
+				if(a==null){
+					location.href="./login.html" 
+				}else{
+					//获取用户id
+					 var stroage=window.localStorage;
+					 var json=stroage.getItem("userInfo");
+					 var userInfo=JSON.parse(json);
+					 var userId=userInfo.id;
+					$.ajax({
+						    type: "GET",
+						    url: commonJavaUrl+"/Lordzhuangdetails/findheadphoto",
+						    dataType: "jsonp",
+							jsonpCallback:"success_jsonp2",
+						    data: {"userid":1},//回显当前用户的头像
+						    success: function (data) {
+								 console.log(data);
+					
+								 var headerphoto="<img src="+data.imgDir+" / ><p>"+data.userName+"</p>";
+								  /* 回显头像*/
+									$(headerphoto).appendTo("#lightheader");
+						    },
+						    error: function (data) {
+								console.log(data);
+						    }
+						});
+				}	
 			}
 			
 		</script>
@@ -224,7 +289,7 @@
 		    
 	        .fontsuspended{ 
 				position: absolute;
-				bottom: 20px;
+				bottom: 100px;
 				left: 1rem;
 				color: rgba(255,255,255,1);
 				font-family: "微软雅黑";
@@ -338,13 +403,15 @@
 	
 	
     <body>
-		<div>
+		<header class="mui-bar mui-bar-nav">
 			<!-- 返回键 -->
 			<svg class="icon" id="arrow-lift" aria-hidden="true" style="width: 30px;height: 30px;float: left;">
-			  <use xlink:href="#icon-arrow-lift"></use>
+			    <use xlink:href="#icon-arrow-lift"></use>
 			</svg>
-		</div>
+			<h1 class="mui-title">资源详情页</h1>
+		</header>
 		
+<!-- ******展示内容************************************************************************** -->
 		
 		<!-- 视频 -->
         <div  class="mui-content" id="main" style="left: 100rem;"><!-- class="container" -->
@@ -375,7 +442,7 @@
 						   <svg class="icon" aria-hidden="true" style="width: 2rem;height: 2rem;">
 						   		<use xlink:href="#icon-icon-test3" onclick="tobuy()"> </use>
 						   </svg>
-						     <span style="vertical-align: super;">100人购买</span>
+						     <span  style="vertical-align: super;"><span id="buycount">100</span>人购买</span>
 						   </div>
 						   
 						   <!-- 信息-->
@@ -389,20 +456,18 @@
 				<!--悬浮字体在视频上 定位右面 -->
 				<div class="fontsuspendedright" >
 					<!--头像显示  悬浮-->
-					<div class="headphoto" id="headerphoto">
+					<div class="headphoto" id="headerphoto" style="position: absolute;bottom:220px;left:5px;" >
 						<!-- <img  src="Picture/userHead/linux_1.jpg" class="round_icon"  alt="头像" onclick="toManterPage()"> -->    
 					</div>
 					
 					<!-- 点赞 -->
 					<div class="dian">
 					 <div id="zan" class="round_icon">
-					   <svg  class="icon" aria-hidden="true" style="width: 3rem;height: 3rem;">
-							<use xlink:href="#icon-dianzan"></use>
-					   </svg>
+					  <p class="like">&#10084;</p>
 					 </div>
 					  <!--赞数-->
 					  <div id="num" class="round_icon" style="text-align: center;margin: 0 auto 1rem auto;height:1.5rem;" >
-						<span id='num1'></span>
+						<span id='num1'>0</span>
 					  </div>
 					</div>
 					
@@ -457,7 +522,7 @@
 	                             <div id="content" style="position: relative;top:3rem">
 	                               	<div class="wrap">
 	                               		<div class="comment">
-	                               			<div class="head-face" id="lightheader">
+	                               			<div class="head-face" id="lightheader" style="position: relative;left: 5rem;">
 	                               				<!-- <img src="Picture/userHead/linux_1.jpg" / >
 	                               				<p>我是小白</p> -->
 	                               			</div>
@@ -481,27 +546,34 @@
 	                                <script type="text/javascript">
 	                                //评论
 	                                function out() {
-	                                	var inputText = $('.text').val();
-	                                			if(inputText==null||inputText==""){/* style="color:red;"> */
-	                                				$("<span style=\"color:red;\"> 评论不可为空，请输入内容！</span>").appendTo("#pinglun2");
-	                                			}else{
-	                                			    //添加评论
-	                                			    addComment(inputText);
-	                                			 }
-	                                	
+											var inputText = $('.text').val();
+													if(inputText==null||inputText==""){/* style="color:red;"> */
+														$("<span style=\"color:red;\"> 评论不可为空，请输入内容！</span>").appendTo("#pinglun2");
+													}else{
+													    //添加评论
+													    addComment(inputText);
+													 }
+										
+			
 	                                }
+									
 	                                
 	                                
 	                                //添加评论
 	                                function addComment(inputText){
-	                                var userid=1;
-									var resourceId=1;
+							        //获取用户id
+							        var stroage=window.localStorage;
+							        var json=stroage.getItem("userInfo");
+							        var userInfo=JSON.parse(json);
+							        var userId=userInfo.id;  
+									//获取资源id
+									var resourceId=GetRequest().resourseid;
 	                                	$.ajax({
 	                                		 type: "GET",
-	                                		 url: "http://localhost:8080/Lordzhuangdetails/addComment",
+	                                		 url: commonJavaUrl+"/Lordzhuangdetails/addComment",
 	                                		 dataType: "jsonp",
 	                                		 jsonpCallback:"success_jsonp7",
-	                                		 data: {"userid":userid,"content":inputText,"resourceId":resourceId,"pid":2},
+	                                		 data: {"userid":userId,"content":inputText,"resourceId":resourceId,"pid":0},
 	                                		 success: function (data) {
 	                                		 console.log(data);
 	                                		 console.log("评论已发送");
@@ -518,9 +590,10 @@
 	                                
 	                                 //回显评论
 	                                function huixiancomment(resourceId){
+										var resourceId=GetRequest().resourseid;
 	                                	$.ajax({
 	                                		 type: "GET",
-	                                		 url: "http://localhost:8080/Lordzhuangdetails/huiXianComment",
+	                                		 url: commonJavaUrl+"/Lordzhuangdetails/huiXianComment",//commonJavaUrl+
 	                                		 dataType: "jsonp",
 	                                		 jsonpCallback:"success_jsonp6",
 	                                		 data: {"resourceId":resourceId},
@@ -530,7 +603,7 @@
 	                                		 for (i = 0; i < data.length; i++) { 
 	                                			 var pingluncomment="<li><div class='head-face'><img src="+data[i].imgDir+" / ></div><div class='reply-cont' >"
 	                                			 +"<p class='username' style='margin-left: 3rem;'>"+data[i].userName+" </p><p class='comment-body' style='margin-top:2rem;margin-left:5rem;'>"+data[i].content+"</p>"
-	                                			 +"<p class='comment-footer' style='margin-top:1rem;margin-left: 3rem;'>"+data[i].time+"</p>"
+	                                			 +"<p class='comment-footer' style='margin-top:1rem;margin-left: 3rem;'>"+timestampToTime(data[i].time)+"</p>"
 	                                			 +"</div></li>";
 	                                			 											
 	                                			 $('#info-show ul').append(pingluncomment);
@@ -545,6 +618,19 @@
 	                                }
 	                                
 
+
+
+									//时间一串字符串解析
+									function timestampToTime(timestamp) {
+										   var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+										   Y = date.getFullYear() + '-';
+										   M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+										   D = date.getDate() + ' ';
+										   h = date.getHours() + ':';
+										   m = date.getMinutes() + ' ';
+										   s = date.getSeconds();
+										   return Y+M+D+h+m;
+									}
 	                                </script>
 	                             
 	                               <div style="text-align:center;">
@@ -564,61 +650,96 @@
 	   	</script>	
 	   
 	   <!-- 点赞-->
-	   
+	   <style>
+	   	.like{ font-size:24px;  color:#ccc; cursor:pointer;}
+	   	.cs{color:#f00;}
+	   </style>
 	   <script>
-	 	var zan = document.getElementById('zan');
-	 	var num1 = document.getElementById('num1');
-	 	var flag1 = 0;
-	 	var flag2 = 0;
-	 	zan.onclick = function() {
-	 	  if (flag1 == 0) {
-			  $.ajax({
-				    type: "GET",
-				    url: "http://localhost:8080/Lordzhuangdetails/dianzan",
-				    dataType: "jsonp",
-					jsonpCallback:"success_jsonp3",
-				    data: {"dianzan":num1.innerHTML,"userid":1},
-				    success: function (data) {
-						 console.log(data);
-				    },
-				    error: function (data) {
-						console.log(data);
-				    }
-				 });
-				num1.innerHTML++;
-	 	  }
-	 	  if (flag1 == 1) {
-			$.ajax({
-				type: "GET",
-				url: "http://localhost:8080/Lordzhuangdetails/dcrdianzan",
-				dataType: "jsonp",
-				jsonpCallback:"success_jsonp5",
-				data: {"dianzan":num1.innerHTML,"userid":1},
-				success: function (data) {
-				console.log(data);
-				},
-				error: function (data) {
-				console.log(data);
-				}
-			});  
-	 	    num1.innerHTML--;
-	 	  }
-	 	  if (flag1 == 2) {
-	 	    num1.innerHTML++;
-	 	    flag1 = 0;
-	 	  }
-	 	  flag1++;
-	 	}
-	 </script>
+	       $(function () {            
+	           $(".like").click(function () {
+				   var a=localStorage.getItem("userInfo");
+				   if(a==null){//登录权限判断
+				   	location.href="./login.html" 
+				   }else{
+					   $(this).toggleClass('cs'); 
+					   var url = $(this).css("color");
+					   if(url=="rgb(255, 0, 0)"){
+					   	//点赞++
+						//获取到查询的点赞数
+					   	var num1 = document.getElementById('num1');
+						//获取资源id
+						var resourceId=GetRequest().resourseid;
+						//获取用户id
+						var stroage=window.localStorage;
+						var json=stroage.getItem("userInfo");
+						var userInfo=JSON.parse(json);
+						var userId=userInfo.id;  
+					   	$.ajax({
+					   					    type: "GET",
+					   					    url: commonJavaUrl+"/userLiker/addUserLike",
+					   					    dataType: "jsonp",
+					   					    data: {"user_id":userId,"resource_id":resourceId},
+					   					    success: function (data) {
+					   							 console.log("点赞"+data);
+					   					    },
+					   					    error: function (data) {
+					   							console.log(data);
+					   					    }
+					   					 });
+					   					num1.innerHTML++;
+					   }else{
+					   	//取消赞--
+					   	alert("白色");
+						//获取到查询的点赞数
+					   	var num1 = document.getElementById('num1');
+						//获取资源id
+						var resourceId=GetRequest().resourseid;
+						//获取用户id
+						var stroage=window.localStorage;
+						var json=stroage.getItem("userInfo");
+						var userInfo=JSON.parse(json);
+						var userId=userInfo.id;  
+					   	$.ajax({
+					   		type: "GET",
+					   		url: commonJavaUrl+"/userLiker/deleUserLike",//崔然删除接口报空指针异常返回500（但是可以删除掉）
+					   		dataType: "jsonp",
+					   		data: {"user_id":userId,"resource_id":resourceId},
+					   		success: function (data) {
+					   		console.log("取消点赞"+data);
+					   		},
+					   		error: function (data) {
+					   		console.log(data);
+					   		},
+					   	});  
+					   	num1.innerHTML--;
+					   }
+				   }
+	
+	           })
+	       })
+	   </script>
+
 		
 	<script>
 		//跳转到养护人页面
 		function toManterPage(){
-			window.location.href="./Maintenance_people_index.html";
+			var a=localStorage.getItem("userInfo");
+			if(a==null){//登录权限判断
+				location.href="./login.html" 
+			}else{
+				window.location.href="./Maintenance_people_index.html";
+			}
 		}
 		//跳转到购买页面
 		function tobuy(){
-			window.location.href="./buy.html";
+			//获取资源id
+			var resourceId=GetRequest().resourseid;
+			var a=localStorage.getItem("userInfo");
+			if(a==null){//登录权限判断
+				location.href="./login.html" 
+			}else{
+				window.location.href="./buy.html?resourceId="+resourceId+"";
+			}	
 		}
 	</script>
 	
@@ -629,6 +750,48 @@
 					history.go(-1);
 				});
 	</script>
+	
+<!-- ******************最下面（首页，我的）**************************************************************** -->
+	
+	<style>
+		.mui-bar .mui-tab-item.mui-active .mui-icon{
+			color: #77ce36;
+		}
+		.mui-bar .mui-tab-item.mui-active .mui-tab-label{
+			color: #77ce36;
+		}
+	</style>
+	<nav class="mui-bar mui-bar-tab">
+		<a id="defaultTab" class="mui-tab-item mui-active" href="./index.html">
+			<span class="mui-icon mui-icon-home mui-active"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		
+		<a class="mui-tab-item" id="xiangqing">
+			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+		<script>
+			$("#defaultTab").click(function(){
+				var a=localStorage.getItem("userInfo")
+				if(a==null){
+					location.href="./login.html" 
+				}else{
+					location.href="./my_manor.html" 
+				}
+			})
+			$("#xiangqing").click(function(){
+				var a=localStorage.getItem("userInfo")
+				if(a==null){
+					location.href="./login.html" 
+				}else{
+					location.href="./my_manor.html" 
+				}
+			})
+		</script>
+	</nav>
+	
+	
     </body>
 </html>
 

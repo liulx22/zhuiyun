@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
 	<link href="./resource/css/zz_index.css" rel="stylesheet" style=""/>
-	<script src="./resource/jquery-3.2.1.js"></script>
+	<script src="./resource/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="./resource/js/common.js"></script>  
+	
 	<meta charset="utf-8">
 	<!--图标js-->
 	<script src="//at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
@@ -57,41 +59,47 @@
 		
 		
 		<script type="text/javascript">
-			
+			// var requestworkInfo = JSON.parse(window.localStorage.getItem('workInfoList'))
+			var storage=window.localStorage;
+				var json=storage.getItem("userInfo");
+				var userInfo=JSON.parse(json);
+				var id=userInfo.id;
+				alert(id)
 		$(function(){					
 			 $.ajax({
-			 	url: "http://localhost:8080/attention/SelAttrntion",
+			 	url: commonJavaUrl+"attention/SelAttrntion?id="+id,
 			 	dataType: "json",
 			 	type: "post",	
+				data:{"id":id},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: function(data) {
-					//var lists=data.list;
-					// var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
-					
-					
-					 for(var i=0;i<data.length;i++){
-						
-						$("#boss").append(
-						"<div id=\"a1\">\n" +
-						"\t\t<img id="+data[i].userId+" src="+data[i].imgDir+" style=\"width:55px; height: 55px;border-radius: 100%;margin-top: 10px;margin-left: 7px;position:absolute;\">\n" +
-						"\t\t<div id=\"a2\">\n" +
-						"\t\t\t<a style=\"color: black;margin-top: 5px;\"><strong>"+data[i].userName+"</strong></a><button id=\"admin_1\" disabled=\"false\" style=\" border: none; width:auto;height: 18px;font-size: 7px;color: white;background-color: lightgray;margin-left: 5px;\"></button></a>\n" +
-						"\t\t\t<br/>\n" +
-						"\t\t\t<a style=\"color: black;\">"+data[i].email+"</a><br/>\n" +
-						"\t\t\t\t<a style=\"color: gray;font-size: 5px;\">手机号："+data[i].phone+"</a>&nbsp;&nbsp;<a style=\"color: gray;font-size: 5px;\"></a><br/>\n" +
-						"\t\t</div>\n" +
-						"\t\t<div id=\"buttonred\"   class=\"aaaa\" style=\"width: 90px;height: 70px;margin-left: 73%;line-height:150%;margin-top: -75px;\">\n"+ 
-						"<span id=\"buttonred_99\" >\n"+
-						"<button type=\"button\" class=\"admin\" id=\"aaaaaaaa_1"+data[i].userId+"\" onclick=\"Attention("+data[i].userId+")\" >关注</button>"+
-						"\t\t<span>\n"+
-						"\t\t\t<button type=\"button\" class=\"mui-btn mui-btn-danger\" id=\"buttonred"+data[i].userId+"\" onclick=\"AttentionPaid("+data[i].userId+")\">取消关注</button>\n" +
-						"\t\t</div>\n" +
-						"\t</div>")
-						$(".admin").hide();
-						//  document.getElementById(data[i].id).src = globaPicUrl+"userHead/"+data[i].userpic+"";
-					 } 
+					if(data!=null){
+						for(var i=0;i<data.length;i++){
+												$("#boss").append(
+												"<div id=\"a1\">\n" +
+												"\t\t<img id="+data[i].userId+" src="+data[i].imgDir+" style=\"width:55px; height: 55px;border-radius: 100%;margin-top: 10px;margin-left: 7px;position:absolute;\">\n" +
+												"\t\t<div id=\"a2\">\n" +
+												"\t\t\t<a style=\"color: black;margin-top: 5px;\"><strong>"+data[i].userName+"</strong></a><button id=\"admin_1\" disabled=\"false\" style=\" border: none; width:auto;height: 18px;font-size: 7px;color: white;background-color: lightgray;margin-left: 5px;\"></button></a>\n" +
+												"\t\t\t<br/>\n" +
+												"\t\t\t<a style=\"color: black;\">"+data[i].email+"</a><br/>\n" +
+												"\t\t\t\t<a style=\"color: gray;font-size: 5px;\">手机号："+data[i].phone+"</a>&nbsp;&nbsp;<a style=\"color: gray;font-size: 5px;\"></a><br/>\n" +
+												"\t\t</div>\n" +
+												"\t\t<div id=\"buttonred\"   class=\"aaaa\" style=\"width: 90px;height: 70px;margin-left: 73%;line-height:150%;margin-top: -75px;\">\n"+ 
+												"<span id=\"buttonred_99\" >\n"+
+												"<button type=\"button\" class=\"admin\" id=\"aaaaaaaa_1"+data[i].userId+"\" onclick=\"Attention("+data[i].userId+")\" >关注</button>"+
+												"\t\t<span>\n"+
+												"\t\t\t<button type=\"button\" class=\"mui-btn mui-btn-danger\" id=\"buttonred"+data[i].userId+"\" onclick=\"AttentionPaid("+data[i].userId+")\">取消关注</button>\n" +
+												"\t\t</div>\n" +
+												"\t</div>")
+												$(".admin").hide();
+												//  document.getElementById(data[i].id).src = globaPicUrl+"userHead/"+data[i].userpic+"";
+						} 
+					}else{
+						alert("此账号没有数据！");
+					}
+				
 					 
 				},
 				error:function(data){
@@ -103,10 +111,12 @@
 		})			
 		
 			function AttentionPaid(userId){
+				//var userId2=2; 
 				$.ajax({
-					url:"http://localhost:8080/attention/CancelTheAttention?userId="+userId,
+					url:commonJavaUrl+"attention/CancelTheAttention?userId="+userId+"&userId2="+id,
 					dataType:"json",
-					data:{"userId":userId},
+					data:{"userId":userId,//关注人id
+						  "userId2":id},// 被关注人id
 					type:"post",
 					success:function(data){
 						if(data){
@@ -133,11 +143,12 @@
 			}
 			
 			function Attention(userId){
+				//var userId2=1; 
 				$.ajax({
-					url:"http://localhost:8080/attention/Attrntion?userId="+userId,
+					url:commonJavaUrl+"attention/Attrntion?userId="+userId+"&userId2="+id,
 					dataType:"json",
 					type:"post",
-					data:{"userId":userId},
+					data:{"userId":userId,"userId2":id},
 					success:function(data){
 						if(data){
 							if (confirm("确认要关注？")) {
