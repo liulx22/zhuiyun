@@ -98,7 +98,12 @@
 <body>
 
 	<script type="text/javascript">
-		var userId=1;
+		var storage = window.localStorage;
+			var json = storage.getItem("userInfo");
+			var userInfo = JSON.parse(json);
+			
+			
+		var userId=userInfo.id;
 													
 		function aaa(idd,id,resourceId){
 		
@@ -188,10 +193,11 @@
 	
 	<script type="text/javascript">
 			
-				
-		
+				var storage = window.localStorage;
+					var json = storage.getItem("userInfo");
+					var userInfo = JSON.parse(json);
 	$(function(){	
-		var userid=1;
+		var userid=userInfo.id;;
 		 $.ajax({
 		 	url: "http://localhost:8080/CommentController/getAllWo",
 		 	dataType: "json",
