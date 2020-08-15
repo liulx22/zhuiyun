@@ -4,17 +4,6 @@
 		<meta charset="utf-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<!-- <link href="css/mui.css" rel="stylesheet" /> -->
-		<!-- <link rel="stylesheet" href="./css/mui.min.css"> -->
-		<!--App自定义的css-->
-		<!-- <link rel="stylesheet" type="text/css" href="./css/app.css" /> -->
-		<!--<link href="../css/mui.picker.css" rel="stylesheet" />
-		<link href="../css/mui.dtpicker.css" rel="stylesheet" />-->
-		<!-- <link rel="stylesheet" type="text/css" href="./css/mui.picker.min.css" /> -->
-		<!-- <script src="./js/mui.min.js"></script>
-		<script src="./js/mui.picker.min.js"></script>
-		<script src="./js/jquery-3.2.1.js"></script> -->
-	
 		<!-- 所需要引用的全部css样式 -->
 		<!-- mui的css样式 -->
 		<link href="./resource/mui/css/mui.css" rel="stylesheet" />
@@ -22,11 +11,13 @@
 		<link href="./resource/mui/css/mui.picker.min.css" rel="stylesheet" /> 
 		<!-- app自定义的css -->
 		<link rel="stylesheet" type="text/css" href="resource/css/fangh/app.css" />
-		
+		<link rel="stylesheet" type="text/css" href="resource/css/menudown.css" />
 		<!-- 全部引入的js文件 -->
-		<script src="resource/mui/js/mui.min.js"></script>
 		<script src="resource/jquery-3.2.1.js"></script>  
+		<script src="resource/mui/js/mui.min.js"></script>
 		<script src="resource/mui/js/mui.picker.min.js"></script>
+		<script src="resource/js/menudown.js"></script>
+		
 		
 		<style>
 			*{
@@ -54,7 +45,7 @@
 				display:inline-block;
 				margin-top: 10px;
 			}
-			img{
+			#head_pictrue1{
 				width: 100%;
 				height: 100%;
 			}
@@ -106,11 +97,81 @@
 
 		<!-- 对下单时间进行日期筛选选择 -->
 		<div class="mui-content" >
-			<div class="mui-input-row" id="time">
+			<!-- <div class="mui-input-row" id="time">
 				<label>下单时间：</label>
 				<input type="text"  id="dateSelect" class="mui-input-clear" readonly="readonly">
+			</div> -->
+			<div id="time">
+					<dl class="topmenu">
+					<dt>
+						<div class="selectlist">
+							<div class="select_textdiv">
+								<input type="hidden" value=""/>
+								<p class="s_text">时间</p><span class="down"><img src="resource/images/down.png"></span>
+							</div>
+							<div class="select_textul">
+								<ul class="select_first_ul">
+									<li class="focus">
+										<p>全部</p>
+										<!-- <ul class="select_second_ul" style="display: block;">
+											<li>附近(智能范围)</li>
+											<li>500</li>
+											<li>1000</li>
+											<li>1500</li>
+											<li>2000</li>
+										</ul> -->
+									</li>
+									<li>
+										<p>一周</p>
+										<!-- <ul class="select_second_ul">
+											<li>全部商城</li>
+											<li>市中心区</li>
+											<li>华侨城</li>
+											<li>海岸城</li>
+											<li>蛇口</li>
+										</ul> -->
+									</li>
+									<li>
+										<p>一月</p>
+									</li>
+									<li>
+										<p>一年</p>
+									</li>
+									<li>
+										<p>一年以前</p>
+									</li>
+								</ul>
+							</div>
+						</div>	
+					</dt>
+					<dt>
+						<div class="selectlist">
+							<div class="select_textdiv">
+								<input type="hidden" value=""/>
+								<p class="s_text">类型</p><span class="down"><img src="resource/images/down.png"></span>
+							</div>
+							<div class="select_textul">
+								<ul class="select_first_ul">
+									<li class="focus">
+										<p>全部</p>
+									</li>
+									<li>
+										<p>未支付</p>
+									</li>
+									<li>
+										<p>已支付</p>
+									</li>
+									<li>
+										<p>失效</p>
+									</li>
+								</ul>
+							</div>
+						</div>	
+					</dt>
+				</dl>
 			</div>
-			
+			<div class="mui-input-row"></div>
+			<div id="lishiorder">
 			<div class="history1";">
 				<div class="boximg">
 					<img id="head_pictrue1" src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg"/>
@@ -143,30 +204,55 @@
 					<span class="billCode">订单编号:6666666</span>
 					<span class="price"><span>实付款:</span>￥ 18888</span>
 			</div>
+			</div>
 	</div>
-		
-		
-		<script type="text/javascript">
-			mui.init()
-			$(function () {
-			        $("#dateSelect").click(function () {
-			            var dtPicker = new mui.DtPicker({ type: 'date' });
-			            /*参数：'datetime'-完整日期视图(年月日时分)
-			                    'date'--年视图(年月日)
-			                    'time' --时间视图(时分)
-			                    'month'--月视图(年月)
-			                    'hour'--时视图(年月日时)
-			            */      
-			            dtPicker.show(function (selectItems) {
-			               var y = selectItems.y.text;  //获取选择的年
-			               var m = selectItems.m.text;  //获取选择的月
-			               var d = selectItems.d.text;  //获取选择的日
-			               var date = y + "-" + m + "-" + d ; 
-			               $("#dateSelect").val(date); 
-			            })
-			        });
-			    })
-		</script>
 	</body>
-
+	<script>
+		$(function(){
+			//历史订单
+			orderdingdan();
+		})
+		function orderdingdan(){
+			var storage=window.localStorage;//获取用户信息
+			var json=storage.getItem("userInfo");
+			var userInfo=JSON.parse(json);//获取用户信息
+			$.ajax({
+				url:commonJavaUrl+"order/GETOrderHistoricalVO",
+				type:"post",
+				dataType:"json",
+				data:{
+					userId:userInfo.id
+				},
+				success:function(data){
+					var mm="";
+					if(data!=null && data!=""){
+						$(data).each(function(a,b){
+							mm="<div class=\"history1\";\"> \n"+
+									"<div class=\"boximg\">\n"+
+										"<img id=\"head_pictrue1\" src=\""+b.imgDir+"\"/>\n"+
+									"</div>\n"+
+										"<span class=\"title\">"+b.title+"</span>\n"+
+										"<span class=\"positionFont\">位置:"+b.geographicPosition+"</span>\n"+
+										"<span class=\"billTime\">下单时间:"+b.orderTime+"</span>\n"+
+										"<span class=\"billCode\">订单编号:"+b.orderNo+"</span>\n"+
+										"<span class=\"price\"><span>实付款:</span>￥ "+b.money+"</span>\n"+
+								"</div>";
+						})
+						$("#lishiorder").html(mm);
+					}else{
+						var mm="<svg class=\"icon\" aria-hidden=\"true\" style=\"margin-top: 30%;margin-left: 10%;\">\n"+
+							"<use xlink:href=\"#icon-nopicture\"></use>\n"+
+						"</svg>";
+						$("#lishiorder").html(mm);
+					}
+				},error:function(){
+					alert("异常");
+					var mm="<svg class=\"icon\" aria-hidden=\"true\" style=\"margin-top: 30%;margin-left: 10%;\">\n"+
+						"<use xlink:href=\"#icon-nopicture\"></use>\n"+
+					"</svg>";
+					$("#lishiorder").html(mm);
+				}
+			})
+		}
+	</script>
 </html>
