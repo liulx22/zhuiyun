@@ -24,6 +24,7 @@
 		  <link rel="stylesheet" type="text/css" href="./resource/css/zbw/zbw_mui.css"/>
 		  <!-- 引入外部json文件 -->
 		  <script type="text/javascript" src="file/zbw/cultivate.json"></script>
+		  <script src="./resource/js/common.js"></script>
 		  <!-- 阿里图标样式 -->
 		<style type="text/css">
 		    .icon {
@@ -97,7 +98,7 @@
 											//请求方式为post
 											type:"post",
 											//json文件位置
-											url:"http://localhost:8080/CultivatePersonCenterController/deleteResources",
+											url:commonJavaUrl+"CultivatePersonCenterController/deleteResources",
 											data:{'userId':userInfo.id,"resouceId":aarr},
 											//返回数据格式为json
 											dataType: "json",
@@ -132,7 +133,7 @@
 			<!--p-center star-->
 			<div id="main"  class="clearfloat" style="margin-top: -12%;">
 				<div class="p-top p-top1 clearfloat" >
-					<a href="personal.html">
+					<a href="#">
 						<div class="tu">
 							<img id="Ytoux" src="resource/css/zbw/touxiang.png"/>
 						</div>
@@ -141,10 +142,10 @@
 					<div class="p-bottom clearfloat" >
 						<ul>
 							<a href="#">
-								<li class="box-s" >
+								<li id="zhuyingyw" class="box-s" >
 									<span class="opa6"></span>
-									<p class="bt">资格</p>
-									<p class="price">养护人</p>
+									<p class="bt">主营业务</p>
+									<p class="price">查看</p>
 								</li>
 							</a>
 							<a href="#">
@@ -384,6 +385,12 @@
 		 //console.log("点击事件");
 		 chakan(this.id)
 		})  
+		
+		//主营业务的点击事件
+		mui("ul").on('tap','#zhuyingyw',function(){
+		 //console.log("点击事件");
+		 zhuyingyewu()
+		})  
 		 //点击删除按钮。触发确认删除函数
 		mui("#j_neirong2").on('tap','#deleteButton',function(){
 		 //console.log("点击事件");
@@ -472,7 +479,7 @@
 						//请求方式为post
 						type:"post",
 						//json文件位置
-						url:"http://localhost:8080/CultivatePersonCenterController/pullConservationResources",
+						url:commonJavaUrl+"CultivatePersonCenterController/pullConservationResources",
 						data:{'userId':userInfo.id,'type':1},
 						//返回数据格式为json
 						dataType: "json",
@@ -528,7 +535,7 @@
 					  	//请求方式为post
 					  	type:"post",
 					  	//json文件位置
-					  	url:"http://localhost:8080/CultivatePersonCenterController/pullConservationResources",
+					  	url:commonJavaUrl+"CultivatePersonCenterController/pullConservationResources",
 					  	data:{'userId':userInfo.id,'type':0},
 					  	//返回数据格式为json
 					  	dataType: "json",
@@ -576,14 +583,20 @@
 								}
 								//显示用户数据
 								function load_user(){
+									var uId=1;
+									//取出用户信息
+									var userInfo2=JSON.parse(localStorage.getItem('userInfo'));
+									if(userInfo2!=undefined && userInfo2!=null){
+										uId=userInfo2.id;
+									}
 									$.ajax({
 										//请求方式为post
 										type:"post",
 										//json文件位置
-										url:"http://localhost:8080/CultivatePersonCenterController/pullMaintenanceInformation",
+										url:commonJavaUrl+"CultivatePersonCenterController/pullMaintenanceInformation",
 									    //返回数据格式为json
 									    dataType: "json",
-										data:{'userId':1},
+										data:{'userId':uId},
 									    //请求成功完成后要执行的方法
 									    success: function(data){
 											//模仿存储用户信息
@@ -604,7 +617,7 @@
 															//请求方式为post
 															type:"post",
 															//json文件位置
-															url:"http://localhost:8080/CultivatePersonCenterController/pullTheNumberOfResources",
+															url:commonJavaUrl+"CultivatePersonCenterController/pullTheNumberOfResources",
 															data:{'userId':userInfo.id},
 															//返回数据格式为json
 															dataType: "json",
@@ -619,7 +632,7 @@
 															//请求方式为post
 															type:"post",
 															//json文件位置
-															url:"http://localhost:8080/CultivatePersonCenterController/pullMaintenanceBalance",
+															url:commonJavaUrl+"CultivatePersonCenterController/pullMaintenanceBalance",
 															data:{'userId':userInfo.id},
 															//返回数据格式为json
 															dataType: "json",
@@ -699,7 +712,13 @@
 									id : 'agronomic_uploading.html'
 									});
 								}
-								
+								/* 主营业务 页面 */
+								function zhuyingyewu(){
+									mui.openWindow({
+									url : 'business_resource_user.html',
+									id : 'business_resource_user.html'
+									});
+								}
 								
 									
 </script>

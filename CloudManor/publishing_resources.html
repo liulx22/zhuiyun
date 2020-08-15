@@ -360,8 +360,6 @@
 	var type1=null;
 	var userInfo=window.localStorage.getItem(userInfo);
 	var user=JSON.parse(userInfo);
-	var uid=user.id;
-	var username=user.userName;
 	$(function(){
 		$("#tree").hide();
 		$("#Animal").hide();
@@ -605,9 +603,13 @@
                                 }  
                             }  
                         );  
-			type1="2_"+resourceid+"/"+uid+"-"+username;
-            task.addData("type1",type1); 
-			 task.addData("resourceid",resourceid); 
+			if(user.userName){
+				type1="2_"+resourceid+"/"+user.id+"-"+user.userName;
+				task.addData("type1",type1); 
+			}else {  
+                mui.toast("上传失败了。sorry，请重新来一遍");  
+            } 
+			 
            /* for(var i=0; i<imgArray.length;i++){    
                 var itemkey=id+"img-F_CKJLB";//+imgArray[i];  
                 if(plus.storage.getItem(itemkey)!=null){  
@@ -851,9 +853,14 @@
                                 }  
                             }  
                         );
-					type1="1_"+resourceid+"/"+uid+"-"+username;
-					task.addData("type1",type1);
-		            task.addFile(file,{key:"file"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
+						if(user.userName){
+							type1="1_"+resourceid+"/"+user.id+"-"+user.userName;
+							task.addData("type1",type1);
+				            task.addFile(file,{key:"file"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
+						}else {  
+                            mui.toast("上传失败了。sorry，请重新来一遍");  
+                         }  
+					
 		            task.start();//开始上传
 		        }
 		        
@@ -986,9 +993,11 @@
 						}  
 					}  
 				);
-			type1="3_"+resourceid+"/"+uid+"-"+username;
-			task.addData("type1",type1);
-            task.addFile(photofile,{key:"photofile"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
+			if(user.userName){
+				type1="3_"+resourceid+"/"+user.id+"-"+user.userName;
+				task.addData("type1",type1);
+	            task.addFile(photofile,{key:"photofile"});//这里是根据文件路径找到对应的文件,然后以file的参数名字扔给后台
+			}
             task.start();//开始上传
 		}	
 	</script>
@@ -1000,12 +1009,12 @@
 		sub.addEventListener('tap', function() {
 			var title=$("#title").val();
 			var reTypeCode=$("#typed option:selected").val();
-			if(username){
+			if(user.id){
 				if(reTypeCode=="fruiter"){
 					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?"+$("#tree1").serialize(),{
 					    dataType:"json",
 					    type:"post",
-					    data:{"title":title,"reTypeCode":reTypeCode,"uid":uid},
+					    data:{"title":title,"reTypeCode":reTypeCode,"uid":user.id},
 						timeout:10000,//超时时间设置为10秒；
 					    success:function(data) {
 							if(data){
@@ -1018,7 +1027,7 @@
 						}
 					})
 				}else if(reTypeCode=="livestock"){
-					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+user.id,{
 					    dataType:"json",
 					    type:"post",
 					    data:$("#Animal1").serialize(),
@@ -1036,7 +1045,7 @@
 						}
 					})
 				}else if(reTypeCode=="plot"){
-					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+uid,{
+					mui.ajax(commonJavaUrl+"Releaseresource/resourceadd?title="+title+"&reTypeCode="+reTypeCode+"&uid="+user.id,{
 					    dataType:"json",
 					    type:"post",
 					    data:$("#land1").serialize(),

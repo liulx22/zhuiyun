@@ -24,6 +24,7 @@
 		  <link rel="stylesheet" type="text/css" href="resource/css/zbw/zbw_mui.css"/>
 		  <!-- 引入外部json文件 -->
 		  <script type="text/javascript" src="file/zbw/cultivate.json"></script>
+		  <script src="./resource/js/common.js"></script>
 		  <!-- 阿里图标样式 -->
 		<style type="text/css">
 		    .icon {
@@ -250,7 +251,7 @@
 					  	//请求方式为post
 					  	type:"post",
 					  	//json文件位置
-					  	url:"http://localhost:8080/CultivatePersonCenterController/pullConservationResources",
+					  	url:commonJavaUrl+"CultivatePersonCenterController/pullConservationResources",
 					  	data:{'userId':userInfo.id,'type':1},
 					  	//返回数据格式为json
 					  	dataType: "json",
@@ -332,7 +333,7 @@
 										//请求方式为post
 										type:"post",
 										//json文件位置
-										url:"http://localhost:8080/CultivatePersonCenterController/batchCommitResources",
+										url:commonJavaUrl+"CultivatePersonCenterController/batchCommitResources",
 										data:{'userId':userInfo.id,"resouceId":aarr,"content":oo},
 										//返回数据格式为json
 										dataType: "json",

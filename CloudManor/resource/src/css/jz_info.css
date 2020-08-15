@@ -1,0 +1,55 @@
+/* 页面背景颜色 */
+body{
+	 background-color: ghostwhite;
+}
+/* 返回按钮 */
+a{
+	text-decoration: none;
+}
+.icona{ 
+	width: 8.5%; 
+	padding-left: 5%; 
+	vertical-align: middle;
+}/*只能添加图标*/
+.icona img{width: 4%;}
+/* 头部 */
+h4{ 
+	font-size: 1.5em;
+	color: #333;
+	margin: 0 20%;
+	display: inline-block;
+	font-weight: normal;
+	text-align: center;
+	padding: 0.3em 0;
+}
+/* 分割线 */
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 2px solid #BAB8C3;
+	width: 100%; 
+}
+/* 头像img */
+.img-circle{
+	width: 110px;
+	height: 110px;
+}
+/* 用户账号 */
+h3{
+	display:inline-block;
+}
+i{
+	margin-left: 10px;
+}
+/* 表单外边距 */
+.form-group{
+	margin-bottom: 5px;
+}
+select{
+	width: 105px;
+	height: 35px;
+}
+/* 标签字体大小 */
+label{
+	font-size: 18px;
+}
