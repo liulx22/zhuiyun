@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<link rel="stylesheet" href="./resource/mui/css/mui.min.css" /> 
+		<link rel="stylesheet" href="./resource/mui/css/mui.min.css" />
 		<script src="http://at.alicdn.com/t/font_1939224_4ye6421qdyi.js"></script>
 		<script src="./resource/jquery-3.2.1.js"></script>
-		
+
 		<!-- <style>
 			.mui-bar .mui-tab-item.mui-active .mui-icon{
 				color: #77ce36;
@@ -92,10 +91,10 @@
 				font-weight: 1000;
 			}
 		 </style> -->
-		 <!-- 搜素的css-->
-		 <style>
-			
-		 	#user_search{
+		<!-- 搜素的css-->
+		<style>
+
+			#user_search{
 		 		float:left;
 		 		width: 100%;
 				background-color: #f7f7f7;
@@ -113,9 +112,9 @@
 				padding-top: 0.3125rem;
 			}
 		 </style>
-		 
-		 <style>
-		 	ul,li{ 
+
+		<style>
+			ul,li{ 
 		 	    padding:0px; 
 		 	    margin:0px; 
 		 	    list-style: none; 
@@ -194,9 +193,7 @@
 		 	    font-size:0.8em; 
 		 	    color:#777; 
 		 	} 
-		 	.BoxRight{
-		 		padding-top: 0.625rem;
-		 	}
+		 	
 			.box {
 				padding: 2%;
 				border: 2% solid #ccc;
@@ -211,44 +208,37 @@
 			}
 				
 		 </style>
-		 
-		 
-		 <script>
-			 $(function(){
+
+
+		<script>
+			$(function(){
 			 	var globaPicUrl = "https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/";
 			 	   $.ajax({
 			 			//请求方式为get
 			 			type:"GET",
 			 			//json文件位置
-			 			url:"http://123.56.254.245:8088/myManor/getIndex",
+			 			url:"http://localhost:8088/myManor/getIndex",
 						/* http://123.56.254.245:8088/myManor/getIndex   59.110.139.4*/
 			 	        //返回数据格式为json
 			 	        dataType: "json",
 			 	        //请求成功完成后要执行的方法
 			 	        success: function(data){
 			 			    //使用$.each方法遍历返回的数据date,插入到id为#result中
-			 				var str="";
+			 				
 							for(var i=0;i<data.length;i++){ 
-
+								 var str="";
 								 str+="<div class=\"pin\"><div class=\"box\"><img src=\""+data[i].videoPath+"\" onclick=\"gotodetail("+data[i].id+")\"/></div>";
 								 str+="<div class=\"text-under-img\">";
-								 
-								 str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>"+data[i].address+"</span><span class=\"col-xs-4\">"+data[i].title+"</span>";
-									
-								 str+="<img src='./images/heart.png' />";
+								 str+="<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>"+data[i].address+"</span><br><span class=\"col-xs-4\">"+data[i].title+"</span>";
 								 str+="</div></div>"; 
-								 
-								 /* var chtml ="<li><p class='product_picture'><img src=\""+globaPicUrl+"resource/"+data[i]+"\" onclick=\"gotodetail('"+data[i]
-								 +"')\"></p><p class='product_np'><a style='font-size:13px;'><svg id='dingwei' class='icon' aria-hidden='true'>
-								 <use xlink:href='#icon-dingwei-1'></use></svg>石家庄</a><a><img src='./resource/css/images/iconfont-tianjia.png' /></a></p><p class='product_ie'>标题行</p></li>" */
+								
 								 if($('.BoxLeft').height() > $('.BoxRight').height()){ 
 								      $('.BoxRight').append(str); 
 								 }else{ 
 									 $('.BoxLeft').append(str); 
 								 } 
 			 				}
-							/* $("#main").append(str); */
-			 				
+							
 			 		   }
 			 	  });
 			 	  
@@ -260,47 +250,33 @@
 				  window.location.href="./Lordzhuangdetails.html?resourseid="+id+"";
 			  }
 		 </script>
-		
+
 	</head>
-    
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title">首页</h1>
 		</header>
 		<div class="mui-content">
-			<form >
+			<form>
 				<input type="search" id="user_search" name="user_search" placeholder="请输入搜素">
-					<svg id="search1" class="icon" aria-hidden="true" style="margin-left: 15px;">
-						<use xlink:href="#icon-fangdajing"></use>
-					</svg>	
+				<svg id="search1" class="icon" aria-hidden="true" style="margin-left: 15px;">
+					<use xlink:href="#icon-fangdajing"></use>
+				</svg>
 				</input>
 			</form>
 			<!-- 资源列表 -->
-			    <div class="twoRankedBox"> 
-			        <ul class="BoxLeft"> 
-			 
-			        </ul> 
-			 
-			        <ul class="BoxRight"> 
-			 
-			        </ul> 
-				</div>
-		</div>
-		
-		<!-- 货源列表 --> 
-		<!-- <div class="col-xs-12 column">
-			<div id="main">
-				<div class="pin">
-					<div class="box"> 
-						<img src="Picture/GlobalPicture/1.jpg" />
-					</div>
-					<div class="text-under-img">
-						<span class="col-xs-4">标题行 </span>
-					</div>
-				</div>
+			<div class="twoRankedBox">
+				<ul class="BoxLeft">
+
+				</ul>
+
+				<ul class="BoxRight">
+
+				</ul>
 			</div>
-		</div> -->
-		
+		</div>
+
 		<style>
 			.mui-bar .mui-tab-item.mui-active .mui-icon{
 				color: #77ce36;
@@ -310,58 +286,94 @@
 			}
 		</style>
 		<nav class="mui-bar mui-bar-tab">
-			<a id="defaultTab" class="mui-tab-item mui-active" href="./index.html">
-				<span class="mui-icon mui-icon-home mui-active"></span>
-				<span class="mui-tab-label">首页</span>
-			</a>
-			
-			<a class="mui-tab-item" id="xiangqing">
-				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">我的</span>
-			</a>
+			<div>
+				<a id="defaultTab" class="mui-tab-item mui-active" href="./index.html">
+					<span class="mui-icon mui-icon-home mui-active"></span>
+					<span class="mui-tab-label">首页</span>
+				</a>
+				<a id="resourceTab" class="mui-tab-item" href="##">
+					<span class="mui-icon mui-icon-home mui-active"></span>
+					<span class="mui-tab-label">资源管理</span>
+				</a>
+				<a class="mui-tab-item" id="xiangqing">
+					<span class="mui-icon mui-icon-contact"></span>
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</div>
 			<script>
-				$("#defaultTab").click(function(){
-					var a=localStorage.getItem("userInfo")
-					if(a==null){
-						location.href="./login.html" 
-					}else{
-						location.href="./my_manor.html" 
+				$("#defaultTab").click(function() {
+					var a = localStorage.getItem("userInfo")
+					if (a == null) {
+						location.href = "./login.html"
+					} else {
+						location.href = "./my_manor.html"
 					}
 				})
-				$("#xiangqing").click(function(){
-					var a=localStorage.getItem("userInfo")
-					if(a==null){
-						location.href="./login.html" 
-					}else{
-						location.href="./my_manor.html" 
+				$("#xiangqing").click(function() {
+					var a = localStorage.getItem("userInfo")
+					if (a == null) {
+						location.href = "./login.html"
+					} else {
+						location.href = "./my_manor.html"
 					}
 				})
 			</script>
 		</nav>
-		
+
 		<script type="text/javascript" charset="utf-8">
-		
-			
+
+
 		</script>
 		<!-- 搜索-->
 		<script type="text/javascript">
-			$("#search1").click(function(){
-				var a=localStorage.getItem("userInfo")
-				if(a==null){
-					location.href="./login.html" 
-				}else{
-					alert($("#user_search").val())
+			$("#search1").click(function() {
+				var a = localStorage.getItem("userInfo")
+				if (a == null) {
+					location.href = "./login.html"
+				} else {
+					var user_search=$("#user_search").val();
+					$.ajax({
+						//请求方式为get
+						type: "GET",
+						//json文件位置
+						url: "http://localhost:8088/myManor/getSearch",
+						/* http://123.56.254.245:8088/myManor/getSearch   59.110.139.4*/
+						//返回数据格式为json
+						dataType: "json",
+						//请求成功完成后要执行的方法
+						success: function(data) {
+							//使用$.each方法遍历返回的数据date,插入到id为#result中
+							$(".BoxRight").empty();
+							$(".BoxLeft").empty();
+							for (var i = 0; i < data.length; i++) {
+								var str = "";
+								str += "<div class=\"pin\"><div class=\"box\"><img src=\"" + data[i].videoPath +
+									"\" onclick=\"gotodetail(" + data[i].id + ")\"/></div>";
+								str += "<div class=\"text-under-img\">";
+								str += "<span id='address_icon' class='mui-icon mui-icon-location' style='font-size:13px;'>" + data[i].address +
+									"</span><br><span class=\"col-xs-4\">" + data[i].title + "</span>";
+								str += "</div></div>";
+
+								if ($('.BoxLeft').height() > $('.BoxRight').height()) {
+									$('.BoxRight').append(str);
+								} else {
+									$('.BoxLeft').append(str);
+								}
+							}
+
+						}
+					});
 				}
-				
+
 			})
-			$("#user_search").on('keypress',function(e) {
-			                var keycode = e.keyCode;
-			                var searchName = $(this).val();
-			                if(keycode=='13') {
-			                    e.preventDefault();  
-			                    //请求搜索接口
-			                }
-			         });
+			$("#user_search").on('keypress', function(e) {
+				var keycode = e.keyCode;
+				var searchName = $(this).val();
+				if (keycode == '13') {
+					e.preventDefault();
+					//请求搜索接口
+				}
+			});
 		</script>
 	</body>
 
