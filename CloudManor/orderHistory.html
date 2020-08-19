@@ -9,15 +9,18 @@
 		<link href="./resource/mui/css/mui.css" rel="stylesheet" />
 		<!-- mui框架的时间控件 -->
 		<link href="./resource/mui/css/mui.picker.min.css" rel="stylesheet" /> 
+		<link href="resource/css/bootstrap.css" rel="stylesheet"/>
 		<!-- app自定义的css -->
 		<link rel="stylesheet" type="text/css" href="resource/css/fangh/app.css" />
 		<link rel="stylesheet" type="text/css" href="resource/css/menudown.css" />
 		<!-- 全部引入的js文件 -->
 		<script src="resource/jquery-3.2.1.js"></script>  
+		<script src="resource/js/bootstrap.js"></script>
 		<script src="resource/mui/js/mui.min.js"></script>
 		<script src="resource/mui/js/mui.picker.min.js"></script>
 		<script src="resource/js/menudown.js"></script>
-		
+		<script src="resource/js/common.js"></script>
+		<script src="resource/js/iconfont.js"></script>
 		
 		<style>
 			*{
@@ -82,6 +85,11 @@
 			}
 			.price span{
 				color: #000000;
+			}
+			.btn-danger{
+				float: left;
+				margin-top:5px;
+				margin-left: 20px;
 			}
 		</style>
 	</head>
@@ -156,7 +164,7 @@
 										<p>全部</p>
 									</li>
 									<li>
-										<p>未支付</p>
+										<p>待支付</p>
 									</li>
 									<li>
 										<p>已支付</p>
@@ -172,18 +180,20 @@
 			</div>
 			<div class="mui-input-row"></div>
 			<div id="lishiorder">
-			<div class="history1";">
+			<!-- <div class="history1";">
 				<div class="boximg">
 					<img id="head_pictrue1" src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/zbw_2_2.jpg"/>
 				</div>
 					<span class="title">一棵苹果树,现在只需 998</span>
-					<span class="positionFont">位置:乌鲁木齐</span>
+					<span class="positionFont">位置:南京</span>
+				
 					<span class="billTime">下单时间:2020-07-14</span>
 					<span class="billCode">订单编号:123456789</span>
+					<span type="button" class="btn btn-danger">立即支付</span>
 					<span class="price"><span>实付款:</span>￥ 998</span>
-			</div>
+			</div> -->
 			
-			<div class="history1";">
+			<!-- <div class="history1";">
 				<div class="boximg">
 					<img id="head_pictrue1" src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/liulx_2_2.jpg"/>
 				</div>
@@ -192,9 +202,9 @@
 					<span class="billTime">下单时间:2020-07-14</span>
 					<span class="billCode">订单编号:6666666</span>
 					<span class="price"><span>实付款:</span>￥ 128</span>
-			</div>
+			</div> -->
 			
-			<div class="history1";">
+			<!-- <div class="history1";">
 				<div class="boximg">
 					<img id="head_pictrue1" src="https://lzj-picservice.oss-cn-beijing.aliyuncs.com/CloudManor_Pic/resource/pictrue/liulx_2_7.jpg"/>
 				</div>
@@ -203,7 +213,7 @@
 					<span class="billTime">下单时间:2020-07-14</span>
 					<span class="billCode">订单编号:6666666</span>
 					<span class="price"><span>实付款:</span>￥ 18888</span>
-			</div>
+			</div> -->
 			</div>
 	</div>
 	</body>
@@ -212,47 +222,72 @@
 			//历史订单
 			orderdingdan();
 		})
-		function orderdingdan(){
+		//历史订单
+		function orderdingdan(shijian,leixing){
+			if(shijian=="一周"){
+				shijian=6;
+			}else if(shijian=="一月"){
+				shijian=29;
+			}else if(shijian=="一年"){
+				shijian=364;
+			}else if(shijian=="一年以前"){
+				shijian=1;
+			}
 			var storage=window.localStorage;//获取用户信息
 			var json=storage.getItem("userInfo");
 			var userInfo=JSON.parse(json);//获取用户信息
 			$.ajax({
-				url:commonJavaUrl+"order/GETOrderHistoricalVO",
+				url:commonJavaUrl+"order/GETOrderHistoricalVO", 
+				//url:"http://localhost:8088/order/GETOrderHistoricalVO",
 				type:"post",
 				dataType:"json",
 				data:{
-					userId:userInfo.id
+					userId:userInfo.id,
+					shijian:shijian,
+					leixing:leixing
 				},
 				success:function(data){
 					var mm="";
 					if(data!=null && data!=""){
 						$(data).each(function(a,b){
-							mm="<div class=\"history1\";\"> \n"+
-									"<div class=\"boximg\">\n"+
+							mm+="<div class=\"history1\";\"> \n"+
+									"<div onclick=\"ziyuanxianqing("+b.id+")\" class=\"boximg\">\n"+
 										"<img id=\"head_pictrue1\" src=\""+b.imgDir+"\"/>\n"+
 									"</div>\n"+
 										"<span class=\"title\">"+b.title+"</span>\n"+
-										"<span class=\"positionFont\">位置:"+b.geographicPosition+"</span>\n"+
+										//"<span class=\"positionFont\">位置:"+b.geographicPosition+"</span>\n"+
 										"<span class=\"billTime\">下单时间:"+b.orderTime+"</span>\n"+
-										"<span class=\"billCode\">订单编号:"+b.orderNo+"</span>\n"+
-										"<span class=\"price\"><span>实付款:</span>￥ "+b.money+"</span>\n"+
+										"<span class=\"billCode\">订单编号:"+b.orderNo+"</span>";
+										if(b.digitalCode=="待支付"){
+											mm+="<span type=\"button\" onclick=\"zhifu("+b.id+")\" class=\"btn btn-danger\">立即支付</span>";
+										}
+										mm+="<span class=\"price\"><span>实付款:</span>￥ "+b.money+"</span>\n"+
 								"</div>";
 						})
 						$("#lishiorder").html(mm);
 					}else{
-						var mm="<svg class=\"icon\" aria-hidden=\"true\" style=\"margin-top: 30%;margin-left: 10%;\">\n"+
-							"<use xlink:href=\"#icon-nopicture\"></use>\n"+
+						mm+="<svg class=\"icon\" aria-hidden=\"true\" style=\"margin-top: 30%;margin-left: 10%;\">\n"+
+							"<use xlink:href=\"#icon-zanwudingdan\"></use>\n"+
 						"</svg>";
 						$("#lishiorder").html(mm);
 					}
 				},error:function(){
 					alert("异常");
 					var mm="<svg class=\"icon\" aria-hidden=\"true\" style=\"margin-top: 30%;margin-left: 10%;\">\n"+
-						"<use xlink:href=\"#icon-nopicture\"></use>\n"+
+						"<use xlink:href=\"#icon-zanwudingdan\"></use>\n"+
 					"</svg>";
 					$("#lishiorder").html(mm);
 				}
 			})
+		}
+		//跳转立即支付
+		function zhifu(id){
+			alert(id);
+			//window.location.href="./";
+		}
+		//跳转资源详情
+		function ziyuanxianqing(id){
+			window.location.href="./Lordzhuangdetails.html?resourceId="+id;
 		}
 	</script>
 </html>
